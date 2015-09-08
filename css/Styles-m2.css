@@ -15,3 +15,18 @@
 #tituloalta{
 	text-align: center;
 }
+#tabla-alumnos{
+	border-collapse: collapse;
+	width:100%;
+	border:1px;
+	border-color:#585858;
+	text-align:center;
+}
+#tabla-alumnos tr {
+  border: #585858 5px solid;}
+
+.iconoListado{
+	 height: 35px;
+	 margin-right:14px;
+	
+}
