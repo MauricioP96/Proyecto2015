@@ -1,0 +1,17 @@
+.camposformalta{
+	margin: 15px;
+}
+.camposformalta input{
+	width:35%;
+}
+.Body-altaalumno{
+    width: 85%;
+    background-color: #F9F9F9;
+    left: 8%;
+    top: 7%;
+    position: absolute;
+    margin-bottom: 5%;
+}
+#tituloalta{
+	text-align: center;
+}
