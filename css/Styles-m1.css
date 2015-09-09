@@ -30,10 +30,10 @@ body{
     height: 222px;
 }
 .text-tittle{
-    font-size: 58px;
     position: absolute;
-    top: 68px;
-    left: 13%;
+    top: 6.5%;
+    font-size: 4vw;
+    left: 15%;
     font-weight: 900;
     border: darkorange;
     color: rgb(35, 35, 35);
@@ -70,6 +70,7 @@ body{
     left: 3%;
     position: absolute;
     top: 252px;
+    overflow: auto;
     height: 890px;
     border-radius: 3px;
     border-color: #D6D6D6;
