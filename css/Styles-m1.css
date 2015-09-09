@@ -21,9 +21,9 @@ body{
 }
 #escudoUNLP-v1{
     position: absolute;
-    width: 107px;
+    width: 7vw;
     float: left;
-    top: 44px;
+    top: 4.5%;
     left: 2%;
 }
 .lineal-banner{
@@ -32,8 +32,8 @@ body{
 .text-tittle{
     position: absolute;
     top: 6.5%;
-    font-size: 4.1vw;
-    left: 15%;
+    font-size: 4.2vw;
+    left: 13%;
     font-weight: 900;
     border: darkorange;
     color: rgb(35, 35, 35);
