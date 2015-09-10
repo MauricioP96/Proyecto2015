@@ -1,12 +1,13 @@
 body{
+    margin-top: 0px;
    background: #deebdf;
 }
 .real-Body{
+    margin-top: 0px;
     width: 85%;
     background-color: #F9F9F9;
     height: 1173px;
     left: 8%;
-    top: 7%;
     position: absolute;
     margin-bottom: 5%;
 }
