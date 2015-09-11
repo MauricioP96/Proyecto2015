@@ -14,11 +14,10 @@ body{
 #banner-v1{
     width: 100%;
     height: 100%;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     border-style: solid;
     border-width: 1px;
     border-color: grey;
+    border-radius: 3px;
 }
 #escudoUNLP-v1{
     position: absolute;
@@ -98,7 +97,7 @@ body{
     border-radius: 4px;
     border-style: solid;
     border-color: #D4D4D4;
-    margin: 6px;
+    margin-top: 6px;
     position: relative;
     left: 14%;
     padding-left: 20px;
@@ -108,3 +107,47 @@ body{
 .button-login:hover{
     background-color: #757575;
 }
+@media screen and (max-width:1100px){
+    .login{
+            left: 9%;    width: 80%;
+    }
+    .internal-content{
+        top: 44%;
+        left: 14%;
+         height: 626px;
+    }
+    #imagen-para-texto{
+        visibility: hidden;
+    }
+    .imput-v1{
+            width: 100%;
+            height: 43px;
+    }
+       .button-login{
+            padding: 11px;
+            position: relative;
+            left: 6vw;
+            padding-left: 15%;
+            padding-right: 15%;
+            font-size: larger;
+            width: 82%;
+    }
+
+}
+@media screen and (max-width:850px){
+    #escudoUNLP-v1{
+        width: 9vw;
+        top: 1.5%;
+        left: 44%;
+        min-width: 49px;
+    }
+    .text-tittle{
+        font-size: xx-large;
+        top: 9.5%;
+        left: 9%;
+        WIDTH: 86%;
+    }
+ 
+        
+}
+  
