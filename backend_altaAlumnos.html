@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<HTML>
+<HTML lang="es">
     <HEAD>
         <TITLE>Nuevo alumno</TITLE>
 		<meta charset="utf-8">
@@ -12,63 +12,63 @@
 	<BODY>
 		<div class="main_wrapper">     <!--Body-altaalumno-->
             <div class="lineal-banner">
-            <img id="banner-v1" src="banner.png" title="banner" >
-            <img id="escudoUNLP-v1" src="escudo-UNLP.jpg.png" title="escudo" >
+            <img alt='Banner de la institución' id="banner-v1" src="banner.png" title="Banner" >
+            <img alt='Escudo de la institución' id="escudoUNLP-v1" src="escudo-UNLP.jpg.png" title="Escudo" >
             <div class="text-tittle">Escuela Graduada Joaquín V. González</div>
 			</div>
 		<div>
 			<h3 id='tituloalta'>Formulario para registrar nuevo alumno.</h3>
 			<form method="post">
 				<fieldset><legend>Datos del alumno:</legend>
-					<div class="camposformalta"><label>DNI:</label>
-					<input type="number" name="dni" required placeholder="Ingrese el dni del alumno">
+					<div class="camposformalta"><label for="dni">DNI:</label>
+					<input id="dni" type="number" name="dni" required placeholder="Ingrese el dni del alumno">
 					</div>
 					<div class="camposformalta">
-					<label>Apellido y nombre:</label>
-					<input type="text" name="apynom" required placeholder="Ingrese el apellido y nombre del alumno">
+					<label for="apynom">Apellido y nombre:</label>
+					<input id="apynom" type="text" name="apynom" required placeholder="Ingrese el apellido y nombre del alumno">
 					</div>
 					<div class="camposformalta">
-					<label>Fecha de nacimiento:</label>
-					<input type="date" name="fecnac" required>
+					<label for="fecnac">Fecha de nacimiento:</label>
+					<input id="fecnac" type="date" name="fecnac" required>
 					</div>
 					<div class="camposformalta">
-					<label>Sexo:</label>
-					<select name="sexo">
+					<label for="sexo">Sexo:</label>
+					<select id="sexo" name="sexo">
 						<option  value='masculino'>Masculino</option>
 						<option  value='femenino'>Femenino</option>
 					</select>
 					</div>
 					<div class="camposformalta">
-					<label>Dirección:</label>
-					<input type="text" name="dire" required placeholder="Ingrese el domicilio del alumno">
+					<label for="dire">Dirección:</label>
+					<input id="dire" type="text" name="dire" required placeholder="Ingrese el domicilio del alumno">
 					</div>
 				</fieldset>
 				<fieldset><legend>Datos de los representantes:</legend>
 					<div class="camposformalta">
-					<label>Apellido y nombre del tutor legal:</label>
-					<input type="text" name="apynomTut" required placeholder="Ingrese el apellido y nombre del tutor legal">
+					<label for="apynomTut">Apellido y nombre del tutor legal:</label>
+					<input id="apynomTut" type="text" name="apynomTut" required placeholder="Ingrese el apellido y nombre del tutor legal">
 					</div>
 					<div class="camposformalta">
-					<label>Parentesco con el tutor:</label>
-					<input type="text" name="parentTut" required placeholder="Ingrese el tipo de parentesco con el tutor">
+					<label for="parentTut">Parentesco con el tutor:</label>
+					<input id="parentTut" type="text" name="parentTut" required placeholder="Ingrese el tipo de parentesco con el tutor">
 					</div>
 					<div class="camposformalta">
-					<label>Apellido y nombre del padre:</label>
-					<input type="text" name="apynomPad" placeholder="Ingrese el apellido y nombre del padre">
+					<label for="apynomPad">Apellido y nombre del padre:</label>
+					<input id="apynomPad" type="text" name="apynomPad" placeholder="Ingrese el apellido y nombre del padre">
 					</div>
 					<div class="camposformalta">
-					<label>Apellido y nombre de la madre:</label>
-					<input type="text" name="apynomMad" placeholder="Ingrese el apellido y nombre de la madre">
+					<label for="apynomMad">Apellido y nombre de la madre:</label>
+					<input id="apynomMad" type="text" name="apynomMad" placeholder="Ingrese el apellido y nombre de la madre">
 					</div>
 				</fieldset>
 				<fieldset><legend>Datos de contacto:</legend>
 					<div class="camposformalta">
-					<label>Mail de contacto:</label>
-					<input type="email" name="mail" placeholder="Ingrese un mail de contacto">
+					<label for="mail">Mail de contacto:</label>
+					<input id="mail" type="email" name="mail" placeholder="Ingrese un mail de contacto">
 					</div>
 					<div class="camposformalta">
-					<label>Teléfono de contacto:</label>
-					<input type="text" name="telefono" required placeholder="Ingrese un telefono de contacto">
+					<label for="telefono">Teléfono de contacto:</label>
+					<input id="telefono" type="text" name="telefono" required placeholder="Ingrese un telefono de contacto">
 					</div>
 				</fieldset>
 				<!--<div class="camposformalta">
@@ -81,3 +81,4 @@
 		<footer>contacto</footer>
 		</div>
 	</body>
+</HTML>

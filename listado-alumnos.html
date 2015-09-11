@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<HTML>
+<HTML lang="es">
     <HEAD>
         <TITLE>Listado de alumnos</TITLE>
 		<meta charset="utf-8">
@@ -12,45 +12,45 @@
 	<BODY>
 		<div class="main_wrapper"> 
             <div class="lineal-banner">
-            <img id="banner-v1" src="banner.png" title="banner" >
-            <img id="escudoUNLP-v1" src="escudo-UNLP.jpg.png" title="escudo" >
+            <img alt='Banner de la institución' id="banner-v1" src="banner.png" title="Banner" >
+            <img alt='Escudo de la institución' id="escudoUNLP-v1" src="escudo-UNLP.jpg.png" title="Escudo" >
             <div class="text-tittle">Escuela Graduada Joaquín V. González</div>
 			</div>
 			<h3 id='tituloalta'>Listado de alumnos registrados.</h3>
-			<table cellspacing=0 border=1 cellpadding=10 id='tabla-alumnos'>
+			<table summary='Tabla con el listado de alumnos registrados en el sistema' id='tabla-alumnos'>
 				<thead>
 					<tr>
-						<th>DNI</th>
-						<th>Apellido y nombre</th>
-					    <th>Fecha de nacimiento</th>
-						<th>Acciónes</th>
+						<th id='col_dni'>DNI</th>
+						<th id='col_apynom' >Apellido y nombre</th>
+					    <th id='col_fecnac'>Fecha de nacimiento</th>
+						<th id='col_acc'>Acciónes</th>
 					</tr>
 				</thead>
 				<tr>
-					<td>42588941</td>
-					<td>Julieta Díaz</td>
-					<td>15/06/2001</td>
-					<td>
+					<td headers='col_dni'>42588941</td>
+					<td headers='col_apynom'>Julieta Díaz</td>
+					<td headers='col_fecnac'>15/06/2001</td>
+					<td headers='col_acc'>
 						<img class='iconoListado' alt='Ver mas información del alumno' title='Ver mas información del alumno' src='iconoInfo.png'>
 						<img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='iconoModif.png'>
 						<img class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='iconoElim.png'>
 					</td>
 				</tr>
 				<tr>
-					<td>39159753</td>
-					<td>Nicolas Perez</td>
-					<td>28/02/1999</td>
-					<td>
+					<td headers='col_dni'>39159753</td>
+					<td headers='col_apynom'>Nicolas Perez</td>
+					<td headers='col_fecnac'>28/02/1999</td>
+					<td headers='col_acc'>
 						<img class='iconoListado' alt='Ver mas información del alumno' title='Ver mas información del alumno' src='iconoInfo.png'>
 						<img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='iconoModif.png'>
 						<img class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='iconoElim.png'>
 					</td>
 				</tr>
 				<tr>
-					<td>40500987</td>
-					<td>Juan Manuel Ríos</td>
-					<td>01/12/2005</td>
-					<td>
+					<td headers='col_dni'>40500987</td>
+					<td headers='col_apynom'>Juan Manuel Ríos</td>
+					<td headers='col_fecnac'>01/12/2005</td>
+					<td headers='col_acc'>
 						<img class='iconoListado' alt='Ver mas información del alumno' title='Ver mas información del alumno' src='iconoInfo.png'>
 						<img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='iconoModif.png'>
 						<img class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='iconoElim.png'>
@@ -60,3 +60,4 @@
 		<footer>contacto</footer>
 		</div>
 	</body>
+</HTML>
