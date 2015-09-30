@@ -15,8 +15,6 @@ try {
 
 	//display information:
 	echo "<br>Variables Recibidas:";
-	echo"<br>Uusuario: <strong>". $_POST["email"]."</strong>";
-	echo"<br>PASS: <strong>". $_POST["pass"]."</strong>";
 	
 	echo "<br> El query que hicimos fue: Ver log de mysql.....";
 
