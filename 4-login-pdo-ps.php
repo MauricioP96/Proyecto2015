@@ -1,7 +1,7 @@
 <?php
 
 //conection:
-$db_host="localhost";
+$db_host="https://sql.proyecto2015.linti.unlp.edu.ar/";
 $db_user="grupo_10";
 $db_pass="DCerbxcYhyEA9X4T";
 $db_base="grupo_10"; 
