@@ -1,7 +1,7 @@
 <?php
 
 //conection:
-$db_host="https://sql.proyecto2015.linti.unlp.edu.ar/";
+$db_host="Localhost";
 $db_user="grupo_10";
 $db_pass="DCerbxcYhyEA9X4T";
 $db_base="grupo_10"; 
@@ -11,7 +11,7 @@ try {
 	
 	
 	$query = $cn->prepare("SELECT * FROM usuarios ");
-	$query->execute(array($_POST["email"],$_POST["pass"])); 
+	$query->execute(); 
 
 	//display information:
 	echo "<br>Variables Recibidas:";
