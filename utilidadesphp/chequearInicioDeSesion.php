@@ -5,6 +5,7 @@ $query = $cn->prepare("SELECT * FROM Usuarios WHERE username=? and password=?");
 $query->execute(array($_POST["usuario"],$_POST["clave"])); 
 $rows = $query->fetchAll();
 //print_r($rows);
+
 if($query->rowCount()==1){
    session_start();
    foreach ($rows as $row) {
@@ -16,7 +17,7 @@ if($query->rowCount()==1){
          }
 }
 else{
-	
+   $mostrofallo=true;
 }
 
 ?>
