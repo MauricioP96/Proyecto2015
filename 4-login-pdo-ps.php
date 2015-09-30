@@ -10,7 +10,7 @@ try {
 	$cn = new PDO("mysql:dbname=$db_base;host=$db_host",$db_user,$db_pass);
 	
 	
-	$query = $cn->prepare("SELECT * FROM usuarios ");
+	$query = $cn->prepare("SELECT * FROM Usuarios ");
 	$query->execute(); 
 
 	//display information:
