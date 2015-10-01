@@ -21,6 +21,7 @@
 		
     </HEAD>
 	<BODY>
+		<a href="../utilidadesphp/alta_alumno.php">algo</a>
 		<div class="main_wrapper">     <!--Body-altaalumno-->
             <div class="lineal-banner">
             <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
@@ -30,22 +31,23 @@
 		<div class="contenedor_formulario">
 			<div class="container">
 			  <h2>Alta Alumnos</h2>
-			  <form role="form">
-			    <div class="form-group">
+			  <form method="post" action="../utilidadesphp/alta_alumno.php" role="form">
+			  	<div class="form-group">
+			      <label for="pwd">Nombre:</label>
+			      <input type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" required>
+			    </div>
+			   <!-- <div class="form-group">
 			      <label for="email">Email:</label>
-			      <input type="email" class="form-control" id="email" placeholder="Introduzca su Email" required>
+			      <input type="email" class="form-control" name="email" placeholder="Introduzca su Email" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">DNI:</label>
-			      <input type="text" class="form-control" id="pwd" placeholder="Introduzca su DNI" required>
+			      <input type="text" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
 			    </div>
-			    <div class="form-group">
-			      <label for="pwd">Nombre:</label>
-			      <input type="text" class="form-control" id="pwd" placeholder="Introduzca su Nombre" required>
-			    </div>
+			    
 			    <div class="form-group">
 			      <label for="pwd">Apellido:</label>
-			      <input type="text" class="form-control" id="pwd" placeholder="Introduzca su Apellido" required>
+			      <input type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">Sexo:</label>
@@ -91,7 +93,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                	 </div>
-            	</div>
+            	</div>-->
 			    <button type="submit" class="btn btn-primary btn">Agregar</button>
 			  </form>
 			</div>
