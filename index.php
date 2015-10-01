@@ -8,7 +8,7 @@ if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 if(!empty($_SESSION['nombreusuario'])){
 	header ("Location: backend.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
-
+echo 'entro';
 if (!empty($_POST['usuario'])){                                                   //verificar si se quiso iniciar sesion
 	require('utilidadesphp/chequearInicioDeSesion.php');
 }
@@ -34,4 +34,3 @@ else{                                      //si la pagina esta deshabilitada deb
 }
 
 ?>
-
