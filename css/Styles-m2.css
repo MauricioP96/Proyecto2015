@@ -26,8 +26,10 @@
 	
 	
 	}
-th, td { padding: 5px; 
-	border:#337AC4 1px solid;} 
+th, td {
+	padding: 5px;
+	//border:#337AC4 1px solid;
+	} 
 	
 #tabla-alumnos tr {
   border: #337AC4 5px solid;}

@@ -30,7 +30,7 @@ if ($configuraciones['0']['habilitada']){
 						));
 }
 else{                                      //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???
-	
+	echo 'mensaje de pagina desactibada';
 }
 
 ?>

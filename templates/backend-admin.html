@@ -4,10 +4,7 @@
 <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap2.min.js"></script>
     <meta charset="UTF-8">
-    <TITLE>Area {% if tipo ==administracion%}administracion
-            {% elseif tipo ==gestion%}gestion
-            {% else %}consulta
-            {% endif %}
+    <TITLE>Area de usuarios
 </TITLE>
         <script>                     
             function salir(){
@@ -43,10 +40,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Listado de alumnos</a></li>
+        {% if tipo == 'administracion' %}
+        
+        <li class="active" ><a href="#">Listado de alumnos</a></li>
+        
+
         <li><a href="#">Registrar pago</a></li>
         <li><a href="#">Becar alumno</a></li>
+        <li><a href="#">Alumnos con matricula paga</a></li>
+        <li><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -57,8 +59,24 @@
           </ul>
 
         </li>
-
-      </ul>
+        </ul>
+        {% elseif tipo =='gestion' %}
+            <li><a href="#">Registrar pago</a></li>
+        <li><a href="#">Becar alumno</a></li>
+        <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Alumnos con matricula paga</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Cuota</a></li>
+            </ul>
+            </ul>
+            {% elseif tipo == 'consulta' %}
+                <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+                 <li><a href="#">Alumnos con matricula paga</a></li>
+                  </ul>
+            {% endif %}
+     
       <ul class="nav navbar-nav navbar-right">
         <li><a onclick="salir()">Cerrar sesión</a></li>
       </ul>
@@ -73,11 +91,36 @@
                         <div class="text-tittle">{{titulo}}</div>
 			         </div>
             <div class="main_container">
-            
-                     
-                    <div class="contents">
-                    </div>
-            </div>
+            <div class="contents">
+                <ul>
+</ul>
+            <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
+        <thead>
+          <tr>
+            <th id='col_dni'>Número de documento</th>
+            <th id='col_ape' >Apellido</th>
+            <th id='col_nom' >Nombre</th>
+              <th id='col_fecnac'>Fecha de nacimiento</th>
+            <th id='col_acc'>Acciónes</th>
+          </tr>
+        </thead>
+        {% for alumno in alumnos %}
+         <tr>
+          <td headers='col_dni'>{{alumno['numeroDoc']}}</td>
+          <td headers='col_ape'>{{alumno['apellido']}}</td>
+          <td headers='col_nom'>{{alumno['nombre']}}</td>
+          <td headers='col_fecnac'>{{alumno['fechaNacimiento']}}</td>
+          <td headers='col_acc'>
+            <a href="detalle-alumno.php?idalumno={{alumno['id']}}"><img class='iconoListado' alt='Ver mas información del alumno' title='Ver mas información del alumno' src='Imagenes/iconoInfo.png'></a>
+            <a href="modificar-alumno.php?idalumno={{alumno['id']}}"><img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='Imagenes/iconoModif.png'></a>
+            <img class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='Imagenes/iconoElim.png'>
+            </td>
+        </tr>
+        {% else %}
+            <li><em>no user found</em></li>
+         {% endfor %}
+             </div>
+        </div>
 		<footer>{{contacto}}</footer>
 		</div>
 	</body>

@@ -15,9 +15,20 @@ if($query->rowCount()==1){
 	//echo $_SESSION['nombreusuario'];
 
 	//echo $_SESSION['rol'];
-	}
-  header ("Location: backend.php");
-         
+  switch ($row['rol']) {
+    case 'administracion':
+        header ("Location: listadoAlumnos.php");
+        break;
+    case 'gestion':
+        //header ("Location: listadoAlumnos.php");
+        echo "falta configurar la pagina de inicio de gestion en chequearInicioDeSesion.php";
+        break;
+    case 2:
+        //header ("Location: listadoAlumnos.php");
+        echo "falta configurar la pagina de inicio de consulta en chequearInicioDeSesion.php";
+        break;
+}
+}
 }
 else{
    $mostrofallo=true;
