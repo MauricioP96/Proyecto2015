@@ -17,7 +17,7 @@ if (!empty($_POST['usuario'])){                                                 
 require ("utilidadesphp/consultaConf.php");    //consulta la configuracion y devuelve en $configuraciones
 
 require('utilidadesphp/setearTwig.php'); //seteo twig en $template 
-echo 'entro';
+//echo 'entro';
 if ($configuraciones['0']['habilitada']){
 	//if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
    		$template = $twig->loadTemplate("index.html");
