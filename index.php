@@ -12,9 +12,10 @@ if(!empty($_SESSION['nombreusuario'])){
 if (!empty($_POST['usuario'])){                                                   //verificar si se quiso iniciar sesion
 	require('utilidadesphp/chequearInicioDeSesion.php');
 }
-echo 'entro';
 
-require ("utilidadesphp/consultaConf.php");                   //consulta la configuracion y devuelve en $configuraciones
+
+require ("utilidadesphp/consultaConf.php");    //consulta la configuracion y devuelve en $configuraciones
+echo 'entro';
 require('utilidadesphp/setearTwig.php');      //seteo twig en $template 
 if ($configuraciones['0']['habilitada']){
 	//if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
