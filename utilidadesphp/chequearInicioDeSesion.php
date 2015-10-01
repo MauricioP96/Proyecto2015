@@ -15,7 +15,7 @@ if($query->rowCount()==1){
 		$_SESSION['rol'] = $row['rol'];
 	echo $_SESSION['nombreusuario'];
 
-	//echo $_SESSION['rol'];
+	echo $_SESSION['rol'];
   switch ($row['rol']) {
     case 'administracion':
         header ("Location: listadoAlumnos.php");
