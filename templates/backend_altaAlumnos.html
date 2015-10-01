@@ -5,78 +5,99 @@
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="shortcut icon" href="JoaquinVGonzalez222.ico">
-        <link rel="stylesheet" href="css/Styles-m1.css">	
-		<link rel="stylesheet" href="css/Styles-m2.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+        <link rel="stylesheet" href="../css/Styles-m1.css">	
+		<link rel="stylesheet" href="../css/Styles-m2.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
+				<link rel="stylesheet" href="../css/bootstrap-theme.css">
+		<link rel="stylesheet" href="../js/bootstrap.js">
+				<link rel="stylesheet" href="../js/bootstrap.min.js">
+				  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+			<link rel="stylesheet" href=".../css/bootstrap-datetimepicker">
+		
     </HEAD>
 	<BODY>
+		<a href="../utilidadesphp/alta_alumno.php">algo</a>
 		<div class="main_wrapper">     <!--Body-altaalumno-->
             <div class="lineal-banner">
-            <img alt='Banner de la institución' id="banner-v1" src="banner.png" title="Banner" >
-            <img alt='Escudo de la institución' id="escudoUNLP-v1" src="escudo-UNLP.jpg.png" title="Escudo" >
+            <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
+            <img alt='Escudo de la institución' id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="Escudo" >
             <div class="text-tittle">Escuela Graduada Joaquín V. González</div>
 			</div>
-		<div>
-			<h3 id='tituloalta'>Formulario para registrar nuevo alumno.</h3>
-			<form method="post">
-				<fieldset><legend>Datos del alumno:</legend>
-					<div class="camposformalta"><label for="dni">DNI:</label>
-					<input id="dni" type="number" name="dni" required placeholder="Ingrese el dni del alumno">
+		<div class="contenedor_formulario">
+			<div class="container">
+			  <h2>Alta Alumnos</h2>
+			  <form method="post" action="../utilidadesphp/alta_alumno.php" role="form">
+			  	<div class="form-group">
+			      <label for="pwd">Nombre:</label>
+			      <input type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" required>
+			    </div>
+			   <!-- <div class="form-group">
+			      <label for="email">Email:</label>
+			      <input type="email" class="form-control" name="email" placeholder="Introduzca su Email" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">DNI:</label>
+			      <input type="text" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label for="pwd">Apellido:</label>
+			      <input type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">Sexo:</label>
+			    <div class="form-group">
+					  <select class="form-control" id="sel1" required>
+					    <option>Masculino</option>
+					    <option>Femenino</option>
+					  </select>
 					</div>
-					<div class="camposformalta">
-					<label for="apynom">Apellido y nombre:</label>
-					<input id="apynom" type="text" name="apynom" required placeholder="Ingrese el apellido y nombre del alumno">
-					</div>
-					<div class="camposformalta">
-					<label for="fecnac">Fecha de nacimiento:</label>
-					<input id="fecnac" type="date" name="fecnac" required>
-					</div>
-					<div class="camposformalta">
-					<label for="sexo">Sexo:</label>
-					<select id="sexo" name="sexo">
-						<option  value='masculino'>Masculino</option>
-						<option  value='femenino'>Femenino</option>
-					</select>
-					</div>
-					<div class="camposformalta">
-					<label for="dire">Dirección:</label>
-					<input id="dire" type="text" name="dire" required placeholder="Ingrese el domicilio del alumno">
-					</div>
-				</fieldset>
-				<fieldset><legend>Datos de los representantes:</legend>
-					<div class="camposformalta">
-					<label for="apynomTut">Apellido y nombre del tutor legal:</label>
-					<input id="apynomTut" type="text" name="apynomTut" required placeholder="Ingrese el apellido y nombre del tutor legal">
-					</div>
-					<div class="camposformalta">
-					<label for="parentTut">Parentesco con el tutor:</label>
-					<input id="parentTut" type="text" name="parentTut" required placeholder="Ingrese el tipo de parentesco con el tutor">
-					</div>
-					<div class="camposformalta">
-					<label for="apynomPad">Apellido y nombre del padre:</label>
-					<input id="apynomPad" type="text" name="apynomPad" placeholder="Ingrese el apellido y nombre del padre">
-					</div>
-					<div class="camposformalta">
-					<label for="apynomMad">Apellido y nombre de la madre:</label>
-					<input id="apynomMad" type="text" name="apynomMad" placeholder="Ingrese el apellido y nombre de la madre">
-					</div>
-				</fieldset>
-				<fieldset><legend>Datos de contacto:</legend>
-					<div class="camposformalta">
-					<label for="mail">Mail de contacto:</label>
-					<input id="mail" type="email" name="mail" placeholder="Ingrese un mail de contacto">
-					</div>
-					<div class="camposformalta">
-					<label for="telefono">Teléfono de contacto:</label>
-					<input id="telefono" type="text" name="telefono" required placeholder="Ingrese un telefono de contacto">
-					</div>
-				</fieldset>
-				<!--<div class="camposformalta">
-				<label>Fecha de alta:</label>													en html no se puede saber la fecha de hoy
-				<input type="date" name="fecAlta" required placeholder="">
-				</div>-->
-				<button class="button-login" type="submit">Registrar alumno</button>
-			</form>
+				</div>
+				<div class="form-group">
+					<label for="pwd">Fecha de Nacimiento:</label>
+                <div class='input-group date' id='datetimepicker' required>
+                    <input type='date' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+				<div class="form-group">
+					<label for="pwd">Fecha de Ingreso:</label>
+                <div class='input-group date' id='datetimepicker' required>
+                    <input type='date' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+            	<div class="form-group">
+					<label for="pwd">Fecha de Egreso:</label>
+                <div class='input-group date' id='datetimepicker' required>
+                    <input type='date' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+            	<div class="form-group">
+					<label for="pwd">Fecha de Alta:</label>
+                <div class='input-group date' id='datetimepicker'required>
+                    <input type='date' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>-->
+			    <button type="submit" class="btn btn-primary btn">Agregar</button>
+			  </form>
+			</div>
+			<!-- Start Formoid form-->
 		</div>
 		<footer>contacto</footer>
 		</div>

@@ -46,6 +46,12 @@ th, td {
     left: 8%;
     position: absolute;
 }
+ .contenedor_formulario{
+            padding-left: 15%;
+            padding-right: 15%;
+            width: 80%;
+            padding: 10px;
+    }
 footer{
     background-color: #14293D;
     color: #ffffff;
