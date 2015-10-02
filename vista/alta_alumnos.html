@@ -2,6 +2,11 @@
 <HTML lang="es">
     <HEAD>
         <TITLE>Nuevo alumno</TITLE>
+         <script>                     
+            function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+        </script>
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -21,6 +26,7 @@
 		
     </HEAD>
 	<BODY>
+		 {% include 'navbar.html'%}
 		<div class="main_wrapper">     <!--Body-altaalumno-->
             <div class="lineal-banner">
             <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
@@ -42,6 +48,10 @@
 			    <div class="form-group">
 			      <label for="pwd">DNI:</label>
 			      <input type="text" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">Dirección:</label>
+			      <input type="text" class="form-control" name="direccion" placeholder="Introduzca su domicilio" required>
 			    </div>
 			    
 			    <div class="form-group">

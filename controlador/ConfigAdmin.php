@@ -1,10 +1,11 @@
 <?php
 session_start();
+require('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
-    //header ("Location: backend.php");	
-  echo "algo";
+    header ("Location: frontend_controller.php");	
+  
 }
-   if (($_SESSION['rol']) == ("administracion")){
+   if (soyadmin($_SESSION['rol'])){
        require ('../modelo/consultaConf.php');
        if (!empty($_POST['clave'])){
            $query = $cn->prepare("UPDATE configuracion SET titulo = ?, descripcion = ?, mailContacto = ?, cantElem = ?, habilitada = ?, textoDeshab = ? WHERE 1");
@@ -18,6 +19,6 @@ if(empty($_SESSION['nombreusuario'])){
        
    }
    else {
-      header ("Location: ../index.php");
+      header ("Location: ../controlador_login.php");
   }              
 ?>

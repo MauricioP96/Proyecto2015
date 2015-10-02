@@ -61,9 +61,9 @@ aside nav ul li:hover a{
     color: #fff;
 }
 .contents{
-    overflow: hidden;
+    overflow: auto;
     display: inline-block;
-    width: 65%;
+    width: 99%;
     padding: 0px;
     margin: 0 auto;
 }
@@ -83,4 +83,4 @@ footer{
     bottom: 0px;
 }
 
-
+.fecha_en_tabla{width: 5%;}

@@ -1,8 +1,9 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
 <script src="../js/jquery.min.js"></script>
   <script src="../js/bootstrap2.min.js"></script>
+  <script src="../js/boostrap-modal.js"></script>
     <meta charset="UTF-8">
     <TITLE>Area de usuarios
 </TITLE>
@@ -11,12 +12,12 @@
                 location.href="frontend_controller.php?flag=true";
             }
         </script>
-		<meta charset="utf-8">
+    <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
-        <link rel="stylesheet" href="../css/Styles-m1.css">	
-		<link rel="stylesheet" href="../css/Styles-m2.css">
+        <link rel="stylesheet" href="../css/Styles-m1.css"> 
+    <link rel="stylesheet" href="../css/Styles-m2.css">
            <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../css/abm.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -24,72 +25,13 @@
 
 </head>
 <body>  
-        <nav id="navbar-configadmin" class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="">Cooperadora</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        {% if tipo == 'administracion' %}
-        
-        <li class="active" ><a href="#">Listado de alumnos</a></li>
-        
-
-        <li><a href="#">Registrar pago</a></li>
-        <li><a href="#">Becar alumno</a></li>
-        <li><a href="#">Alumnos con matricula paga</a></li>
-        <li><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Alumno</a></li>
-            <li><a href="#">Cuota</a></li>
-            <!--<li role="separator" class="divider"></li>-->
-            
-          </ul>
-          <li><a href="ConfigAdmin.php">Configuración</a></li>
-        </li>
-        </ul>
-        {% elseif tipo =='gestion' %}
-            <li><a href="#">Registrar pago</a></li>
-        <li><a href="#">Becar alumno</a></li>
-        <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Alumnos con matricula paga</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Cuota</a></li>
-            </ul>
-            </ul>
-            {% elseif tipo == 'consulta' %}
-                <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-                 <li><a href="#">Alumnos con matricula paga</a></li>
-                  </ul>
-            {% endif %}
-     
-      <ul class="nav navbar-nav navbar-right">
-        <li><a onclick="salir()">Cerrar sesión</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-		<div class="main_wrapper"> 
+    {% include 'navbar.html'%}
+    <div class="main_wrapper"> 
             <div class="lineal-banner">
                         <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
                         <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
                         <div class="text-tittle">{{titulo}}</div>
-			         </div>
+               </div>
             <div class="main_container">
             <div class="contents">
                 <ul>
@@ -97,10 +39,15 @@
             <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
         <thead>
           <tr>
-            <th id='col_dni'>Número de documento</th>
+            <th id='col_dni'>Nº de documento</th>
             <th id='col_ape' >Apellido</th>
             <th id='col_nom' >Nombre</th>
-              <th id='col_fecnac'>Fecha de nacimiento</th>
+              <th class="fecha_en_tabla" id='col_fecnac'>Nacimiento</th>
+              <th id='col_sexo'>Sexo</th>
+              <th id='col_email'>Email</th>
+              <th id='col_dire'>Dirección</th>
+              <th class="fecha_en_tabla" id='col_fecing'>Ingreso</th>
+               <th class="fecha_en_tabla" id='col_feceg'>Egreso</th>
             <th id='col_acc'>Acciónes</th>
           </tr>
         </thead>
@@ -109,19 +56,33 @@
           <td headers='col_dni'>{{alumno['numeroDoc']}}</td>
           <td headers='col_ape'>{{alumno['apellido']}}</td>
           <td headers='col_nom'>{{alumno['nombre']}}</td>
-          <td headers='col_fecnac'>{{alumno['fechaNacimiento']}}</td>
+          <td  headers='col_fecnac'>{{alumno['fechaNacimiento']}}</td>
+          <td headers='col_sexo'>{{alumno['sexo']}}</td>
+          <td headers='col_email'>{{alumno['mail']}}</td>
+          <td headers='col_dire'>{{alumno['direccion']}}</td>
+          <td headers='col_fecing'>{{alumno['fechaIngreso']}}</td>
+          <td  headers='col_feceg'>{{alumno['fechaEgreso']}}</td>
           <td headers='col_acc'>
-            <a href="detalle-alumno.php?idalumno={{alumno['id']}}"><img class='iconoListado' alt='Ver mas información del alumno' title='Ver mas información del alumno' src='../Imagenes/iconoInfo.png'></a>
             <a href="../controlador/controlador_modificarAlumno.php?idalumno={{alumno['id']}}"><img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='../Imagenes/iconoModif.png'></a>
-            <img class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>-->
+            <img data-toggle="modal" data-whatever="@mdo" data-target="#{{alumno}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
             </td>
         </tr>
+        
         {% else %}
             <li><em>no user found</em></li>
          {% endfor %}
+         </table>
              </div>
         </div>
-		<footer>{{contacto}}</footer>
-		</div>
-	</body>
+        <!--<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      Estas deguro que quieres eliminar el usuario???
+    </div>
+  </div>
+</div>-->
+    <footer>{{contacto}}</footer>
+    </div>
+  </body>
 </html>

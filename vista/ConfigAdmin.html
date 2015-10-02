@@ -22,65 +22,7 @@ and open the template in the editor.
         </script>
     </head>
     <body> 
-        <nav id="navbar-configadmin" class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">Cooperadora</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        {% if tipo == 'administracion' %}
-        
-        <li  ><a href="controlador_listadoAlumnos.php">Listado de alumnos</a></li>
-        
-
-        <li><a href="#">Registrar pago</a></li>
-        <li><a href="#">Becar alumno</a></li>
-        <li><a href="#">Alumnos con matricula paga</a></li>
-        <li><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Alumno</a></li>
-            <li><a href="#">Cuota</a></li>
-            <!--<li role="separator" class="divider"></li>-->
-            
-          </ul>
-        <li class="active" ><a href="ConfigAdmin.php">Configuración</a></li>
-        </li>
-        </ul>
-        {% elseif tipo =='gestion' %}
-            <li><a href="#">Registrar pago</a></li>
-        <li><a href="#">Becar alumno</a></li>
-        <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Alumnos con matricula paga</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Cuota</a></li>
-            </ul>
-            </ul>
-            {% elseif tipo == 'consulta' %}
-                <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
-                 <li><a href="#">Alumnos con matricula paga</a></li>
-                  </ul>
-            {% endif %}
-     
-      <ul class="nav navbar-nav navbar-right">
-        <li><a onclick="salir()">Cerrar sesión</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+         {% include 'navbar.html'%}
         <div class="real-Body"> 
             <div class="lineal-banner">
             <img id="banner-v1" src="../Imagenes/banner.png" title="banner" alt="banner">

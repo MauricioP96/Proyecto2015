@@ -1,20 +1,20 @@
 <?php
-//require("../vista/alta_alumnos.html");
-/*$mostrofallo=false;
-require("utilidadesphp/funciones1.php");
-//session_start();
+
+//$mostrofallo=false;
+require("../modelo/funciones1.php");
+session_start();
 if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 			CerrarSesion();
 		}
 if(empty($_SESSION['nombreusuario'])){
 	header ("Location: controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
-echo 'dsadsa';*/
+//echo 'dsadsa';
 if (!empty($_POST['nombre'])){ 
 	$nombre=$_POST['nombre']; 
 	$nombre=$_POST['apellido']; 
 	$nombre=$_POST['dni']; 
-	$nombre=$_POST['mail']; 
+	$nombre=$_POST['email']; 
 	$nombre=$_POST['nombre']; 
 	$nombre=$_POST['fecha_nacimiento']; 
 	$nombre=$_POST['fecha_egreso']; 
@@ -40,8 +40,8 @@ if ($configuraciones['0']['habilitada']){
    	//}	
    	$template->display(array('titulo' => $configuraciones['0']['titulo'],
 						'descripcion' => $configuraciones['0']['descripcion'],
-						'contacto' => $configuraciones['0']['mailContacto'], 
-						'fallo' => $mostrofallo
+						'contacto' => $configuraciones['0']['mailContacto'],
+						'tipo'=> $_SESSION['rol']
 						));
 }
 else{                                      //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???
