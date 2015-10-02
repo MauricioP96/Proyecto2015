@@ -1,0 +1,28 @@
+<?php
+
+session_start();
+
+if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. If false redireccionar a index
+	header ("Location: index.php");
+	}								
+	elseif($_SESSION['rol']!='aministracion'){			//si el usuario no es administrador no darle permiso
+	///header ("Location: index.php");					
+}
+
+if(!empty($_POST['idalumno'])){
+	require('utilidadesphp/consultaModificaralumno.php');
+
+
+}
+require("utilidadesphp/consultaConf.php");             //consulta de configuracion
+require("utilidadesphp/consultaAlumnoConId.php");						//traigo la informacion del alumno para modificar
+require('utilidadesphp/setearTwig.php');
+
+
+$template = $twig->loadTemplate('modificar-alumno.html');
+$template->display(array('config' => $configuraciones[0],
+                        'alumno' => $alumno[0],
+                        'tipo' => $_SESSION['rol']
+						));
+
+?>
