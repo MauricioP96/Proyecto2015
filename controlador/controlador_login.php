@@ -1,24 +1,23 @@
 <?php
 
 session_start();
-
 if(empty($_SESSION['nombreusuario'])){
 	header ("Location: index.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
+ 
 
-require('../modelo/setearTwig.php');
-
-/*switch ($_SESSION['rol']) {
+switch ($_SESSION['rol']) {
     case 'administracion':                                        
-        $paraMostrar='backend-admin.html';
+        header ("Location: controlador_listadoAlumnos.php"); 
         break;
     case 'gestion':
-        $paraMostrar='backend-gestion.html';
+        header ("Location: controlador_listadoAlunos.php"); //ver a q pagina redireccionar
         break;
     case 'consulta':
-        $paraMostrar='backend-consulta.html';
+        header ("Location: controlador_listadoAlunos.php");   ///ver a q pagina redireccionar
         break;
-}*/
+}
+/*
 require("../modelo/consultaConf.php");
 require('../modelo/setearTwig.php');
 $template = $twig->loadTemplate('backend-admin.html');
@@ -26,5 +25,5 @@ $template->display(array('titulo' => $configuraciones['0']['titulo'],
 						'contacto' => $configuraciones['0']['mailContacto'],
 						'tipo' => $_SESSION['rol']
 						));
-
+*/
 ?>
