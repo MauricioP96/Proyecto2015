@@ -2,7 +2,6 @@
 if(empty($_SESSION['nombreusuario'])){
    header ("Location: index.php");	
 }
-else{
    if (($_SESSION['rol']) != ("administracion")){
        require ('utilidadesphp/consultaConf.php');
        if (!empty($_POST['clave'])){
@@ -19,6 +18,4 @@ else{
    else {
        header ("Location: backend.php");
    }
-   
-}                
 ?>
