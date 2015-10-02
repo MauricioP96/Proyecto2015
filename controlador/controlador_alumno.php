@@ -7,7 +7,7 @@ if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 			CerrarSesion();
 		}
 if(empty($_SESSION['nombreusuario'])){
-	header ("Location: backend.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
+	header ("Location: controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
 echo 'dsadsa';*/
 if (!empty($_POST['nombre'])){ 
@@ -49,4 +49,3 @@ else{                                      //si la pagina esta deshabilitada deb
 }
 
 ?>
-
