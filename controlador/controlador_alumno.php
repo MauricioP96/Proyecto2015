@@ -11,7 +11,16 @@ if(empty($_SESSION['nombreusuario'])){
 		}
 echo 'dsadsa';*/
 if (!empty($_POST['nombre'])){ 
-	$nombre=$_POST['nombre'];                                             //verificar si se quiso iniciar sesion
+	$nombre=$_POST['nombre']; 
+	$nombre=$_POST['apellido']; 
+	$nombre=$_POST['dni']; 
+	$nombre=$_POST['mail']; 
+	$nombre=$_POST['nombre']; 
+	$nombre=$_POST['fecha_nacimiento']; 
+	$nombre=$_POST['fecha_egreso']; 
+	$nombre=$_POST['fecha_alta']; 
+	$nombre=$_POST['sexo']; 
+	$nombre=$_POST['direccion'];                                             //verificar si se quiso iniciar sesion
 	require('../modelo/modelo_alumno.php');
 	$altaalumno=guardar_alumno($nombre);
 }

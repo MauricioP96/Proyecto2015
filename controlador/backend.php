@@ -20,7 +20,7 @@ require('../modelo/setearTwig.php');
         break;
 }*/
 require("../modelo/consultaConf.php");
-require('../modelo/setearTwig.php');
+require("../modelo/setearTwig.php");
 $template = $twig->loadTemplate('backend-admin.html');
 $template->display(array('titulo' => $configuraciones['0']['titulo'],
 						'contacto' => $configuraciones['0']['mailContacto'],
