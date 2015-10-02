@@ -15,10 +15,10 @@ else{
        $template = $twig->loadTemplate('ConfigAdmin.html');
        $template -> display(array('datos' => $configuraciones['0']));
        
- //  }
- //  else {
- //      header ("Location: backend.php");
- //  }
+   }
+   else {
+       header ("Location: backend.php");
+   }
    
-//}                
+}                
 ?>
