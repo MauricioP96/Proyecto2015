@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap2.min.js"></script>
+        <title>Escuela Graduada Joaquín V. González</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+        <link rel="stylesheet" href="../css/Styles-m1.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <script>                     
+            function salir(){
+                location.href="index.php?flag=true";
+            }
+        </script>
+    </head>
+    <body> 
+        <nav id="navbar-configadmin" class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="listadoalumnos.php" class="navbar-brand">Cooperadora</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        {% if tipo == 'administracion' %}
+        
+        <li class="active" ><a href="#">Listado de alumnos</a></li>
+        
+
+        <li><a href="#">Registrar pago</a></li>
+        <li><a href="#">Becar alumno</a></li>
+        <li><a href="#">Alumnos con matricula paga</a></li>
+        <li><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Alumno</a></li>
+            <li><a href="#">Cuota</a></li>
+            <!--<li role="separator" class="divider"></li>-->
+            
+          </ul>
+        <li><a href="ConfigAdmin.php">Configuración</a></li>
+        </li>
+        </ul>
+        {% elseif tipo =='gestion' %}
+            <li><a href="#">Registrar pago</a></li>
+        <li><a href="#">Becar alumno</a></li>
+        <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Alumnos con matricula paga</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Cuota</a></li>
+            </ul>
+            </ul>
+            {% elseif tipo == 'consulta' %}
+                <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+                 <li><a href="#">Alumnos con matricula paga</a></li>
+                  </ul>
+            {% endif %}
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li><a onclick="salir()">Cerrar sesión</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+        <div class="real-Body"> 
+            <div class="lineal-banner">
+            <img id="banner-v1" src="../Imagenes/banner.png" title="banner" alt="banner">
+            <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" alt="escudounlp" title="escudo" >
+            <div class="text-tittle">{{datos['titulo']}}</div>    <!--Escuela Graduada Joaquín V. González-->
+        </div>  
+            <div class="conteiner-config">
+                <form action="#" method="POST">     
+            <label id="titulo-configadmin"> menu de configuracion </label>
+                <hr>
+                
+        <label class="label-imput-contigAdmin" >estado: </label>
+        <select id="imput-adminconfig" class="form-control" name="habilitada">
+            <option value="1"{% if datos['habilitada'] == 1 %} selected {% endif %}>habilitada</option>
+            <option value="0"{% if datos['habilitada'] == 0 %} selected {% endif %}>desabilitada</option></select><br>
+        
+        <label class="label-imput-contigAdmin" > titulo de  la cooperativa: </label>
+        <input id="imput-adminconfig" type="text" name="titulo" class="form-control" value="{{datos['titulo']}}"><br>
+        
+        <label class="label-imput-contigAdmin" > contacto: </label>
+        <input id="imput-adminconfig" type="text" name="mailContacto" class="form-control" value="{{datos['mailContacto']}}"><br>
+        
+        <label class="label-imput-contigAdmin" > cantidad de elementos por pagina: </label>
+        <select id="imput-adminconfig" name="cantElem" class="form-control">
+            <option value="10"{% if datos['cantElem'] == 10 %} selected {% endif %}>10 elementos por pagina</option>
+            <option value="20"{% if datos['cantElem'] == 20 %} selected {% endif %}>20 elementos por pagina</option>
+        </select><br>
+        
+        
+        <label class="label-imput-contigAdmin"> titulo de  la cooperativa </label>
+        <input id="imput-adminconfig"  type="text" class="form-control" name="textoDeshab" value="{{datos['textoDeshab']}}"><br>
+        
+        
+         <label class="label-imput-contigAdmin" > descripcion: </label>
+        <textarea id="text-imput" required="" class="form-control" maxlength="2600" rows="3" name="descripcion">{{datos['descripcion']}}</textarea>
+        <button value="{{datos['clave']}}" name="clave" id="buttom-contigAdmin" type="submit" class="btn-block btn btn-primary">Actualizar</button>    
+            
+            
+             
+            
+            
+            
+          </form> 
+        </div>
+            
+        <footer>{{datos['mailContacto']}}</footer>
+        </div>
+        
+    </body>
+</html>

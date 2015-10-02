@@ -1,30 +1,27 @@
 <?php
-//require("../vista/alta_alumnos.html");
-/*$mostrofallo=false;
-require("utilidadesphp/funciones1.php");
+$mostrofallo=false;
+
+require("../modelo/funciones1.php");
 //session_start();
 if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 			CerrarSesion();
 		}
-if(empty($_SESSION['nombreusuario'])){
-	header ("Location: backend.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
+if(!empty($_SESSION['nombreusuario'])){
+
+	header ("Location:backend.php");				//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
-echo 'dsadsa';*/
-if (!empty($_POST['nombre'])){ 
-	$nombre=$_POST['nombre'];                                             //verificar si se quiso iniciar sesion
-	require('../modelo/modelo_alumno.php');
-	$altaalumno=guardar_alumno($nombre);
+
+if (!empty($_POST['usuario'])){  
+                                                 //verificar si se quiso iniciar sesion
+	require('../modelo/chequearInicioDeSesion.php');
 }
 
 
 require ("../modelo/consultaConf.php");                   //consulta la configuracion y devuelve en $configuraciones
-
 require("../modelo/setearTwig.php");      //seteo twig en $template 
 if ($configuraciones['0']['habilitada']){
-
-
 	//if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
-   		$template = $twig->loadTemplate("alta_alumnos.html");
+   		$template = $twig->loadTemplate("index.html");
    	//}
    	//else{
    	//	$template = $twig->loadTemplate("index-fallo.html");

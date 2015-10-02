@@ -6,7 +6,7 @@ if(empty($_SESSION['nombreusuario'])){
 	header ("Location: index.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
 
-require('utilidadesphp/setearTwig.php');
+require('../modelo/setearTwig.php');
 
 /*switch ($_SESSION['rol']) {
     case 'administracion':                                        
@@ -19,8 +19,8 @@ require('utilidadesphp/setearTwig.php');
         $paraMostrar='backend-consulta.html';
         break;
 }*/
-require("utilidadesphp/consultaConf.php");
-require('utilidadesphp/setearTwig.php');
+require("../modelo/consultaConf.php");
+require('../modelo/setearTwig.php');
 $template = $twig->loadTemplate('backend-admin.html');
 $template->display(array('titulo' => $configuraciones['0']['titulo'],
 						'contacto' => $configuraciones['0']['mailContacto'],
