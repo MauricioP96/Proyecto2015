@@ -10,13 +10,13 @@ if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. 
 }
 
 if(!empty($_POST['idalumno'])){
-	require('utilidadesphp/consultaModificaralumno.php');
+	require('../modelo/consultaModificaralumno.php');
 
 
 }
-require("utilidadesphp/consultaConf.php");             //consulta de configuracion
-require("utilidadesphp/consultaAlumnoConId.php");						//traigo la informacion del alumno para modificar
-require('utilidadesphp/setearTwig.php');
+require("../modelo/consultaConf.php");             //consulta de configuracion
+require("../modelo/consultaAlumnoConId.php");						//traigo la informacion del alumno para modificar
+require('../modelo/setearTwig.php');
 
 
 $template = $twig->loadTemplate('modificar-alumno.html');

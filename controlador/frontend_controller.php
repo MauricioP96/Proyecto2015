@@ -2,12 +2,13 @@
 $mostrofallo=false;
 
 require("../modelo/funciones1.php");
-//session_start();
+
+session_start();
 if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 			CerrarSesion();
 		}
 if(!empty($_SESSION['nombreusuario'])){
-
+	
 	header ("Location:backend.php");				//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
 

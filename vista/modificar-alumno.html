@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <HEAD>
+        <TITLE>Modificar alumno</TITLE>
+        <script>                     
+            function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+        </script>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+        <link rel="stylesheet" href="../css/Styles-m1.css">	
+		<link rel="stylesheet" href="../css/Styles-m2.css">
+           <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/abm.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+		
+    </HEAD>
+	<BODY>
+
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Cooperadora</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        {% if tipo == 'administracion' %}
+        
+        <li><a href="controlador_listadoAlumnos.php">Listado de alumnos</a></li>
+        
+
+        <li><a href="#">Registrar pago</a></li>
+        <li><a href="#">Becar alumno</a></li>
+        <li><a href="#">Alumnos con matricula paga</a></li>
+        <li><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Alumno</a></li>
+            <li><a href="#">Cuota</a></li>
+            <!--<li role="separator" class="divider"></li>-->
+            
+          </ul>
+          <li><a href="#">Configuración</a></li>           <!--link a pagina de configuracion  class="active"-->
+        </li>
+        </ul>
+        {% elseif tipo =='gestion' %}
+            <li><a href="#">Registrar pago</a></li>
+        <li><a href="#">Becar alumno</a></li>
+        <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Alumnos con matricula paga</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Altas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Cuota</a></li>
+            </ul>
+            </ul>
+            {% elseif tipo == 'consulta' %}
+                <li class="active"><a href="#">Registro de pagos<span class="sr-only">(current)</span></a></li>
+                 <li><a href="#">Alumnos con matricula paga</a></li>
+                  </ul>
+            {% endif %}
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li><a onclick="salir()">Cerrar sesión</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+		<div class="main_wrapper">     <!--Body-altaalumno-->
+            <div class="lineal-banner">
+            <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
+            <img alt='Escudo de la institución' id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="Escudo" >
+            <div class="text-tittle">{{config['titulo']}}</div>
+			</div>
+		<div class="contenedor_formulario">
+			<div class="container">
+			  <h2>Modificar datos de alumno {{alumno['nombre']}} {{alumno['apellido']}}</h2>
+			  <form method="post" action="#" role="form">
+			  	<div class="form-group">
+			      <label for="pwd">Nombre:</label>
+			      <input type="text" class="form-control" value="{{alumno['nombre']}}" name="nombre" placeholder="Introduzca su Nombre" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">Apellido:</label>
+			      <input type="text" class="form-control" value="{{alumno['apellido']}}" name="apellido" placeholder="Introduzca su Apellido" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">Número de documento:</label>
+			      <input type="number" class="form-control" value="{{alumno['numeroDoc']}}" name="numdoc" placeholder="Introduzca su numero de documento" required>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label for="pwd">Sexo:</label>
+			    <div class="form-group">
+					  <select name="sexo" class="form-control" id="sel1" required>
+					    <option value="masculino" {%if alumno['sexo'] == 'masculino' %} selected="selected" {% endif %}>Masculino</option>
+					    <option value="femenino" {%if alumno['sexo'] == 'femenino' %} selected="selected" {% endif %}>Femenino</option>
+					  </select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="pwd">Fecha de Nacimiento:</label>
+                <div class='input-group date' id='datetimepicker' required>
+                    <input type='date' name="fechaNac" value={{alumno['fechaNacimiento']}} class="form-control" >
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+            	 <div class="form-group">
+			      <label for="pwd">Domicilio:</label>
+			      <input type="text" class="form-control" value="{{alumno['direccion']}}" name="dire" placeholder="Introduzca su domicilio" required>
+			    </div>
+            	<div class="form-group">
+			      <label for="email">Email:</label>
+			      <input type="email" value="{{alumno['mail']}}" class="form-control" name="email" placeholder="Introduzca su Email" required>
+			    </div>
+				<div class="form-group">
+					<label for="pwd">Fecha de Ingreso a la escuela:</label>
+                <div class='input-group date' id='datetimepicker' required>
+                    <input type='date' name='fechaIng' value={{alumno['fechaIngreso']}} class="form-control" >
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+            	<div class="form-group">
+					<label for="pwd">Fecha de Egreso de la escuela:</label>
+                <div class='input-group date' id='datetimepicker' required>
+                    <input type='date' name='fechaEg' value={{alumno['fechaEgreso']}} class="form-control" >
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+			    <button name='idalumno' value={{alumno['id']}} type="submit" class="btn btn-primary btn">Actualizar</button>
+			  </form>
+			</div>
+			<!-- Start Formoid form-->
+		</div>
+		<footer>{{config['mailContacto']}}</footer>
+		</div>
+
+	</body>
+</HTML>

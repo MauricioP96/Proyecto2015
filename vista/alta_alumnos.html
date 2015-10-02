@@ -21,7 +21,6 @@
 		
     </HEAD>
 	<BODY>
-		<a href="../utilidadesphp/alta_alumno.php">algo</a>
 		<div class="main_wrapper">     <!--Body-altaalumno-->
             <div class="lineal-banner">
             <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
@@ -36,7 +35,7 @@
 			      <label for="pwd">Nombre:</label>
 			      <input type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" required>
 			    </div>
-			   <!-- <div class="form-group">
+			    <div class="form-group">
 			      <label for="email">Email:</label>
 			      <input type="email" class="form-control" name="email" placeholder="Introduzca su Email" required>
 			    </div>
@@ -52,7 +51,7 @@
 			    <div class="form-group">
 			      <label for="pwd">Sexo:</label>
 			    <div class="form-group">
-					  <select class="form-control" id="sel1" required>
+					  <select class="form-control" id="sel1" name="sexo" required>
 					    <option>Masculino</option>
 					    <option>Femenino</option>
 					  </select>
@@ -61,7 +60,7 @@
 				<div class="form-group">
 					<label for="pwd">Fecha de Nacimiento:</label>
                 <div class='input-group date' id='datetimepicker' required>
-                    <input type='date' class="form-control" />
+                    <input type='date' class="form-control" name="fecha_nacimiento"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -69,7 +68,7 @@
             	</div>
 				<div class="form-group">
 					<label for="pwd">Fecha de Ingreso:</label>
-                <div class='input-group date' id='datetimepicker' required>
+                <div class='input-group date' id='datetimepicker' name="fecha_ingreso" required>
                     <input type='date' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -79,7 +78,7 @@
             	<div class="form-group">
 					<label for="pwd">Fecha de Egreso:</label>
                 <div class='input-group date' id='datetimepicker' required>
-                    <input type='date' class="form-control" />
+                    <input type='date' class="form-control" name="fecha_egreso"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -88,12 +87,12 @@
             	<div class="form-group">
 					<label for="pwd">Fecha de Alta:</label>
                 <div class='input-group date' id='datetimepicker'required>
-                    <input type='date' class="form-control" />
+                    <input type='date' class="form-control" name="fecha_alta" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                	 </div>
-            	</div>-->
+            	</div>
 			    <button type="submit" class="btn btn-primary btn">Agregar</button>
 			  </form>
 			</div>
