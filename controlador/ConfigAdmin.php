@@ -9,7 +9,7 @@ if(empty($_SESSION['nombreusuario'])){
        require ('../modelo/consultaConf.php');
        if (!empty($_POST['clave'])){
            echo "JAJAJAJA";
-           $query = $cn->prepare("UPDATE configuracion SET titulo = ?, descripcion = ?, mailContacto = ?, cantElem = ?, habilitada = ?, textoDeshab = ? WHERE 1");
+           $query = $cn->prepare("UPDATE Configuracion SET titulo = ?, descripcion = ?, mailContacto = ?, cantElem = ?, habilitada = ?, textoDeshab = ? WHERE 1");
            $query->execute(array($_POST['titulo'],$_POST['descripcion'],$_POST['mailContacto'],$_POST['cantElem'],$_POST['habilitada'],$_POST['textoDeshab'])); 
            header ("Location: ConfigAdmin.php");
        }
