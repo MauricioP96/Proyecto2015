@@ -8,7 +8,7 @@ if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 if(empty($_SESSION['nombreusuario'])){
 	header ("Location: controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
-
+$fallo=false;
 if (!empty($_POST['nombre'])){ 
 
 	$nombre=$_POST['nombre']; 
