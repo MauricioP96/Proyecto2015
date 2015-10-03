@@ -36,6 +36,10 @@
 		<div class="contenedor_formulario">
 			<div class="container">
 			  <h2>Alta Alumnos</h2>
+			  {% if fallo %} <div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>El DNI ya existe.</strong> Intente nuevamente.
+</div>  {% endif %}
 			  <form method="post" action="../controlador/controlador_alumno.php" role="form">
 			  	<div class="form-group">
 			      <label for="pwd">Nombre:</label>
@@ -43,7 +47,7 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="email">Email:</label>
-			      <input type="email" class="form-control" name="email" placeholder="Introduzca su Email" required>
+			      <input type="email" class="form-control" name="mail" placeholder="Introduzca su Email" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">DNI:</label>
@@ -78,8 +82,8 @@
             	</div>
 				<div class="form-group">
 					<label for="pwd">Fecha de Ingreso:</label>
-                <div class='input-group date' id='datetimepicker' name="fecha_ingreso" required>
-                    <input type='date' class="form-control" />
+                <div class='input-group date' id='datetimepicker'  required>
+                    <input type='date' class="form-control" name="fecha_ingreso" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
