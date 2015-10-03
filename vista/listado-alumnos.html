@@ -65,24 +65,40 @@
           <td headers='col_acc'>
             <a href="../controlador/controlador_modificarAlumno.php?idalumno={{alumno['id']}}"><img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='../Imagenes/iconoModif.png'></a>
             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>-->
-            <img data-toggle="modal" data-whatever="@mdo" data-target="#{{alumno}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+            <img data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
             </td>
         </tr>
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{alumno['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación del alumno {{alumno['nombre']}} {{alumno['apellido']}} </h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                    <form method='post' action='#'>
+                      <button type='submit' name='ideliminar' value='{{alumno['id']}}' class="btn btn-danger">Confirmar</button>
+                    </form>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div>
         
         {% else %}
-            <li><em>no user found</em></li>
+            </table>
+            <h3>No hay alumnos registrados</h3>
          {% endfor %}
          </table>
+            {% include 'barra_paginacion.html' %}
              </div>
+            
         </div>
-        <!--<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      Estas deguro que quieres eliminar el usuario???
-    </div>
-  </div>
-</div>-->
+  
     <footer>{{contacto}}</footer>
     </div>
   </body>
 </html>
+
+
+
