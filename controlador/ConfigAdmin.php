@@ -5,7 +5,7 @@ if(empty($_SESSION['nombreusuario'])){
     header ("Location: frontend_controller.php");	
   
 }
-   if (soyadmin($_SESSION['rol'])){
+   if ($_SESSION['rol'] == "administracion"){
        require ('../modelo/consultaConf.php');
        if (!empty($_POST['clave'])){
            $query = $cn->prepare("UPDATE configuracion SET titulo = ?, descripcion = ?, mailContacto = ?, cantElem = ?, habilitada = ?, textoDeshab = ? WHERE 1");
