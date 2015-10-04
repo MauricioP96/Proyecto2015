@@ -38,6 +38,12 @@
 </ul>
             <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
         <thead>
+          <caption align='center'><h4>{%if funcion=='listado'%}Alumnos activos en el sistema</h4></caption>
+                                      {%elseif funcion=='elegirpago'%}Elija el alumno al que quiera registrar el pago o la beca de una cuota/matricula.</h4></caption>
+                      
+                                      {%endif%}
+
+
           <tr>
             <th id='col_dni'>Nº de documento</th>
             <th id='col_ape' >Apellido</th>
@@ -63,9 +69,20 @@
           <td headers='col_fecing'>{{alumno['fechaIngreso']}}</td>
           <td  headers='col_feceg'>{{alumno['fechaEgreso']}}</td>
           <td headers='col_acc'>
-            <a href="../controlador/controlador_modificarAlumno.php?idalumno={{alumno['id']}}"><img class='iconoListado' alt='Modificar la información del alumno' title='Modificar la información del alumno' src='../Imagenes/iconoModif.png'></a>
-            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>-->
+            {%if funcion=='listado'%}
+            <FORM   action='../controlador/controlador_modificarAlumno.php' method='POST'>
+              <input title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
+            </FORM>
+
             <img data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+            {%endif%}
+            <FORM   action='../controlador/controlador_registrarPagoElejirCuota.php' method='POST'>
+              <input title='Registrar el pago de cuota o matrícula' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Registrar el pago de cuota o matrícula" name='idalumno' value='{{alumno['id']}}' />
+            </FORM>
+
+
+            
+
             </td>
         </tr>
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{alumno['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">

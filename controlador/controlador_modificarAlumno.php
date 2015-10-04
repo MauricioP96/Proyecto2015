@@ -9,10 +9,13 @@ if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. 
 	///header ("Location: index.php");					
 }
 
-if(!empty($_POST['idalumno'])){
+if(!empty($_POST['idalumnoParaModificar'])){
 	require('../modelo/consultaModificaralumno.php');
+	$idalu=$_POST['idalumnoParaModificar'];
 
-
+}
+if(!empty($_POST['idalumnoCarga'])){
+	$idalu=$_POST['idalumnoCarga'];
 }
 require("../modelo/consultaConf.php");             //consulta de configuracion
 require("../modelo/consultaAlumnoConId.php");						//traigo la informacion del alumno para modificar
