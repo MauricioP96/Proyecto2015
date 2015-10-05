@@ -5,7 +5,7 @@ require('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
 	header ("Location: frontend_controller.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
-if(soyadmin($_SESSION['rol'])){
+if(soygestion($_SESSION['rol'])||soyadmin($_SESSION['rol'])){
 	if(!empty($_POST['ideliminar'])){
 		require('../modelo/eliminarAlumno.php');
 	}	
@@ -15,7 +15,7 @@ if(soyadmin($_SESSION['rol'])){
 	//echo $pagina;
 	require('../modelo/setearTwig.php');
 	//var_dump($alumnos);
-	$funcion='listado';
+	$funcion='elegirpago';
 	$template = $twig->loadTemplate('listado-alumnos.html');
 	$template->display(array('titulo' => $configuraciones['0']['titulo'],
 							'contacto' => $configuraciones['0']['mailContacto'],
@@ -27,7 +27,7 @@ if(soyadmin($_SESSION['rol'])){
 							));
 }
 else{
-	header ("Location: ../controlador_login.php");
+	header ("Location: ../controlador/controlador_login.php");
 }
 
 ?>

@@ -19,7 +19,4 @@ function soyconsulta($rol){
 	return ($rol=='consulta');
 }
 
-
-
-
 ?>
