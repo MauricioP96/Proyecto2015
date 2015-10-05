@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require('../modelo/funciones1.php');
@@ -21,4 +22,5 @@ if(empty($_SESSION['nombreusuario'])){
    else {
       header ("Location: ../controlador_login.php");
   }              
+
 ?>
