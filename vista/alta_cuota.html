@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap2.min.js"></script>
+        <title>Escuela Graduada Joaquín V. González</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+        <link rel="stylesheet" href="../css/Styles-m1.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <script>                     
+            function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+        </script>
+    </head>
+    <body> 
+         {% include 'navbar.html'%}
+        <div class="real-Body"> 
+            <div class="lineal-banner">
+                <img id="banner-v1" src="../Imagenes/banner.png" title="banner" alt="banner">
+                <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" alt="escudounlp" title="escudo" >
+            <div class="text-tittle">{{datos['titulo']}}</div>    <!--Escuela Graduada Joaquín V. González-->
+        </div>  
+            <div class="conteiner-config">
+                <form action="#" method="POST">     
+            <label id="titulo-configadmin"> Crear couta/matricula </label>
+                <hr>
+                {% if fallo %} <div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>La couta/matricula ya existe.</strong> Intente nuevamente.
+</div>  {% endif %}
+                
+        <label class="label-imput-contigAdmin" >Tipo: </label>
+        <select id="imput-adminconfig" class="form-control" name="tipo">
+            <option value="couta" selected >Cuota</option>
+            <option value="matricula">Matricula</option></select><br>
+        
+        <label class="label-imput-contigAdmin" >Mes: </label>
+        <select id="imput-adminconfig" class="form-control" name="mes" required>
+            {%for mes in meses%}
+            <option value="{{mes['id']}}">{{mes['nombre']}}</option>
+            {%endfor%}
+                </select><br>
+        
+        <label class="label-imput-contigAdmin" >Año: </label>
+        <input id="imput-adminconfig" {%if fallo %} value="{{info['anio']}}" {%endif%} type="number" name="anio" class="form-control" value="2015" required><br>
+        
+        <label class="label-imput-contigAdmin" >Número: </label>
+        <input id="imput-adminconfig" type="number" {%if fallo %} value="{{info['numero']}}" {%endif%} name="numero" class="form-control" required><br>
+
+        <label class="label-imput-contigAdmin" >Monto: </label>
+        <input id="imput-adminconfig" type="number" {%if fallo %} value="{{info['monto']}}" {%endif%} name="monto" class="form-control" required><br>
+        
+        <label class="label-imput-contigAdmin" >Comisión para el cobrador: </label>
+        <input id="imput-adminconfig" type="number" {%if fallo %} value="{{info['comisionCob']}}" {%endif%} name="comisionCob" class="form-control" required><br>
+
+        <button id="buttom-contigAdmin" type="submit" class="btn-block btn btn-primary">Crear</button>    
+            
+            
+             
+            
+            
+            
+          </form> 
+        </div>
+            
+        <footer>{{datos['mailContacto']}}</footer>
+        </div>
+        
+    </body>
+</html>
