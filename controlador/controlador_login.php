@@ -14,7 +14,7 @@ switch ($_SESSION['rol']) {
         header ("Location: controlador_listadoAlunos.php"); //ver a q pagina redireccionar
         break;
     case 'consulta':
-        header ("Location: controlador_listadoAlunos.php");   ///ver a q pagina redireccionar
+        header ("Location: ../controlador/controlador_listadosAlumnosConMatricula.php");   ///ver a q pagina redireccionar
         break;
 }
 /*

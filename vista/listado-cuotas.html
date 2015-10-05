@@ -35,47 +35,36 @@
             <div class="main_container">
             <div class="contents">
                 <ul>
-</ul>		{% if alumnos|length > 0 %}
+</ul>		{% if cuotas|length > 0 %}
             <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
         <thead>
-          <caption align='center'><h4>{%if funcion=='listado'%}Alumnos activos en el sistema</h4></caption>
-                                      {%elseif funcion=='elegirpago'%}Elija el alumno al que quiera registrar el pago o la beca de una cuota/matricula.</h4></caption>
-                      
-                                      {%endif%}
-
-
+          <caption align='center'><h4>Consultas para administrar</h4></caption>
+         
           <tr>
-            <th id='col_dni'>Nº de documento</th>
-            <th id='col_ape' >Apellido</th>
-            <th id='col_nom' >Nombre</th>
-              <th class="fecha_en_tabla" id='col_fecnac'>Nacimiento</th>
-              <th id='col_sexo'>Sexo</th>
-              <th id='col_email'>Email</th>
-              <th id='col_dire'>Dirección</th>
-              <th class="fecha_en_tabla" id='col_fecing'>Ingreso</th>
-               <th class="fecha_en_tabla" id='col_feceg'>Egreso</th>
+            <th id='col_tipo'>Tipo</th>
+            <th id='col_anio' >Año</th>
+            <th id='col_num' >Numero</th>
+              <th id='col_mes'>Mes</th>
+              <th id='col_monto'>Monto</th>
+              <th id='col_comision'>Comision</th>
             <th id='col_acc'>Acciónes</th>
           </tr>
         </thead>
-        {% for alumno in alumnos %}
+        {% for cuota in cuotas %}
          <tr>
-          <td headers='col_dni'>{{alumno['numeroDoc']}}</td>
-          <td headers='col_ape'>{{alumno['apellido']}}</td>
-          <td headers='col_nom'>{{alumno['nombre']}}</td>
-          <td  headers='col_fecnac'>{{alumno['fechaNacimiento']}}</td>
-          <td headers='col_sexo'>{{alumno['sexo']}}</td>
-          <td headers='col_email'>{{alumno['mail']}}</td>
-          <td headers='col_dire'>{{alumno['direccion']}}</td>
-          <td headers='col_fecing'>{{alumno['fechaIngreso']}}</td>
-          <td  headers='col_feceg'>{{alumno['fechaEgreso']}}</td>
+          <td headers='col_tipo'>{{cuota['tipo']}}</td>
+          <td headers='col_anio'>{{cuota['anio']}}</td>
+          <td headers='col_num'>{{cuota['numero']}}</td>
+          <td  headers='col_mes'>{{cuota['nombre']}}</td>
+          <td headers='col_monto'>${{cuota['monto']}}</td>
+          <td headers='col_comision'>{{cuota['comisionCob']}}%</td>
           <td headers='col_acc'>
-            {%if funcion=='listado'%}
-            <FORM   action='../controlador/controlador_modificarAlumno.php' method='POST'>
-              <input id="imagenes-operaciones-listado" title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
+
+            <FORM   action='../controlador/controlador_modificarCuota.php' method='POST'>
+              <input id="imagenes-operaciones-listado" title='Modificar la información de la cuota' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar cuota" name='idCuotaCarga' value='{{cuota['id']}}' />
             </FORM>
 
-            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
-            {%endif%}
+            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{cuota['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
       
 
 
@@ -83,17 +72,17 @@
 
             </td>
         </tr>
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{alumno['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{cuota['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación del alumno {{alumno['nombre']}} {{alumno['apellido']}} </h4>
+                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación de la cuota nº {{cuota['numero']}} </h4>
                 </div>
                 <div class="modal-body">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
                     <form method='post' action='#'>
-                      <button type='submit' name='ideliminar' value='{{alumno['id']}}' class="btn btn-danger">Confirmar</button>
+                      <button type='submit' name='ideliminar' value='{{cuota['id']}}' class="btn btn-danger">Confirmar</button>
                     </form>
                 </div>
               </div><!-- /.modal-content -->
@@ -104,7 +93,7 @@
 		{% include 'barra_paginacion.html' %}
         {% else %}
             
-            <h3>No hay alumnos registrados</h3>
+            <h3>No hay cuotas para elimnimar</h3>
          
          {%endif%}
             
