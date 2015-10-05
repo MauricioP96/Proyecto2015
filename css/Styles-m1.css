@@ -368,6 +368,7 @@ position: relative;top: 3px;margin: 9px;}
     height: 890px;
     border-radius: 3px;
     border-color: #D6D6D6;
+    background: linear-gradient(to bottom, rgba(214,227,215,1) 0%, rgba(214,227,215,1) 26%, rgba(146,176,147,1) 100%);
 }
 .imput-v1{
     border-radius: 5px;
