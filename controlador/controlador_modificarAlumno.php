@@ -5,7 +5,7 @@ session_start();
 if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. If false redireccionar a index
 	header ("Location: index.php");
 	}								
-	elseif($_SESSION['rol']!='aministracion' ){			//si el usuario no es administrador no darle permiso
+	elseif($_SESSION['rol']!='administracion' ){			//si el usuario no es administrador no darle permiso
 		header ("Location: ../controlador_login.php");					
 }
 
