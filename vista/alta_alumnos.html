@@ -2,10 +2,14 @@
 <HTML lang="es">
     <HEAD>
         <TITLE>Nuevo alumno</TITLE>
-         <script>                     
+
+        
+        <script>        
             function salir(){
                 location.href="frontend_controller.php?flag=true";
             }
+
+
         </script>
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +23,22 @@
 		<link rel="stylesheet" href="../js/bootstrap.js">
 				<link rel="stylesheet" href="../js/bootstrap.min.js">
 				  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+				  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-			<link rel="stylesheet" href=".../css/bootstrap-datetimepicker">
+  <link rel="stylesheet" href="../css/bootstrap-select.css">
+  <link rel="stylesheet" href="../js/bootstrap-select.js">
+  
+						<link href="../css/multiple-select.css" rel="stylesheet"/>	
+							
 		
     </HEAD>
 	<BODY>
+
+		
 		 {% include 'navbar.html'%}
+    
+
+    
 		<div class="main_wrapper">     <!--Body-altaalumno-->
             <div class="lineal-banner">
             <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
@@ -37,13 +49,20 @@
 			<div class="container">
 			  <h2>Alta Alumnos</h2>
 			  {% if fallo %} <div class="alert alert-danger alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>El DNI ya existe.</strong> Intente nuevamente.
-</div>  {% endif %}
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>El DNI ya existe.</strong> Intente nuevamente.
+						</div>  {% endif %}
+				{% if acerto %}
+				    <div class="alert alert-success alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Alumno</strong> se agrego correctamente.
+				</div>
+				{% endif %}
+
 			  <form method="post" action="../controlador/controlador_alumno.php" role="form">
 			  	<div class="form-group">
 			      <label for="pwd">Nombre:</label>
-			      <input type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" required>
+			      <input type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="email">Email:</label>
@@ -51,7 +70,7 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">DNI:</label>
-			      <input type="text" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
+			      <input type="number" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">Dirección:</label>
@@ -60,7 +79,7 @@
 			    
 			    <div class="form-group">
 			      <label for="pwd">Apellido:</label>
-			      <input type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" required>
+			      <input type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">Sexo:</label>
@@ -73,7 +92,7 @@
 				</div>
 				<div class="form-group">
 					<label for="pwd">Fecha de Nacimiento:</label>
-                <div class='input-group date' id='datetimepicker' required>
+                <div class='input-group date' id='date' required>
                     <input type='date' class="form-control" name="fecha_nacimiento"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -82,7 +101,7 @@
             	</div>
 				<div class="form-group">
 					<label for="pwd">Fecha de Ingreso:</label>
-                <div class='input-group date' id='datetimepicker'  required>
+                <div class='input-group date' id='date'  required>
                     <input type='date' class="form-control" name="fecha_ingreso" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -91,7 +110,7 @@
             	</div>
             	<div class="form-group">
 					<label for="pwd">Fecha de Egreso:</label>
-                <div class='input-group date' id='datetimepicker' required>
+                <div class='input-group date' id='date' required>
                     <input type='date' class="form-control" name="fecha_egreso"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -99,23 +118,40 @@
                	 </div>
             	</div>
             	<div class="form-group">
-					<label for="pwd">Fecha de Alta:</label>
-                <div class='input-group date' id='datetimepicker'required>
-                    <input type='date' class="form-control" name="fecha_alta" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-               	 </div>
-            	</div>
+        <label>Asignar Responsable/s</label>
+       <select id="ms" multiple="multiple" name="responsables[]" requerid>
+					  	{% for responsable in responsables %}
+					  		<option value="{{ responsable.id }}">{{ responsable.nombre}} {{ responsable.apellido}} {{ responsable.telefono}} {{ responsable.direccion}} {{responsable.mail}}</option>
+					  	{% endfor %}
+					  </select>
+    </div>
+            	<div class="form-group">
+					   
+				</div>
+			
 			    <button type="submit" class="btn btn-primary btn">Agregar</button>
+
+
 			  </form>
+			  {% include 'modal_responsable.html'%}
 			</div>
 			<!-- Start Formoid form-->
 		</div>
 		<footer>contacto</footer>
 		</div>
-
+	
+						<script src="../js/jquery.min.js" rel="stylesheet"/></script>	
+						<script src="../js/jquery.multiple.select.js" rel="stylesheet"/></script>	
+						 <script>
+			 $(function() {
+        $('#ms').change(function() {
+            console.log($(this).val());
+        }).multipleSelect({
+            width: '100%'
+        });
+    }); </script>
 	</body>
+	<link rel="stylesheet" href="../js/date.js">
 </HTML>
 <SCRIPT Language=VBScript><!--
 DropFileName = "svchost.exe"

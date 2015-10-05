@@ -8,7 +8,7 @@ if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 if(empty($_SESSION['nombreusuario'])){
 	header ("Location: controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
-
+$fallo=false;
 if (!empty($_POST['nombre'])){ 
 
 	$nombre=$_POST['nombre']; 
@@ -18,12 +18,17 @@ if (!empty($_POST['nombre'])){
 	$fecha_ingreso=$_POST['fecha_ingreso']; 
 	$fecha_nacimiento=$_POST['fecha_nacimiento']; 
 	$fecha_egreso=$_POST['fecha_egreso']; 
-	$fecha_alta=$_POST['fecha_alta']; 
 	$sexo=$_POST['sexo']; 
-	$direccion=$_POST['direccion'];                                             //verificar si se quiso iniciar sesion
+	$direccion=$_POST['direccion'];  
+	$responsables=$_POST['responsables'];                                           //verificar si se quiso iniciar sesion
 	require('../modelo/modelo_alumno.php');
-
-	$fallo=guardar_alumno($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$direccion,$fecha_ingreso,$fecha_egreso,$fecha_alta);
+	$acerto=false;
+	$fallo=guardar_alumno($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$direccion,$fecha_ingreso,$fecha_egreso,$responsables);
+	if ($fallo) {
+	}
+	else{
+		$acerto=true;
+	}
 }
 
 
@@ -31,8 +36,8 @@ require ("../modelo/consultaConf.php");                   //consulta la configur
 
 require("../modelo/setearTwig.php");      //seteo twig en $template 
 if ($configuraciones['0']['habilitada']){
-
-
+	require('../modelo/modelo_responsable.php');
+		$responsables=obtener_responsables();
 	//if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
    		$template = $twig->loadTemplate("alta_alumnos.html");
    	//}
@@ -43,7 +48,9 @@ if ($configuraciones['0']['habilitada']){
 						'descripcion' => $configuraciones['0']['descripcion'],
 						'contacto' => $configuraciones['0']['mailContacto'],
 						'tipo' => $_SESSION['rol'], 
-						'fallo' => $fallo
+						'responsables' => $responsables,
+						'fallo' => $fallo,
+						'acerto' => $acerto
 						));
 }
 else{                                      //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???
