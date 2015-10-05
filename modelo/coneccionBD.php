@@ -1,6 +1,6 @@
 <?php 
 
-$db_host="localhost:3306";
+$db_host="localhost";
 $db_user="grupo_10";
 $db_pass="DCerbxcYhyEA9X4T";
 $db_base="grupo_10"; 
