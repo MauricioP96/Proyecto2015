@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <HTML lang="es">
     <HEAD>
@@ -11,6 +12,8 @@
 
 
         </script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -23,12 +26,10 @@
 		<link rel="stylesheet" href="../js/bootstrap.js">
 				<link rel="stylesheet" href="../js/bootstrap.min.js">
 				  <meta name="viewport" content="width=device-width, initial-scale=1">
-				  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../css/bootstrap-select.css">
-  <link rel="stylesheet" href="../js/bootstrap-select.js">
-  
-						<link href="../css/multiple-select.css" rel="stylesheet"/>	
+				 
+				  <link rel="stylesheet" href="../css/bootstrap-select.css">
+				  <link rel="stylesheet" href="../js/bootstrap-select.js">
+				  <link href="../css/multiple-select.css" rel="stylesheet"/>	
 							
 		
     </HEAD>
@@ -62,29 +63,29 @@
 			  <form method="post" action="../controlador/controlador_alumno.php" role="form">
 			  	<div class="form-group">
 			      <label for="pwd">Nombre:</label>
-			      <input type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
+			      <input id="imput-adminconfig" type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="email">Email:</label>
-			      <input type="email" class="form-control" name="mail" placeholder="Introduzca su Email" required>
+			      <input id="imput-adminconfig" type="email" class="form-control" name="mail" placeholder="Introduzca su Email" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">DNI:</label>
-			      <input type="number" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
+			      <input id="imput-adminconfig" type="number" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">Dirección:</label>
-			      <input type="text" class="form-control" name="direccion" placeholder="Introduzca su domicilio" required>
+			      <input id="imput-adminconfig" type="text" class="form-control" name="direccion" placeholder="Introduzca su domicilio" required>
 			    </div>
 			    
 			    <div class="form-group">
 			      <label for="pwd">Apellido:</label>
-			      <input type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
+			      <input id="imput-adminconfig" type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="pwd">Sexo:</label>
 			    <div class="form-group">
-					  <select class="form-control" id="sel1" name="sexo" required>
+					  <select id="imput-adminconfig" class="form-control" id="sel1" name="sexo" required>
 					    <option>Masculino</option>
 					    <option>Femenino</option>
 					  </select>
@@ -119,7 +120,7 @@
             	</div>
             	<div class="form-group">
         <label>Asignar Responsable/s</label>
-       <select id="ms" multiple="multiple" name="responsables[]" requerid>
+       <select id="ms" multiple="multiple" name="responsables[]" required>
 					  	{% for responsable in responsables %}
 					  		<option value="{{ responsable.id }}">{{ responsable.nombre}} {{ responsable.apellido}} {{ responsable.telefono}} {{ responsable.direccion}} {{responsable.mail}}</option>
 					  	{% endfor %}
@@ -128,11 +129,16 @@
             	<div class="form-group">
 					   
 				</div>
-			
+			<div class="botonesadminsitraciondeusuarios">
 			    <button type="submit" class="btn btn-primary btn">Agregar</button>
+			     </form>
+                 <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">
+	  			Agregar Responsable
+				</button>
+				</div>
 
 
-			  </form>
+			 
 			  {% include 'modal_responsable.html'%}
 			</div>
 			<!-- Start Formoid form-->

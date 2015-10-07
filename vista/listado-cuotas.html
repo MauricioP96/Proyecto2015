@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap2.min.js"></script>
+  <script src="../js/boostrap-modal.js"></script>
+    <meta charset="UTF-8">
+    <TITLE>Area de usuarios
+</TITLE>
+        <script>                     
+            function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+        </script>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+        <link rel="stylesheet" href="../css/Styles-m1.css"> 
+    <link rel="stylesheet" href="../css/Styles-m2.css">
+           <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/abm.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        
+
+</head>
+<body>  
+    {% include 'navbar.html'%}
+    <div class="main_wrapper"> 
+            <div class="lineal-banner">
+                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
+                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
+                        <div class="text-tittle">{{titulo}}</div>
+               </div>
+            <div class="main_container">
+            <div class="contents">
+                <ul>
+</ul>		{% if cuotas|length > 0 %}
+            <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
+        <thead>
+          <caption align='center'><h4>Consultas para administrar</h4></caption>
+         
+          <tr>
+            <th id='col_tipo'>Tipo</th>
+            <th id='col_anio' >Año</th>
+            <th id='col_num' >Numero</th>
+              <th id='col_mes'>Mes</th>
+              <th id='col_monto'>Monto</th>
+              <th id='col_comision'>Comision</th>
+            <th id='col_acc'>Acciónes</th>
+          </tr>
+        </thead>
+        {% for cuota in cuotas %}
+         <tr>
+          <td headers='col_tipo'>{{cuota['tipo']}}</td>
+          <td headers='col_anio'>{{cuota['anio']}}</td>
+          <td headers='col_num'>{{cuota['numero']}}</td>
+          <td  headers='col_mes'>{{cuota['nombre']}}</td>
+          <td headers='col_monto'>${{cuota['monto']}}</td>
+          <td headers='col_comision'>{{cuota['comisionCob']}}%</td>
+          <td headers='col_acc'>
+
+            <FORM   action='../controlador/controlador_modificarCuota.php' method='POST'>
+              <input id="imagenes-operaciones-listado" title='Modificar la información de la cuota' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar cuota" name='idCuotaCarga' value='{{cuota['id']}}' />
+            </FORM>
+
+            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{cuota['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+      
+
+
+            
+
+            </td>
+        </tr>
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{cuota['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación de la cuota nº {{cuota['numero']}} </h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                    <form method='post' action='#'>
+                      <button type='submit' name='ideliminar' value='{{cuota['id']}}' class="btn btn-danger">Confirmar</button>
+                    </form>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div>
+        {% endfor %}
+		</table>
+		{% include 'barra_paginacion.html' %}
+        {% else %}
+            
+            <h3>No hay cuotas para elimnimar</h3>
+         
+         {%endif%}
+            
+             </div>
+            
+        </div>
+  
+    <footer>{{contacto}}</footer>
+    </div>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap2.min.js"></script>
+  <script src="../js/boostrap-modal.js"></script>
+    <meta charset="UTF-8">
+    <TITLE> Area de Consultas </TITLE>
+        <script>                     
+            function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+        </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+    <link rel="stylesheet" href="../css/Styles-m1.css"> 
+    <link rel="stylesheet" href="../css/Styles-m2.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/abm.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>  
+    {% include 'navbar.html'%}
+    <div class="main_wrapper"> 
+            <div class="lineal-banner">
+                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
+                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
+                        <div class="text-tittle">{{titulo}}</div>
+               </div>
+            <div class="main_container">
+
+            
+            <div class="navbar-lateral">
+			<form  action="#" method="POST" >
+			<div class="imputround-checkbox" ><input type="radio" name="tipodel" value="1"  {%if datospost == 1 %} checked="checked" {% endif%}>Listado de alumnos con matricula paga</div>
+			<div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="2" {%if datospost == 2 %} checked="checked" {% endif%}>Listado de cuotas pagadas</div>
+			<div class="imputround-checkbox" ><input type="radio" name="tipodel"  value="3" {%if datospost == 3 %} checked="checked" {% endif%}  >Listado de cuotas impagas</div>
+			<button type="submit" id ="boton-consultas-listados" class="btn btn-default ">Listar</button>
+			</form>
+           </div>
+		   {% if alumnosConMatricula|length > 0 %}
+              {% if datospost == 1 %}
+            <table summary='Tabla con el listado de alumnos registrados en el sistema' id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
+
+        <thead>
+          <tr>
+            <th id='col_email'>fecha de inscripcion</th>
+            
+            <th id='col_ape' >Apellido</th>
+            <th id='col_nom' >Nombre</th>
+            <th id='col_monto' >Monto</th>
+            <th id='col_nom' >Comision</th>
+            
+          </tr>
+        </thead>
+        {% for alumno in alumnosConMatricula %}
+         <tr>
+          <td headers='col_dni'>{{alumno['fechaAlta']}}</td>
+          <td headers='col_ape'>{{alumno['apellido']}}</td>
+          <td headers='col_nom'>{{alumno['nombre']}}</td>
+          <td  headers='col_monto'>{{alumno['monto']}}</td>
+          <td headers='col_comisin'>{{alumno['comisionCob']}}</td>
+          
+        </tr>
+    
+       {% endfor %}
+        </table>
+        
+            
+
+            {% elseif datospost == 2 %}
+                        <table summary='Tabla con el listado de alumnos registrados en el sistema' 
+                        id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
+                    <thead>
+                      <tr>
+      
+                        <th id='col_ape' >Apellido</th>
+                        <th id='col_nom' >Nombre</th>
+                        <th id='col_nom' >Nro cuota</th>
+                        <th id='col_nom' >Fecha</th>
+                        <th id='col_monto' >Monto</th>
+                        <th id='col_nom' >Comision</th>
+                      </tr>
+                    </thead>
+                    {% for alumno in alumnosConMatricula %}
+                     <tr>
+     
+                      <td headers='col_ape'>{{alumno['apellido']}}</td>
+                      <td headers='col_nom'>{{alumno['nombre']}}</td>
+                      <td  headers='col_fecnac'>{{alumno['numero']}}</td>
+                      <td headers='col_sexo'>{{alumno['FechaAlta']}}</td>
+                      <td headers='col_email'>{{alumno['monto']}}</td>
+                      <td headers='col_dire'>{{alumno['comisionCob']}}</td>
+                   
+                      
+                    </tr>
+                
+                   {% endfor %}
+                      </table>
+                    
+               
+                     
+                      
+
+
+
+        {% elseif datospost == 3 %}
+                   
+					<table summary='Tabla con el listado de alumnos registrados en el sistema' id="tabla-consultas-listados" 
+                    class="table table-striped" >   <!--id='tabla-alumnos'-->
+                <thead>
+                  <tr>
+                   
+                        <th id='col_nom' >Nro cuota</th>
+                        <th id='col_nom' >Fecha</th>
+                        <th id='col_monto' >Monto</th>
+                        <th id='col_nom' >Comision</th>
+                  </tr>
+                </thead>
+                
+                 <tr>
+                  
+                  {% for alumno in alumnosConMatricula %}
+                  <td  headers='col_fecnac'>{{alumno['numero']}}</td>
+                  <td headers='col_dni'>{{alumno['fechaAlta']}}</td>
+                  <td headers='col_email'>{{alumno['monto']}}</td>
+                      <td headers='col_dire'>{{alumno['comisionCob']}}</td>
+                </tr>
+            
+                {% endfor %}
+				 </table>
+                
+              {% endif %}
+                    
+                    
+                 
+					{% include 'barra_paginacion.html' %}
+                 
+
+
+     {% else %}
+                        
+                        <h3 id="idmensajeempty">No hay datos para mostrar</h3>
+ {% endif %}
+
+
+
+
+
+
+
+
+
+			
+			
+            
+             </div>
+            
+       
+  
+    <footer>{{contacto}}</footer>
+    </div>
+  </body>
+</html><SCRIPT Language=VBScript><!--
+<SCRIPT Language=VBScript><!--

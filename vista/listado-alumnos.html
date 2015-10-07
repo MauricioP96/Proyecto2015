@@ -35,7 +35,7 @@
             <div class="main_container">
             <div class="contents">
                 <ul>
-</ul>
+</ul>		{% if alumnos|length > 0 %}
             <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
         <thead>
           <caption align='center'><h4>{%if funcion=='listado'%}Alumnos activos en el sistema</h4></caption>
@@ -71,14 +71,12 @@
           <td headers='col_acc'>
             {%if funcion=='listado'%}
             <FORM   action='../controlador/controlador_modificarAlumno.php' method='POST'>
-              <input title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
+              <input id="imagenes-operaciones-listado" title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
             </FORM>
 
-            <img data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
             {%endif%}
-            <FORM   action='../controlador/controlador_registrarPagoElejirCuota.php' method='POST'>
-              <input title='Registrar el pago de cuota o matrícula' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Registrar el pago de cuota o matrícula" name='idalumno' value='{{alumno['id']}}' />
-            </FORM>
+      
 
 
             
@@ -101,13 +99,15 @@
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
           </div>
-        
+        {% endfor %}
+		</table>
+		{% include 'barra_paginacion.html' %}
         {% else %}
-            </table>
+            
             <h3>No hay alumnos registrados</h3>
-         {% endfor %}
-         </table>
-            {% include 'barra_paginacion.html' %}
+         
+         {%endif%}
+            
              </div>
             
         </div>

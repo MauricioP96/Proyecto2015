@@ -9,6 +9,7 @@ if(empty($_SESSION['nombreusuario'])){
 	header ("Location: controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
 $fallo=false;
+$acerto=false;
 if (!empty($_POST['nombre'])){ 
 
 	$nombre=$_POST['nombre']; 
@@ -22,7 +23,7 @@ if (!empty($_POST['nombre'])){
 	$direccion=$_POST['direccion'];  
 	$responsables=$_POST['responsables'];                                           //verificar si se quiso iniciar sesion
 	require('../modelo/modelo_alumno.php');
-	$acerto=false;
+	
 	$fallo=guardar_alumno($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$direccion,$fecha_ingreso,$fecha_egreso,$responsables);
 	if ($fallo) {
 	}
