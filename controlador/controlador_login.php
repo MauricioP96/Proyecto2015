@@ -8,10 +8,10 @@ if(empty($_SESSION['nombreusuario'])){
 
 switch ($_SESSION['rol']) {
     case 'administracion':                                        
-        header ("Location: controlador_listadoAlumnos.php"); 
+        header ("Location: ../controlador/controlador_listadoAlumnos.php"); 
         break;
     case 'gestion':
-        header ("Location: controlador_listadoAlunos.php"); //ver a q pagina redireccionar
+        header ("Location: ../controlador/controlador_registrarPagoElegirAlumno.php"); //ver a q pagina redireccionar
         break;
     case 'consulta':
         header ("Location: ../controlador/controlador_listadosAlumnosConMatricula.php");   ///ver a q pagina redireccionar

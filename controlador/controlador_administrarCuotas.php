@@ -13,6 +13,7 @@ if(soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol'])){
 
 	require("../modelo/consultaConf.php");             //consulta de configuracion
 	require("../modelo/consultaCuotas.php");
+	
 	//echo $pagina;
 	require('../modelo/setearTwig.php');
 	//var_dump($alumnos);

@@ -2,7 +2,7 @@
 session_start();
 require('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
-    header ("Location: frontend_controller.php");	
+    header ("Location: ../controlador/frontend_controller.php");	
   
 }
 if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
@@ -22,6 +22,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
            require('../modelo/consultarnombreAlumno.php');
           require ('../modelo/consultaConf.php');
           require ('../modelo/consultaCuotasImpagasDeAlumno.php');
+          require('../modelo/consultaCuotasPagasDeAlumno.php');
            //consulta la configuracion y devuelve en $configuraciones
           require("../modelo/setearTwig.php");      //seteo twig en $template 
           if ($configuraciones['0']['habilitada']){
@@ -29,7 +30,8 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
    	            $template->display(array('datos'=>$configuraciones['0'], 
 						                  'tipo'=>$_SESSION['rol'],
 						      						'agrego'=>$agrego,
-						                  'cuotas'=>$cuotas,
+						                  'cuotas_impagas'=>$cuotas_impagas,
+                              'cuotas_pagas'=>$cuotas_pagas,
                               'nombrealumno'=>$nombrealu,
                               'idalumno'=>$idalumno
 						                    ));
