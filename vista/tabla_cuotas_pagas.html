@@ -27,7 +27,7 @@
           <td headers='col_monto'>${{cuota_pag['monto']}}</td>
           <td headers='col_comision'>{{cuota_pag['comisionCob']}}%</td>
           <td headers='col_fec'>{{cuota_pag['fecha']}}</td>
-          <td headers='col_estado'>{%if cuota_pag['becado']%}Becada{%else%}Pagada{%endif%}</td>
+          <td headers='col_estado'>{%if cuota_pag['becado']==1%}Becada{%else%}Pagada{%endif%}</td>
         </tr>
         {%endfor%}
         </table>
