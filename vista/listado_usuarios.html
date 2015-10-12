@@ -5,7 +5,7 @@
   <script src="../js/bootstrap2.min.js"></script>
   <script src="../js/boostrap-modal.js"></script>
     <meta charset="UTF-8">
-    <TITLE>Gestión de cuotas
+    <TITLE>Area de usuarios
 </TITLE>
         <script>                     
             function salir(){
@@ -35,54 +35,46 @@
             <div class="main_container">
             <div class="contents">
                 <ul>
-</ul>		{% if cuotas|length > 0 %}
+</ul>		{% if usuarios|length > 0 %}
             <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
         <thead>
-          <caption align='center'><h4>Consultas para administrar.</h4></caption>
-         
+          <caption align='center'><h4>Usuarios activos en el sistema</h4></caption>
+                      
+                                     
+
+
           <tr>
-            <th id='col_tipo'>Tipo</th>
-            <th id='col_anio' >Año</th>
-            <th id='col_num' >Numero</th>
-              <th id='col_mes'>Mes</th>
-              <th id='col_monto'>Monto</th>
-              <th id='col_comision'>Comision</th>
+            <th id='col_nom'>Nombre de usuario</th>
+            <th id='col_rol' >Rol</th>
             <th id='col_acc'>Acciónes</th>
           </tr>
         </thead>
-        {% for cuota in cuotas %}
+        {% for usuario in usuarios %}
          <tr>
-          <td headers='col_tipo'>{{cuota['tipo']}}</td>
-          <td headers='col_anio'>{{cuota['anio']}}</td>
-          <td headers='col_num'>{{cuota['numero']}}</td>
-          <td  headers='col_mes'>{{cuota['nombre']}}</td>
-          <td headers='col_monto'>${{cuota['monto']}}</td>
-          <td headers='col_comision'>{{cuota['comisionCob']}}%</td>
+          <td headers='col_nom'>{{usuario['username']}}</td>
+          <td headers='col_rol'>{{usuario['rol']}}</td>
+         
           <td headers='col_acc'>
-
-            <FORM   action='../controlador/controlador_modificarCuota.php' method='POST'>
-              <input id="imagenes-operaciones-listado" title='Modificar la información de la cuota' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar cuota" name='idCuotaCarga' value='{{cuota['id']}}' />
+            <FORM   action='../controlador/controlador_modificar_usuario.php' method='POST'>
+              <input id="imagenes-operaciones-listado" title='Modificar la información del usuario' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar usuario" name='idusuariocarga' value='{{usuario['id']}}' />
             </FORM>
 
-            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{cuota['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
-      
+            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{usuario['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
 
-
-            
 
             </td>
         </tr>
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{cuota['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id='{{usuario['id']}}' aria-labelledby="myLargeModalLabel" style="display: none;">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación de la cuota nº {{cuota['numero']}} </h4>
+                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación del usuario {{usuario['nombre']}} </h4>
                 </div>
                 <div class="modal-body">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
                     <form method='post' action='#'>
-                      <button type='submit' name='ideliminar' value='{{cuota['id']}}' class="btn btn-danger">Confirmar</button>
+                      <button type='submit' name='ideliminar' value='{{usuario['id']}}' class="btn btn-danger">Confirmar</button>
                     </form>
                 </div>
               </div><!-- /.modal-content -->
@@ -93,7 +85,7 @@
 		{% include 'barra_paginacion.html' %}
         {% else %}
             
-            <h3>No hay cuotas para eliminar</h3>
+            <h3>No hay usuarios registrados</h3>
          
          {%endif%}
             

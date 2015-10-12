@@ -23,6 +23,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
           require ('../modelo/consultaConf.php');
           require ('../modelo/consultaCuotasImpagasDeAlumno.php');
           require('../modelo/consultaCuotasPagasDeAlumno.php');
+          //var_dump($cuotas_pagas);
            //consulta la configuracion y devuelve en $configuraciones
           require("../modelo/setearTwig.php");      //seteo twig en $template 
           if ($configuraciones['0']['habilitada']){
@@ -33,14 +34,16 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
 						                  'cuotas_impagas'=>$cuotas_impagas,
                               'cuotas_pagas'=>$cuotas_pagas,
                               'nombrealumno'=>$nombrealu,
-                              'idalumno'=>$idalumno
+                              'idalumno'=>$idalumno,
+                              'paginaactual'=>$pagina,
+                              'cantpaginas'=>$cantidadpaginas
 						                    ));
           }
           else{  //else de pagina deshabilitada
           }
     }
     else {
-      header ("Location: ../controlador/controlador_login.php");
+      header ("Location: ../controlador/controlador_registrarPagoElejirCuota.php");
 
 }}   
    else {

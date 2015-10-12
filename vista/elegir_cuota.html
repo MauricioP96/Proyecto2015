@@ -77,10 +77,10 @@ and open the template in the editor.
     <button name='idalumnopagar' value={{idalumno}} type="submit" class="btn btn-primary btn">Pagar</button>
     <button name='idalumnobecar' value={{idalumno}} type="submit" class="btn btn-primary btn">Becar</button>
  </form> 
-
+ {% include 'barra_paginacion.html' %}
 {%endif%}
       {%include 'tabla_cuotas_pagas.html' %}
-            
+   
         <footer>{{datos['mailContacto']}}</footer>
         </div>
         
