@@ -4,7 +4,7 @@ require("../modelo/setearpagina.php");
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos WHERE eliminado=FALSE");
 $query->execute(); 
 $consultacant = $query->fetchAll();
-   
+
 $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
 
 //var_dump($consultacant);
