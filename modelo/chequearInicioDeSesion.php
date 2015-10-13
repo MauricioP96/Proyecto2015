@@ -1,7 +1,7 @@
 <?php
-session_start();
+
 require ("coneccionBD.php");
-$query = $cn->prepare("SELECT * FROM Usuarios WHERE username=? and password=?");
+$query = $cn->prepare("SELECT * FROM Usuarios WHERE username=? and password=? and habilitado=TRUE");
 $query->execute(array($_POST["usuario"],$_POST["clave"])); 
 $rows = $query->fetchAll();
 //print_r($rows);

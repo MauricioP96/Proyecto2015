@@ -42,7 +42,7 @@ and open the template in the editor.
         <label class="label-imput-contigAdmin" >Mes: </label>
         <select id="imput-adminconfig" class="form-control" name="mes" required>
             {%for mes in meses%}
-            <option value="{{mes['id']}}" {%if cuota['mes']==mes['id']%} selected {%endif%} >{{mes['nombre']}}</option>
+            <option value="{{mes['idMes']}}" {%if cuota['mes']==mes['idMes']%} selected {%endif%} >{{mes['nombre']}}</option>
             {%endfor%}
                 </select><br>
         

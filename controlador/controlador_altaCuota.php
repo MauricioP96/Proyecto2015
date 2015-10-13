@@ -2,12 +2,13 @@
 session_start();
 require('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
-    header ("Location: frontend_controller.php");	
+    header ("Location: ../controlador/frontend_controller.php");	
   
 }
    if (soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol'])){
        $fallo=false;
        if(!empty($_POST['mes'])){
+        //var_dump($_POST);
        		require('../modelo/insertarCuota.php');
        }
 
@@ -18,13 +19,12 @@ if(empty($_SESSION['nombreusuario'])){
 
               require ('../modelo/consultaConf.php');
        require ('../modelo/consultaMeses.php');
+       //var_dump($meses);
            //consulta la configuracion y devuelve en $configuraciones
 require("../modelo/setearTwig.php");      //seteo twig en $template 
 if ($configuraciones['0']['habilitada']){
 	$template = $twig->loadTemplate("alta_cuota.html");
-   	$template->display(array('titulo' => $configuraciones['0']['titulo'],
-						'descripcion' => $configuraciones['0']['descripcion'],
-						'contacto' => $configuraciones['0']['mailContacto'], 
+   	$template->display(array('datos' => $configuraciones['0'],
 						'tipo'=>$_SESSION['rol'],
 						'meses'=>$meses,
 						'fallo'=>$fallo,
@@ -33,6 +33,6 @@ if ($configuraciones['0']['habilitada']){
 }
 }   
    else {
-      header ("Location: ../controlador_login.php");
+      header ("Location: ../controlador/controlador_login.php");
   }              
 ?>

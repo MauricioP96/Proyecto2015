@@ -8,4 +8,5 @@ $gg=array($_POST['anio'],$_POST['mes'],$_POST['numero'],$_POST['monto'],$_POST['
 $query->execute($gg); 
 //$aux=$query->errorInfo();
 //var_dump($aux);
+header ("Location: ../controlador/controlador_administrarCuotas.php");
 ?>
