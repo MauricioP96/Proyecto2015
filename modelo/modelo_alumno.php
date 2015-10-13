@@ -25,16 +25,13 @@ function guardar_alumno($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$di
 	$id_alumno= $cn->prepare("SELECT id FROM Alumnos WHERE numeroDoc=?");
 	$id_alumno->execute(array($dni));
 	$idA=$id_alumno->fetchAll();
-
 	$idAlu=$idA[0]['id'];
-
+     
 
 	$ar = $cn->prepare("INSERT INTO AlumnoResponsable (idAlumno, idResponsable) VALUES (?,?)");
-	var_dump($ar);
 
 	 foreach($responsables as $idresponsable){ 
 		$aux2=$ar->execute(array($idAlu,$idresponsable)); 
-		var_dump($aux2);
 	}
 
 

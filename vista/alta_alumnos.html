@@ -59,6 +59,23 @@
 				  <strong>El Alumno</strong> se agrego correctamente.
 				</div>
 				{% endif %}
+                                
+                                {% if fallo_usuario %} <div class="alert alert-danger alert-dismissable">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>El Nombre de Usuario ya existe.</strong> Intente nuevamente.
+						</div>  {% endif %}
+                                
+                                
+                                {% if fallo_responsable %} <div class="alert alert-danger alert-dismissable">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>El EMAIL ya existe.</strong> Intente nuevamente.
+						</div>  {% endif %}
+				{% if acerto_responsable %}
+				    <div class="alert alert-success alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Responsable</strong> se agrego correctamente.
+				</div>
+				{% endif %}
 
 			  <form method="post" action="../controlador/controlador_alumno.php" role="form">
 			  	<div class="form-group">
