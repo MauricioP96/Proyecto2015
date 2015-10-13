@@ -1,0 +1,34 @@
+              {%if cuotas_pagas|length == 0%}
+                <h2>El alumno {{nombrealumno}} no tiene pagos registrados </h2>
+                {%else%}
+                 <h2>Cuotas pagas del alumno {{nombrealumno}}</h2>
+
+  
+<table summary='Tabla con las cuotas diponibles a pagar por el alumno {{nombrealumno}}' class="table table-striped" >   <!--id='tabla-alumnos'-->
+        <thead>
+          <tr>
+            <th id='col_tipo'>Tipo</th>
+            <th id='col_anio' >Año</th>
+           <th id='col_mes'>Mes</th>
+            <th id='col_num' >Numero</th>
+              
+              <th id='col_monto'>Monto</th>
+              <th id='col_comision'>Comision</th>
+              <th id='col_fec'>Fecha del pago</th>
+              <th id='col_estado'>Estado</th>
+          </tr>
+        </thead>
+        {% for cuota_pag in cuotas_pagas %}
+         <tr>
+          <td headers='col_tipo'>{{cuota_pag['tipo']}}</td>
+          <td headers='col_anio'>{{cuota_pag['anio']}}</td>
+          <td headers='col_num'>{{cuota_pag['numero']}}</td>
+          <td  headers='col_mes'>{{cuota_pag['nombre']}}</td>
+          <td headers='col_monto'>${{cuota_pag['monto']}}</td>
+          <td headers='col_comision'>{{cuota_pag['comisionCob']}}%</td>
+          <td headers='col_fec'>{{cuota_pag['fecha']}}</td>
+          <td headers='col_estado'>{%if cuota_pag['becado']==1%}Becada{%else%}Pagada{%endif%}</td>
+        </tr>
+        {%endfor%}
+        </table>
+        {%endif%}
