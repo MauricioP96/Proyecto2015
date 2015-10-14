@@ -1,7 +1,7 @@
 <?php
 require ("../modelo/coneccionBD.php");
 require("../modelo/setearpagina.php");
-if ((empty($_POST['tipodel']))  || $_POST['tipodel'] == 1){
+if ((empty($_REQUEST['tipodel']))  || $_REQUEST['tipodel'] == 1){
 $query = $cn->prepare("SELECT count(*) as num 
 	                    FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
 	                                 INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
@@ -16,7 +16,7 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss)); 
-$query2=$cn->prepare("SELECT count(*) as num 
+$query2=$cn->prepare("SELECT * 
 	                    FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
 	                                 INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
 	                                 INNER JOIN AlumnoResponsable ON (Alumnos.id = AlumnoResponsable.idAlumno) 
@@ -32,7 +32,7 @@ $datosprepost=1;
 
 }
 else{
-	if ($_POST['tipodel'] == 2){
+	if ($_REQUEST['tipodel'] == 2){
 		$query = $cn->prepare("SELECT count(*) as num FROM Cuotas 
 			                         INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                         INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno)
@@ -50,7 +50,7 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss)); 
-$query2=$cn->prepare("SELECT count(*) as num FROM Cuotas 
+$query2=$cn->prepare("SELECT * FROM Cuotas 
 			                         INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                         INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno)
                                      INNER JOIN AlumnoResponsable ON (Alumnos.id = AlumnoResponsable.idAlumno) 
@@ -78,7 +78,7 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss)); 
-$query2=$cn->prepare("SELECT count(*) as num FROM Cuotas as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
+$query2=$cn->prepare("SELECT * FROM Cuotas as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
  FROM Usuarios  INNER JOIN UsuarioResponsable ON (Usuarios.id = UsuarioResponsable.idUsuario) 
                 INNER JOIN AlumnoResponsable  ON ( UsuarioResponsable.idResponsable = AlumnoResponsable.idResponsable)
                 INNER JOIN Alumnos ON (Alumnos.id = AlumnoResponsable.idAlumno) 
