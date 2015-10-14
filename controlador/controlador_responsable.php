@@ -18,14 +18,26 @@ if (!empty($_POST['nombre'])){
   $sexo=$_POST['sexo']; 
   $tipo=$_POST['tipo'];
   $telefono=$_POST['telefono'];
-  $direccion=$_POST['direccion'];                                             //verificar si se quiso iniciar sesion
+  $direccion=$_POST['direccion']; 
+  $usuario=$_POST['usuario'];
+  $password=$_POST['password'];                                             //verificar si se quiso iniciar sesion
   require('../modelo/modelo_responsable.php');
   $acerto=false;
-  $fallo=guardar_responsable($tipo,$nombre,$apellido,$fecha_nacimiento,$sexo,$mail,$telefono,$direccion);
-  if ($fallo) {
+  $fallo_usuario=guardar_usuario($usuario,$password);
+  if ($fallo_usuario) {
+      //fallo por el usuario
   }
   else{
-    $acerto=true;
+      
+        $fallo=guardar_responsable($tipo,$nombre,$apellido,$fecha_nacimiento,$sexo,$mail,$telefono,$direccion,$usuario,$password);
+        if($fallo){
+        
+    }
+    else{
+            $acerto=true;
+            $responsables=obtener_responsables();
+            //fallo por el mail
+    }
   }
 }
 
@@ -34,6 +46,7 @@ require ("../modelo/consultaConf.php");                   //consulta la configur
 
 require("../modelo/setearTwig.php");      //seteo twig en $template 
 if ($configuraciones['0']['habilitada']){
+		
 
 
   //if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
@@ -46,8 +59,10 @@ if ($configuraciones['0']['habilitada']){
             'descripcion' => $configuraciones['0']['descripcion'],
             'contacto' => $configuraciones['0']['mailContacto'],
             'tipo' => $_SESSION['rol'], 
-            'fallo' => $fallo,
-            'acerto' => $acerto
+            'responsables' => $responsables,
+            'fallo_responsable' => $fallo,
+            'fallo_usuario' => $fallo_usuario,
+            'acerto_responsable' => $acerto
             ));
 }
 else{                                      //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???

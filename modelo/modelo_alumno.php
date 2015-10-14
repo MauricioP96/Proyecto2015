@@ -3,7 +3,6 @@
 function guardar_alumno($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$direccion,$fecha_ingreso,$fecha_egreso,$responsables){
 	require("../modelo/coneccionBD.php");
 
-
 	$nuevo_alumno= $cn->prepare("SELECT numeroDoc FROM Alumnos WHERE numeroDoc=?");
 	$nuevo_alumno->execute(array($dni));
 
@@ -15,30 +14,27 @@ function guardar_alumno($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$di
 		$fallo=true;
 		//echo 'entre';
 	}
-	else{
-		$fallo=false;
-	$query = $cn->prepare("INSERT INTO Alumnos (nombre, apellido, numeroDoc, fechaNacimiento,
-	 sexo, mail, direccion, fechaIngreso, fechaEgreso, fechaAlta) VALUES (?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)");
-	$aux=$query->execute(array($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$direccion,$fecha_ingreso,$fecha_egreso)); 
+         else{
+                            $fallo=false;
+                    $query = $cn->prepare("INSERT INTO Alumnos (nombre, apellido, numeroDoc, fechaNacimiento,
+                     sexo, mail, direccion, fechaIngreso, fechaEgreso, fechaAlta) VALUES (?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)");
+                    $aux=$query->execute(array($nombre,$apellido,$dni,$fecha_nacimiento,$sexo,$mail,$direccion,$fecha_ingreso,$fecha_egreso)); 
 
 
-	$id_alumno= $cn->prepare("SELECT id FROM Alumnos WHERE numeroDoc=?");
-	$id_alumno->execute(array($dni));
-	$idA=$id_alumno->fetchAll();
-
-	$idAlu=$idA[0]['id'];
-
-
-	$ar = $cn->prepare("INSERT INTO AlumnoResponsable (idAlumno, idResponsable) VALUES (?,?)");
-	var_dump($ar);
-
-	 foreach($responsables as $idresponsable){ 
-		$aux2=$ar->execute(array($idAlu,$idresponsable)); 
-		var_dump($aux2);
-	}
+                    $id_alumno= $cn->prepare("SELECT id FROM Alumnos WHERE numeroDoc=?");
+                    $id_alumno->execute(array($dni));
+                    $idA=$id_alumno->fetchAll();
+                    $idAlu=$idA[0]['id'];
+                    
+                    
+                    $ar = $cn->prepare("INSERT INTO AlumnoResponsable (idAlumno, idResponsable) VALUES (?,?)");
+         
+                     foreach($responsables as $idresponsable){ 
+                            $aux2=$ar->execute(array($idAlu,$idresponsable)); 
+                    }
 
 
-	$fallo=false;
+                    $fallo=false;
 	}
 	return $fallo;
 }

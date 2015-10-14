@@ -19,12 +19,16 @@ if(!empty($_POST['idalumnoCarga'])){
 }
 require("../modelo/consultaConf.php");             //consulta de configuracion
 require("../modelo/consultaAlumnoConId.php");						//traigo la informacion del alumno para modificar
+require("../modelo/consultaAlumnoResponsableConId.php");
 require('../modelo/setearTwig.php');
-
+require('../modelo/modelo_responsable.php');
+		$responsables=obtener_responsables();
 
 $template = $twig->loadTemplate('modificar-alumno.html');
 $template->display(array('config' => $configuraciones[0],
                         'alumno' => $alumno[0],
+                        'alumno_responsable' => $alumno_responsable[0],
+			'responsables' => $responsables,
                         'tipo' => $_SESSION['rol']
 						));
 

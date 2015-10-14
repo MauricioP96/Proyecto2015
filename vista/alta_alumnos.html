@@ -60,41 +60,59 @@
 				  <strong>El Alumno</strong> se agrego correctamente.
 				</div>
 				{% endif %}
+                                
+                                {% if fallo_usuario %} <div class="alert alert-danger alert-dismissable">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>El Nombre de Usuario ya existe.</strong> Intente nuevamente.
+						</div>  {% endif %}
+                                
+                                
+                                {% if fallo_responsable %} <div class="alert alert-danger alert-dismissable">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>El EMAIL ya existe.</strong> Intente nuevamente.
+						</div>  {% endif %}
+				{% if acerto_responsable %}
+				    <div class="alert alert-success alert-dismissable">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>El Responsable</strong> se agrego correctamente.
+				</div>
+				{% endif %}
 
 			  <form method="post" action="../controlador/controlador_alumno.php" role="form">
 			  	<div class="form-group">
-			      <label for="pwd">Nombre:</label>
-			      <input id="imput-adminconfig" type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
+			      <label for="imput-adminconfig-nombre">Nombre:</label>
+			      <input id="imput-adminconfig-nombre" type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
+			    </div>
+                              
+			    <div class="form-group">
+			      <label for="imput-adminconfig-apelido">Apellido:</label>
+			      <input id="imput-adminconfig-apelido" type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
 			    </div>
 			    <div class="form-group">
-			      <label for="email">Email:</label>
-			      <input id="imput-adminconfig" type="email" class="form-control" name="mail" placeholder="Introduzca su Email" required>
+			      <label for="imput-adminconfig-mail">Email:</label>
+			      <input id="imput-adminconfig-mail" type="email" class="form-control" name="mail" placeholder="Introduzca su Email" required>
 			    </div>
 			    <div class="form-group">
-			      <label for="pwd">DNI:</label>
-			      <input id="imput-adminconfig" type="number" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
+			      <label for="imput-adminconfig-dni">DNI:</label>
+			      <input id="imput-adminconfig-dni" type="number" class="form-control" name="dni" placeholder="Introduzca su DNI" required>
 			    </div>
 			    <div class="form-group">
-			      <label for="pwd">Dirección:</label>
-			      <input id="imput-adminconfig" type="text" class="form-control" name="direccion" placeholder="Introduzca su domicilio" required>
+			      <label for="imput-adminconfig-direccion">Dirección:</label>
+			      <input id="imput-adminconfig-direccion" type="text" class="form-control" name="direccion" placeholder="Introduzca su domicilio" required>
 			    </div>
 			    
 			    <div class="form-group">
-			      <label for="pwd">Apellido:</label>
-			      <input id="imput-adminconfig" type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido" placeholder="4 <> 10" pattern="[A-Za-z]{4,10}" required>
-			    </div>
+			      <label for="imput-adminconfig-sexo">Sexo:</label>
 			    <div class="form-group">
-			      <label for="pwd">Sexo:</label>
-			    <div class="form-group">
-					  <select id="imput-adminconfig" class="form-control" id="sel1" name="sexo" required>
+					  <select id="imput-adminconfig-sexo" class="form-control" id="sel1" name="sexo" required>
 					    <option>Masculino</option>
 					    <option>Femenino</option>
 					  </select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="pwd">Fecha de Nacimiento:</label>
-                <div class='input-group date' id='date' required>
+					<label for="date-nacimiento">Fecha de Nacimiento:</label>
+                <div class='input-group date' class='date' id='date-nacimiento' required>
                     <input type='date' class="form-control" name="fecha_nacimiento"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -102,8 +120,8 @@
                	 </div>
             	</div>
 				<div class="form-group">
-					<label for="pwd">Fecha de Ingreso:</label>
-                <div class='input-group date' id='date'  required>
+					<label for="date-ingreso">Fecha de Ingreso:</label>
+                <div class='input-group date' class='date' id='date-ingreso'  required>
                     <input type='date' class="form-control" name="fecha_ingreso" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -111,8 +129,8 @@
                	 </div>
             	</div>
             	<div class="form-group">
-					<label for="pwd">Fecha de Egreso:</label>
-                <div class='input-group date' id='date' required>
+					<label for="date-egreso">Fecha de Egreso:</label>
+                <div class='input-group date' class='date' id='date-egreso' required>
                     <input type='date' class="form-control" name="fecha_egreso"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -123,7 +141,7 @@
         <label>Asignar Responsable/s</label>
        <select id="ms" multiple="multiple" name="responsables[]" required>
 					  	{% for responsable in responsables %}
-					  		<option value="{{ responsable.id }}">{{ responsable.nombre}} {{ responsable.apellido}} {{ responsable.telefono}} {{ responsable.direccion}} {{responsable.mail}}</option>
+					  		<option value="{{ responsable.id }}" >{{ responsable.nombre}} {{ responsable.apellido}} {{ responsable.telefono}} {{ responsable.direccion}} {{responsable.mail}}</option>
 					  	{% endfor %}
 					  </select>
     </div>
