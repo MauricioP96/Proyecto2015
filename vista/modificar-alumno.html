@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<HTML lang="es">
+    <HEAD>
+        <TITLE>Modificar alumno</TITLE>
+      
+   
+       
+        <script>        
+           
+            function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+        </script>
+         <script src="../js/jquery.min.js"></script>
+         <script src="../js/jquery.multiple.select.js"></script>
+         
+  <script src="../js/bootstrap.min.js"></script>
+		<meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+        <link rel="stylesheet" href="../css/Styles-m1.css">	
+		<link rel="stylesheet" href="../css/Styles-m2.css">
+		<link rel="stylesheet" href="../css/bootstrap.css">
+				<link rel="stylesheet" href="../css/bootstrap-theme.css">
+		<link rel="stylesheet" href="../js/bootstrap.js">
+				
+				  <meta name="viewport" content="width=device-width, initial-scale=1">
+				 
+				  <link rel="stylesheet" href="../css/bootstrap-select.css">
+				 
+				  <link href="../css/multiple-select.css" rel="stylesheet"/>	
+		
+    </HEAD>
+	<BODY>
+       {% include 'navbar.html'%}
+		<div class="main_wrapper">     <!--Body-altaalumno-->
+            <div class="lineal-banner">
+            <img alt='Banner de la institución' id="banner-v1" src="../Imagenes/banner.png" title="Banner" >
+            <img alt='Escudo de la institución' id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="Escudo" >
+            <div class="text-tittle">{{config['titulo']}}</div>
+			</div>
+		<div class="contenedor_formulario">
+			<div class="container">
+			  <h2>Modificar datos de alumno {{alumno['nombre']}} {{alumno['apellido']}}</h2>
+			  <form method="post" action="#" role="form">
+			  	<div class="form-group">
+			      <label for="imput-adminconfig-nombre">Nombre:</label>
+			      <input id="imput-adminconfig-nombre" type="text" class="form-control" value="{{alumno['nombre']}}" name="nombre" placeholder="Introduzca su Nombre" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="imput-adminconfig-apellido">Apellido:</label>
+			      <input type="text" id="imput-adminconfig-apellido" class="form-control" value="{{alumno['apellido']}}" name="apellido" placeholder="Introduzca su Apellido" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="imput-adminconfig-dni">Número de documento:</label>
+			      <input type="number" id="imput-adminconfig-dni" class="form-control" value="{{alumno['numeroDoc']}}" name="numdoc" placeholder="Introduzca su numero de documento" required>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label for="imput-adminconfig-dni">Sexo:</label>
+			    <div class="form-group">
+					  <select name="sexo" id="imput-adminconfig-sexo" class="form-control" id="sel1" required>
+					    <option value="masculino" {%if alumno['sexo'] == 'masculino' %} selected="selected" {% endif %}>Masculino</option>
+					    <option value="femenino" {%if alumno['sexo'] == 'femenino' %} selected="selected" {% endif %}>Femenino</option>
+					  </select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for=imput-adminconfig-dni">Fecha de Nacimiento:</label>
+                <div class='input-group date' required>
+                    <input type='date' name="fechaNac" id="imput-adminconfig-nacimiento" value={{alumno['fechaNacimiento']}} class="form-control" >
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+            	 <div class="form-group">
+			      <label for="imput-adminconfig-dni">Domicilio:</label>
+			      <input type="text" id="imput-adminconfig-direccion" class="form-control" value="{{alumno['direccion']}}" name="dire" placeholder="Introduzca su domicilio" required>
+			    </div>
+            	<div class="form-group">
+			      <label for="imput-adminconfig-mail">Email:</label>
+			      <input type="email" value="{{alumno['mail']}}" id="imput-adminconfig-mail" class="form-control" name="email" placeholder="Introduzca su Email" required>
+			    </div>
+				<div class="form-group">
+					<label for="imput-adminconfig-ingreso">Fecha de Ingreso a la escuela:</label>
+                <div class='input-group date' required>
+                    <input type='date' name='fechaIng' id="imput-adminconfig-ingreso" value={{alumno['fechaIngreso']}} class="form-control" >
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+            	<div class="form-group">
+					<label for="imput-adminconfig-egreso">Fecha de Egreso de la escuela:</label>
+                <div class='input-group date'>
+                    <input type='date' name='fechaEg'id="imput-adminconfig-egreso"  value={{alumno['fechaEgreso']}} class="form-control" >
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+               	 </div>
+            	</div>
+                              <div class="form-group">
+                                        <label>Modificar Responsable/s</label>
+                                       <select id="ms" multiple="multiple" name="responsables[]">
+                                           
+                                           
+                                           
+                                           
+                                           
+					  	{% for responsable in responsables %}
+					  		<option value="{{ responsable.id }}" {%if responsable.id in alumno_responsable.idResponsable %}
+-                                                                selected="selected" 
+-                                                              {% endif %}>{{ responsable.nombre}}
+					  		</option>
+
+					  	{% endfor %}
+                                        </select>
+                                </div>
+			    <button name='idalumnoParaModificar' value={{alumno['id']}} type="submit" class="btn btn-primary btn">Actualizar</button>
+			  </form>
+			</div>
+			<!-- Start Formoid form-->
+		</div>
+		<footer>{{config['mailContacto']}}</footer>
+		</div>
+       <script> $(function() {
+        $('#ms').change(function() {
+            console.log($(this).val());
+        }).multipleSelect({
+            width: '100%'
+        });
+    }); 
+       </script>
+       
+	</body>
+</HTML>
