@@ -8,7 +8,7 @@ $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (
                                                             INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
                                                             WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE())");
 require ("../modelo/modelo_consultas-calculos-listados.php");//calculo cuantas paginas debo mostrar
-$query2=$cn->prepare("SELECT alumnos.nombre, alumnos.apellido, cuotas.fechaAlta,cuotas.comisionCob,cuotas.monto FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
+$query2=$cn->prepare("SELECT Alumnos.nombre, Alumnos.apellido, Cuotas.fechaAlta,Cuotas.comisionCob,Cuotas.monto FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
                                                             INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
                                                             WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE())  LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
@@ -21,7 +21,7 @@ else{
 		$query = $cn->prepare("SELECT count(*) as num FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                                  INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno) WHERE 1 ORDER BY Cuotas.fechaAlta");
 require ("../modelo/modelo_consultas-calculos-listados.php");//calculo cuantas paginas debo mostrar
-$query2=$cn->prepare("SELECT alumnos.apellido,alumnos.nombre,cuotas.numero,cuotas.fechaAlta,cuotas.monto,cuotas.comisionCob FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
+$query2=$cn->prepare("SELECT Alumnos.apellido,Alumnos.nombre,Cuotas.numero,Cuotas.fechaAlta,Cuotas.monto,Cuotas.comisionCob FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                                  INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno) WHERE 1 ORDER BY Cuotas.fechaAlta  LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
