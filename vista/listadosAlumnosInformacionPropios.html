@@ -33,7 +33,7 @@
 
             
             <div class="navbar-lateral">
-			<form  action="#" method="POST" >
+			<form  action="../controlador/controlador_listadosAlumnosConMatricula.php" method="POST" >
 			<div class="imputround-checkbox" ><input type="radio" name="tipodel" value="1"  {%if datospost == 1 %} checked="checked" {% endif%}>Listado de alumnos con matricula paga</div>
 			<div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="2" {%if datospost == 2 %} checked="checked" {% endif%}>Listado de cuotas pagadas</div>
       <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="3" {%if datospost == 3 %} checked="checked" {% endif%}>Listado de cuotas impagas</div>
