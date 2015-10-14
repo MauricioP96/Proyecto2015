@@ -3,7 +3,7 @@ require ("../modelo/coneccionBD.php");
 require("../modelo/setearpagina.php");
 //var_dump($_POST['tipodel']);
 
-if ((empty($_POST['tipodel']))  || $_POST['tipodel'] == 1){
+if ((empty($_REQUEST['tipodel']))  || $_REQUEST['tipodel'] == 1){
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
                                                             INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
                                                             WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE())");
@@ -17,7 +17,7 @@ $query2->execute();
 $datosprepost=1;
 }
 else{
-	if($_POST['tipodel'] == 2){
+	if($_REQUEST['tipodel'] == 2){
 		$query = $cn->prepare("SELECT count(*) as num FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                                  INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno) WHERE 1 ORDER BY Cuotas.fechaAlta");
 require ("../modelo/modelo_consultas-calculos-listados.php");//calculo cuantas paginas debo mostrar

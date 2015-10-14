@@ -1,7 +1,7 @@
 <?php
 require ("../modelo/coneccionBD.php");
 require("../modelo/setearpagina.php");
-if ((empty($_POST['tipodel']))  || $_POST['tipodel'] == 1){
+if ((empty($_REQUEST['tipodel']))  || $_REQUEST['tipodel'] == 1){
 $query = $cn->prepare("SELECT count(*) as num 
 	                    FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
 	                                 INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
@@ -32,7 +32,7 @@ $datosprepost=1;
 
 }
 else{
-	if ($_POST['tipodel'] == 2){
+	if ($_REQUEST['tipodel'] == 2){
 		$query = $cn->prepare("SELECT count(*) as num FROM Cuotas 
 			                         INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                         INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno)
