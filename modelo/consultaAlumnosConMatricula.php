@@ -28,18 +28,8 @@ $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=2;
 	}
-	else{
-		$query = $cn->prepare("SELECT count(*) as num FROM cuotas 
-			                    WHERE cuotas.tipo = 'cuota' AND (cuotas.anio >= year(CURRENT_DATE)) AND 
-			                    NOT EXISTS (SELECT * FROM pagos WHERE cuotas.id=pagos.idCuota)");
-require ("../modelo/modelo_consultas-calculos-listados.php");
-$query2=$cn->prepare("SELECT * FROM cuotas WHERE cuotas.tipo = 'cuota' AND (cuotas.anio >= year(CURRENT_DATE)) AND
-                        NOT EXISTS (SELECT * FROM pagos WHERE cuotas.id=pagos.idCuota) LIMIT :cantidad OFFSET :offset");
-$query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
-$query2->bindValue(':offset', $offset, PDO::PARAM_INT);
-$query2->execute();
-	$datosprepost=3;
-}
+
+
 }
 
 $alumnosConMatricula=$query2->fetchAll();

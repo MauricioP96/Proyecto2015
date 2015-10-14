@@ -12,15 +12,18 @@
                 location.href="frontend_controller.php?flag=true";
             }
         </script>
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="shortcut icon" href="../Imagenes/JoaquinVGonzalez222.ico">
+
         <link rel="stylesheet" href="../css/Styles-m1.css"> 
     <link rel="stylesheet" href="../css/Styles-m2.css">
            <link rel="stylesheet" href="../css/bootstrap.css">
-        <link rel="stylesheet" href="../css/abm.css">
+        
         <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/abm.css">
         
 
 </head>
@@ -68,8 +71,11 @@
           <td headers='col_dire'>{{alumno['direccion']}}</td>
           <td headers='col_fecing'>{{alumno['fechaIngreso']}}</td>
           <td  headers='col_feceg'>{{alumno['fechaEgreso']}}</td>
-          <td headers='col_acc'>
+          <td id="col_acc" headers='col_acc'>
             {%if funcion=='listado'%}
+            <FORM   action='../controlador/controlador_listado_alumnos_cuotasImpagas.php' method='POST'>
+              <input id="imagenes-operaciones-listado" title='Ver cuotas Impagas del alumno' class='iconoListado' type="image" src="../Imagenes/gavel.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
+            </FORM>
             <FORM   action='../controlador/controlador_modificarAlumno.php' method='POST'>
               <input id="imagenes-operaciones-listado" title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
             </FORM>
