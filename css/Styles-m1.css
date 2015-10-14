@@ -16,34 +16,34 @@
 }
 
 #letraviscointerner{
-position: absolute;
-left: 19%;
-top: 281px;
-background-color: aqua;
-border-radius: 9px;
-padding: 14px;
-padding-left: 28px;
-color: black;
-padding-right: 28px;
--webkit-box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.75);
-background: rgb(160, 160, 160);
-background: 
 
+position: absolute;
 
+left: 19%;
 
+top: 281px;
 
+background-color: aqua;
 
+border-radius: 9px;
 
+padding: 14px;
 
+padding-left: 28px;
 
+color: black;
 
+padding-right: 28px;
 
+-webkit-box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.75);
 
+-moz-box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.75);
 
+box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.75);
 
+background: rgb(160, 160, 160);
 
+background: 
 
 
 
@@ -808,8 +808,6 @@
 
 
 
--moz-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
-background: 
 
 
 
@@ -825,7 +823,9 @@
 
 
 
+-moz-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
 
+background: 
 
 
 
@@ -1588,8 +1588,6 @@
 
 
 
--webkit-gradient(left top, left bottom, color-stop(0%, rgba(222,235,223,1)), color-stop(100%, rgba(164,184,165,1)));
-background: 
 
 
 
@@ -1607,7 +1605,9 @@
 
 
 
+-webkit-gradient(left top, left bottom, color-stop(0%, rgba(222,235,223,1)), color-stop(100%, rgba(164,184,165,1)));
 
+background: 
 
 
 
@@ -2368,8 +2368,6 @@
 
 
 
--webkit-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
-background: 
 
 
 
@@ -2389,7 +2387,9 @@
 
 
 
+-webkit-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
 
+background: 
 
 
 
@@ -3148,8 +3148,6 @@
 
 
 
--o-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
-background: 
 
 
 
@@ -3171,7 +3169,9 @@
 
 
 
+-o-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
 
+background: 
 
 
 
@@ -3928,9 +3928,34 @@
 
 
 
--ms-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
-background: linear-gradient(to bottom, rgb(212, 172, 172) 0%, rgb(181, 98, 98) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deebdf', endColorstr='#a4b8a5', GradientType=0 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-ms-linear-gradient(top, rgba(222,235,223,1) 0%, rgba(164,184,165,1) 100%);
+
+background: linear-gradient(to bottom, rgb(212, 172, 172) 0%, rgb(181, 98, 98) 100%);
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deebdf', endColorstr='#a4b8a5', GradientType=0 );
 }
 .botonesadminsitraciondeusuarios{
     
@@ -3944,7 +3969,7 @@ body{
     margin-top: 0px;
    background: #deebdf;
 }
-#date{
+.date{
     width: 280px;
 }
 .real-Body{
