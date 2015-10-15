@@ -102,25 +102,13 @@
                     </span>
                	 </div>
             	</div>
-                              <div class="form-group">
-                                        <label>Modificar Responsable/s</label>
-                                       <select id="ms" multiple="multiple" name="responsables[]">
-                                           
-                                           
-                                           
-                                           
-                                           
-					  	{% for responsable in responsables %}
-					  		<option value="{{ responsable.id }}" {%if responsable.id in alumno_responsable.idResponsable %}
--                                                                selected="selected" 
--                                                              {% endif %}>{{ responsable.nombre}}
-					  		</option>
-
-					  	{% endfor %}
-                                        </select>
-                                </div>
 			    <button name='idalumnoParaModificar' value={{alumno['id']}} type="submit" class="btn btn-primary btn">Actualizar</button>
 			  </form>
+                          <form method='post' action='../controlador/controlador_listado_responsables.php'>
+                              <input type="hidden" class="form-control" value="{{alumno.id}}" name="idAlumno">
+			  
+                              <button type='submit' value='{{alumno.numeroDoc}}' class="btn btn-primary btn">Modificar Responsables</button>
+                           </form>
 			</div>
 			<!-- Start Formoid form-->
 		</div>
