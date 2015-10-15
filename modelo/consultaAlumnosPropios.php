@@ -1,4 +1,4 @@
-<?php
+<?php 
 require ("../modelo/coneccionBD.php");
 require("../modelo/setearpagina.php");
 if ((empty($_REQUEST['tipodel']))  || $_REQUEST['tipodel'] == 1){

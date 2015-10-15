@@ -1,21 +1,25 @@
               {%if cuotas_pagas|length == 0%}
                 <h2>El alumno {{nombrealumno}} no tiene pagos registrados </h2>
                 {%else%}
-                 <h2>Cuotas pagas del alumno {{nombrealumno}}</h2>
+                 
 
-  
-<table summary='Tabla con las cuotas diponibles a pagar por el alumno {{nombrealumno}}' class="table table-striped" >   <!--id='tabla-alumnos'-->
+ <div class="dropdown">
+  <button class="btn btn-default  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Cuotas pagas del alumno {{nombrealumno}}
+    <span class="caret"></span>
+  </button> 
+<table class="dropdown-menu table-condensed" aria-labelledby="dropdownMenu1" summary='Tabla con las cuotas diponibles a pagar por el alumno {{nombrealumno}}' class="table" >   <!--id='tabla-alumnos'-->
         <thead>
           <tr>
-            <th id='col_tipo'>Tipo</th>
-            <th id='col_anio' >Año</th>
-           <th id='col_mes'>Mes</th>
-            <th id='col_num' >Numero</th>
+            <th class='tabla-dropdown' id='col_tipo'>Tipo</th>
+            <th class='tabla-dropdown' id='col_anio' >Año</th>
+           <th class='tabla-dropdown' id='col_mes'>Mes</th>
+            <th class='tabla-dropdown' id='col_num' >Numero</th>
               
-              <th id='col_monto'>Monto</th>
-              <th id='col_comision'>Comision</th>
-              <th id='col_fec'>Fecha del pago</th>
-              <th id='col_estado'>Estado</th>
+              <th  class='tabla-dropdown' id='col_monto'>Monto</th>
+              <th class='tabla-dropdown' id='col_comision'>Comision</th>
+              <th class='tabla-dropdown' id='col_fec'>Fecha del pago</th>
+              <th class='tabla-dropdown' id='col_estado'>Estado</th>
           </tr>
         </thead>
         {% for cuota_pag in cuotas_pagas %}
@@ -31,4 +35,5 @@
         </tr>
         {%endfor%}
         </table>
+        </div>
         {%endif%}
