@@ -28,8 +28,25 @@ $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=2;
 	}
+	else{
+       if($_REQUEST['tipodel'] == 3){
+		$query = $cn->prepare("SELECT count(*) as num FROM Cuotas as ta1,(SELECT *
+								 FROM Alumnos WHERE 1) as alu2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno = alu2.id)
+								          ORDER BY ta1.anio DESC,ta1.mes DESC");
+require ("../modelo/modelo_consultas-calculos-listados.php");//calculo cuantas paginas debo mostrar
+$query2=$cn->prepare("SELECT * FROM Cuotas as ta1,(SELECT *
+					 FROM Alumnos WHERE 1) as alu2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno = alu2.id)
+					  ORDER BY ta1.anio DESC,ta1.mes DESC  LIMIT :cantidad OFFSET :offset");
+$query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
+$query2->bindValue(':offset', $offset, PDO::PARAM_INT);
+$query2->execute();
+$datosprepost=3;
 
 
+
+
+	                              }
+    }
 }
 
 $alumnosConMatricula=$query2->fetchAll();

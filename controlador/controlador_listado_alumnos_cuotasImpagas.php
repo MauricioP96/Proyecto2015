@@ -5,7 +5,7 @@ if(empty($_SESSION['nombreusuario'])){
     header ("Location: frontend_controller.php");	
 }
 if (!empty($_POST['idalumnoCarga'])){
-require ('../modelo/consultaConf.php');
+require ('../modelo/consultaConf.php'); 
 require ('../modelo/consulta_alumnos_cuotasImpagas.php');
 require('../modelo/setearTwig.php');
   $template = $twig->loadTemplate('listado_alumnos_cuotasImpagas.html');

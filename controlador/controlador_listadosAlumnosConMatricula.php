@@ -18,7 +18,7 @@ if ($_SESSION['rol'] == "consulta"){
                           'datospost' => $datosprepost
               )); 
 
-
+ 
 }
 else{
    

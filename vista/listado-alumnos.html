@@ -73,9 +73,7 @@
           <td  headers='col_feceg'>{{alumno['fechaEgreso']}}</td>
           <td id="col_acc" headers='col_acc'>
             {%if funcion=='listado'%}
-            <FORM   action='../controlador/controlador_listado_alumnos_cuotasImpagas.php' method='POST'>
-              <input id="imagenes-operaciones-listado" title='Ver cuotas Impagas del alumno' class='iconoListado' type="image" src="../Imagenes/gavel.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
-            </FORM>
+            
             <FORM   action='../controlador/controlador_modificarAlumno.php' method='POST'>
               <input id="imagenes-operaciones-listado" title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
             </FORM>
