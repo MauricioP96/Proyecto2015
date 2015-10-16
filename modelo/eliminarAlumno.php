@@ -7,7 +7,7 @@ $query = $cn->prepare("UPDATE Alumnos
 $gg=array($_POST['ideliminar']);
 $aux=$query->execute($gg); 
 if($aux){
-
-	header ("Location: ../controlador/controlador_listadoAlumnos.php");
+        $elimino_alumno=true;
+	//header ("Location: ../controlador/controlador_listadoAlumnos.php");
 }
 ?>

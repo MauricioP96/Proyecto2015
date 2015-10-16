@@ -45,7 +45,13 @@
                                       {%elseif funcion=='elegirpago'%}Elija el alumno al que quiera registrar el pago o la beca de una cuota/matricula.</h4></caption>
                       
                                       {%endif%}
-
+                                      
+                                      
+                                      
+                                      {% if elimino_alumno %} <div class="alert alert-success alert-dismissable">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>El Alumno </strong> se elimino correctamente.
+						</div>  {% endif %}
 
           <tr>
             <th id='col_dni'>Nº de documento</th>

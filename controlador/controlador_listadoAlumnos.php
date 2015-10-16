@@ -21,6 +21,7 @@ if(soyadmin($_SESSION['rol'])){
 							'contacto' => $configuraciones['0']['mailContacto'],
 							'tipo' => $_SESSION['rol'],
 	                        'alumnos' => $alumnos,
+                                'elimino_alumno' => $elimino_alumno,
 	                        'cantpaginas' => $cantidadpaginas,
 	                        'paginaactual' => $pagina,
 	                        'funcion'=>$funcion
