@@ -3,7 +3,7 @@
 session_start();
 //var_dump($_SESSION['rol']);
 if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. If false redireccionar a index
-	header ("Location: index.php");
+	header ("Location: ../index.php");
 	}								
 	elseif($_SESSION['rol']=='consulta'){			//si el usuario no es administrador no darle permiso
 		header ("Location: ../controlador/controlador_login.php");					

@@ -2,7 +2,7 @@
 
 session_start();
 if(empty($_SESSION['nombreusuario'])){
-	header ("Location: index.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
+	header ("Location: ../index.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
  
 
