@@ -2,7 +2,7 @@
 
 require ("../modelo/coneccionBD.php");
 
-$cons1= $cn->prepare("SELECT a_r FROM AlumnoResponsable WHERE idAlumno=?");
+$cons1= $cn->prepare("SELECT alumno_responsable FROM AlumnoResponsable WHERE idAlumno=?");
 	$cons1->execute(array($_POST['id_alumno_eliminar']));
 	//var_dump($dni);
 	$rows=$cons1->fetchAll();
