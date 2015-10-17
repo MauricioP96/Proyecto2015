@@ -26,7 +26,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
           //var_dump($cuotas_pagas);
            //consulta la configuracion y devuelve en $configuraciones
           require("../modelo/setearTwig.php");      //seteo twig en $template 
-          if ($configuraciones['0']['habilitada']){
+          //if ($configuraciones['0']['habilitada']){
 	             $template = $twig->loadTemplate("elegir_cuota.html");
    	            $template->display(array('datos'=>$configuraciones['0'], 
 						                  'tipo'=>$_SESSION['rol'],
@@ -38,9 +38,9 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
                               'paginaactual'=>$pagina,
                               'cantpaginas'=>$cantidadpaginas
 						                    ));
-          }
-          else{  //else de pagina deshabilitada
-          }
+          //}
+          //else{  //else de pagina deshabilitada
+         // }
     }
     else {
       header ("Location: ../controlador/controlador_registrarPagoElejirCuota.php");

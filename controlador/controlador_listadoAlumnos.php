@@ -6,6 +6,7 @@ if(empty($_SESSION['nombreusuario'])){
 	header ("Location: frontend_controller.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
 if(soyadmin($_SESSION['rol'])){
+	$elimino_alumno=false;
 	if(!empty($_POST['ideliminar'])){
 		require('../modelo/eliminarAlumno.php');
 	}	
@@ -28,7 +29,7 @@ if(soyadmin($_SESSION['rol'])){
 							));
 }
 else{
-	header ("Location: ../controlador_login.php");
+	header ("Location: ../controlador/controlador_login.php");
 }
 
 ?>

@@ -6,8 +6,9 @@ if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 			CerrarSesion();
 		}
 if(empty($_SESSION['nombreusuario'])){
-	header ("Location: controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
+	header ("Location: ../controlador/controlador_login.php");					//Chekear si tiene sesion iniciada. If true redireccionar a backend
 		}
+if(soyadmin($_SESSION['rol'])){
 $fallo=false;
 $acerto=false;
 if (!empty($_POST['nombre'])){ 
@@ -36,7 +37,7 @@ if (!empty($_POST['nombre'])){
 require ("../modelo/consultaConf.php");                   //consulta la configuracion y devuelve en $configuraciones
 
 require("../modelo/setearTwig.php");      //seteo twig en $template 
-if ($configuraciones['0']['habilitada']){
+
 	require('../modelo/modelo_responsable.php');
 		$responsables=obtener_responsables();
 	//if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
@@ -54,7 +55,8 @@ if ($configuraciones['0']['habilitada']){
 						'acerto' => $acerto
 						));
 }
-else{                                      //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???
+else{
+	header ("Location: ../controlador/controlador_login.php");                                      //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???
 	
 }
 

@@ -3,11 +3,11 @@
 session_start();
 require('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
-	header ("Location: frontend_controller.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
+	header ("Location: ../controlador/frontend_controller.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
 if(soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol'])){
 	if(!empty($_POST['ideliminar'])){
-		var_dump($_POST['ideliminar']);
+		//var_dump($_POST['ideliminar']);
 		require('../modelo/eliminarCuota.php');
 	}	
 
@@ -28,7 +28,7 @@ if(soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol'])){
 							));
 }
 else{
-	header ("Location: ../controlador_login.php");
+	header ("Location: ../controlador/controlador_login.php");
 }
 
 ?>
