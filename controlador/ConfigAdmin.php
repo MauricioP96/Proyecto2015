@@ -3,7 +3,7 @@
 session_start();
 require('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
-    header ("Location: frontend_controller.php");	
+    header ("Location: ../controlador/frontend_controller.php");	
   
 }
    if (soyadmin($_SESSION['rol'])){
@@ -20,7 +20,7 @@ if(empty($_SESSION['nombreusuario'])){
        
    }
    else {
-      header ("Location: ../controlador_login.php");
+      header ("Location: ../controlador/controlador_login.php");
   }              
 
 ?>
