@@ -7,6 +7,7 @@ if(empty($_SESSION['nombreusuario'])){
 }
    if (soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol'])){
        $fallo=false;
+      // var_dump($_POST);
        if(!empty($_POST['mes'])){
         //var_dump($_POST);
        		require('../modelo/insertarCuota.php');
