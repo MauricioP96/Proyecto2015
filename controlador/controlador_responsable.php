@@ -9,7 +9,7 @@ if(empty($_SESSION['nombreusuario'])){
   header ("Location: ../controlador/controlador_login.php");         //Chekear si tiene sesion iniciada. If true redireccionar a backend
     }
 if(!soyadmin($_SESSION['rol'])){
-  header("Location: ../controlador/controlador_login.php")
+  header("Location: ../controlador/controlador_login.php");
 }
 if (!empty($_POST['nombre'])){ 
 
