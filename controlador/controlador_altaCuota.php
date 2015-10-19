@@ -23,7 +23,7 @@ if(empty($_SESSION['nombreusuario'])){
        //var_dump($meses);
            //consulta la configuracion y devuelve en $configuraciones
 require("../modelo/setearTwig.php");      //seteo twig en $template 
-if ($configuraciones['0']['habilitada']){
+
 	$template = $twig->loadTemplate("alta_cuota.html");
    	$template->display(array('datos' => $configuraciones['0'],
 						'tipo'=>$_SESSION['rol'],
@@ -31,7 +31,7 @@ if ($configuraciones['0']['habilitada']){
 						'fallo'=>$fallo,
 						'info'=>$_POST
 						));
-}
+
 }   
    else {
       header ("Location: ../controlador/controlador_login.php");
