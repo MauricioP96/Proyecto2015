@@ -12,8 +12,8 @@ require("../modelo/coneccionBD.php");
 	$agrego=true;
 	//var_dump($dni);
 	//var_dump($rows);
-    //$error=$pago->errorInfo();
-	//var_dump($error);
+    $error=$pago->errorInfo();
+	var_dump($error);
 //}
 
 
