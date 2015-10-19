@@ -34,10 +34,12 @@ if ($configuraciones['0']['habilitada']){
 						));
 }
 else{    
+
        $template = $twig->loadTemplate("frontend-desabilitado.html");
    	$template->display(array('titulo' => $configuraciones['0']['titulo'],
 						'descripcion' => $configuraciones['0']['descripcion'],
 						'contacto' => $configuraciones['0']['mailContacto'], 
+						'mensaje' => $configuraciones['0']['textoDeshab'],
 						'fallo' => $mostrofallo
 						));
                             //si la pagina esta deshabilitada debo mostrar el mensaje......debo dejar habilitado el login???
