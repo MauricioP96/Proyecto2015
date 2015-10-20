@@ -65,11 +65,11 @@ $query2->execute();
 $datosprepost=2;
 }
 else{
-	$query = $cn->prepare("SELECT count(*) as num FROM Cuotas as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
+	$query = $cn->prepare("SELECT count(*) as num FROM (SELECT * FROM Cuotas WHERE Cuotas.mes < MONTH(CURRENT_DATE) AND Cuotas.anio <= year(CURRENT_DATE)) as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
  FROM Usuarios  INNER JOIN UsuarioResponsable ON (Usuarios.id = UsuarioResponsable.idUsuario) 
                 INNER JOIN AlumnoResponsable  ON ( UsuarioResponsable.idResponsable = AlumnoResponsable.idResponsable)
                 INNER JOIN Alumnos ON (Alumnos.id = AlumnoResponsable.idAlumno) 
-                WHERE Usuarios.username=?) as tat2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno= tat2.idAlumno)");
+                WHERE Usuarios.username=?) as tat2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno= tat2.idAlumno) ORDER BY ta1.anio DESC,ta1.mes DESC");
 	
 $query->execute(array($_SESSION['nombreusuario']));
 $consultacant = $query->fetchAll();
@@ -78,11 +78,11 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss)); 
-$query2=$cn->prepare("SELECT * FROM Cuotas as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
+$query2=$cn->prepare("SELECT * FROM (SELECT * FROM Cuotas WHERE Cuotas.mes < MONTH(CURRENT_DATE) AND Cuotas.anio <= year(CURRENT_DATE)) as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
  FROM Usuarios  INNER JOIN UsuarioResponsable ON (Usuarios.id = UsuarioResponsable.idUsuario) 
                 INNER JOIN AlumnoResponsable  ON ( UsuarioResponsable.idResponsable = AlumnoResponsable.idResponsable)
                 INNER JOIN Alumnos ON (Alumnos.id = AlumnoResponsable.idAlumno) 
-                WHERE Usuarios.username=:user) as tat2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno= tat2.idAlumno) LIMIT :cantidad OFFSET :offset");
+                WHERE Usuarios.username=:user) as tat2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno= tat2.idAlumno) ORDER BY ta1.anio DESC,ta1.mes DESC LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->bindValue(':user', $_SESSION['nombreusuario']);
