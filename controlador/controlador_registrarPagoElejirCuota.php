@@ -7,7 +7,7 @@ if(empty($_SESSION['nombreusuario'])){
 }
 if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
      if(!empty($_POST['idalumno'])||(!empty($_POST['idalumnopagar']))||(!empty($_POST['idalumnobecar']))){
-         var_dump($_POST);
+        // var_dump($_POST);
 		 $ok=false;
          require('../modelo/condicionalumno.php');
          $agrego=false;
@@ -44,7 +44,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
          // }
     }
     else {
-      header ("Location: ../controlador/controlador_registrarPagoElejirCuota.php");
+      header ("Location: ../controlador/controlador_registrarPagoElegirAlumno.php");
 
 }}   
    else {
