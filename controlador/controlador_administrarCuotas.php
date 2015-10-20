@@ -18,6 +18,7 @@ if(soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol'])){
 	require('../modelo/setearTwig.php');
 	//var_dump($alumnos);
 	//$funcion='listado';
+	//var_dump($cuotas);
 	$template = $twig->loadTemplate('listado-cuotas.html');
 	$template->display(array('titulo' => $configuraciones['0']['titulo'],
 							'contacto' => $configuraciones['0']['mailContacto'],
