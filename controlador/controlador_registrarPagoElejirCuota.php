@@ -7,7 +7,8 @@ if(empty($_SESSION['nombreusuario'])){
 }
 if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
      if(!empty($_POST['idalumno'])||(!empty($_POST['idalumnopagar']))||(!empty($_POST['idalumnobecar']))){
-         $ok=false;
+         var_dump($_POST);
+		 $ok=false;
          require('../modelo/condicionalumno.php');
          $agrego=false;
          //var_dump($_POST);
