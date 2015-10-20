@@ -16,7 +16,7 @@ $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss));  //calculo cuantas paginas debo mostrar
 //var_dump($cantidadpaginas);
-$query2=$cn->prepare("SELECT Cuotas.*,count(Pagos.id) as cantpagos FROM Cuotas INNER JOIN Meses ON (Meses.idMes=Cuotas.mes) LEFT JOIN Pagos ON (Pagos.idCuota=Cuotas.id)
+$query2=$cn->prepare("SELECT Cuotas.*,count(Pagos.id) as cantpagos ,Meses.nombre FROM Cuotas INNER JOIN Meses ON (Meses.idMes=Cuotas.mes) LEFT JOIN Pagos ON (Pagos.idCuota=Cuotas.id)
 					WHERE eliminada=FALSE
 					GROUP BY Cuotas.id		
               		 ORDER BY anio DESC,mes DESC LIMIT :cantidad OFFSET :offset ");
