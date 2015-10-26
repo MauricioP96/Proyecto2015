@@ -35,28 +35,28 @@ and open the template in the editor.
                 <hr>
  
         <label class="label-imput-contigAdmin" >Tipo: </label>
-        <select id="imput-adminconfig" class="form-control" name="tipo" required>
-            <option value="couta" {%if cuota['tipo']=='cuota'%} selected {%endif%}>Cuota</option>
+        <select id="imput-adminconfig" class="form-control" name="tipo" >
+            <option value="couta" {%if not(cuota['tipo'] is defined) or cuota['tipo']=='cuota' %} selected {%endif%}>Cuota</option>
             <option value="matricula" {%if cuota['tipo']=='matricula'%} selected {%endif%}>Matricula</option></select><br>
         
         <label class="label-imput-contigAdmin" >Mes: </label>
-        <select id="imput-adminconfig" class="form-control" name="mes" required>
+        <select id="imput-adminconfig2" class="form-control" name="mes" >
             {%for mes in meses%}
             <option value="{{mes['idMes']}}" {%if cuota['mes']==mes['idMes']%} selected {%endif%} >{{mes['nombre']}}</option>
             {%endfor%}
                 </select><br>
         
         <label class="label-imput-contigAdmin" >Año: </label>
-        <input id="imput-adminconfig"  value="{{cuota['anio']}}" type="number" name="anio" class="form-control" required><br>
+        <input id="imput-adminconfig3"  value="{{cuota['anio']}}" type="number" name="anio" class="form-control" required><br>
         
         <label class="label-imput-contigAdmin" >Número: </label>
-        <input id="imput-adminconfig" type="number"  value="{{cuota['numero']}}" name="numero" class="form-control" required><br>
+        <input id="imput-adminconfig4" type="number"  value="{{cuota['numero']}}" name="numero" class="form-control" required><br>
 
         <label class="label-imput-contigAdmin" >Monto: </label>
-        <input id="imput-adminconfig" type="number"  value="{{cuota['monto']}}" name="monto" class="form-control" required><br>
+        <input id="imput-adminconfig5" type="number"  value="{{cuota['monto']}}" name="monto" class="form-control" required><br>
         
         <label class="label-imput-contigAdmin" >Comisión para el cobrador: </label>
-        <input id="imput-adminconfig" type="number"  value="{{cuota['comisionCob']}}" name="comisionCob" class="form-control" required><br>
+        <input id="imput-adminconfig6" type="number"  value="{{cuota['comisionCob']}}" name="comisionCob" class="form-control" required><br>
 
         <button id="buttom-contigAdmin" type="submit" name='idCuotaParaModificar' value={{idcuota}} class="btn-block btn btn-primary">Actualizar</button>    
             

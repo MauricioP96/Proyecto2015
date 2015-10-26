@@ -44,10 +44,10 @@ and open the template in the editor.
             <option value="gestion" {%if fallo %}{%if info['rol']=='gestion'%} selected {%endif%}{%endif%}>Gestión</option></select><br>
         
         <label class="label-imput-contigAdmin" >Nombre de usuario: </label>
-        <input id="imput-adminconfig" {%if fallo %} value="{{info['nombre_usuario']}}" {%endif%} type="text" name="nombre_usuario" class="form-control" required><br>
+        <input id="imput-adminconfig2" {%if fallo %} value="{{info['nombre_usuario']}}" {%endif%} type="text" name="nombre_usuario" class="form-control" required><br>
         
         <label class="label-imput-contigAdmin" >Contraseña: </label>
-        <input id="imput-adminconfig" type="password" {%if fallo %} value="{{info['pass']}}" {%endif%} name="pass" class="form-control" required><br>
+        <input id="imput-adminconfig3" type="password" {%if fallo %} value="{{info['pass']}}" {%endif%} name="pass" class="form-control" required><br>
 
         <button id="buttom-contigAdmin" type="submit" class="btn-block btn btn-primary">Crear</button>    
             

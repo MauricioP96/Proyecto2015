@@ -28,19 +28,19 @@
     {% include 'navbar.html'%}
     <div class="real-Body main_wrapper"> 
             <div class="lineal-banner">
-                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
-                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
+                        <img id="banner-v1" src="../Imagenes/banner.png" title="Banner" alt="Banner">
+                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="Escudo" alt="Escudo" >
                         <div class="text-tittle">{{titulo}}</div>
                </div>
             <div class="main_container">
             <div class="contents">
                 <ul>
 </ul>		{% if usuarios|length > 0 %}
-            <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
-        <thead>
-          <caption align='center'><h4>Usuarios activos en el sistema</h4></caption>
+            <table  class="table table-striped" >   <!--id='tabla-alumnos'-->
+        
+          <caption><h4>Usuarios activos en el sistema</h4></caption>
                       
-                                     
+           <thead>                          
 
 
           <tr>
@@ -56,10 +56,10 @@
          
           <td headers='col_acc'>
             <FORM   action='../controlador/controlador_modificar_usuario.php' method='POST'>
-              <input id="imagenes-operaciones-listado" title='Modificar la información del usuario' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar usuario" name='idusuariocarga' value='{{usuario['id']}}' />
+              <input  title='Modificar la información del usuario' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar usuario" name='idusuariocarga' value='{{usuario['id']}}' />
             </FORM>
 
-            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{usuario['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+            <img  data-toggle="modal" data-target="#{{usuario['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
 
 
             </td>
@@ -69,7 +69,7 @@
               <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  <h4 class="modal-title" id="myLargeModalLabel">Confirme eliminación del usuario {{usuario['nombre']}} </h4>
+                  <h4 class="modal-title">Confirme eliminación del usuario {{usuario['nombre']}} </h4>
                 </div>
                 <div class="modal-body">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>

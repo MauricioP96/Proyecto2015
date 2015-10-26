@@ -31,22 +31,22 @@
     {% include 'navbar.html'%}
     <div class="real-Body main_wrapper"> 
             <div class="lineal-banner">
-                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
-                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
+                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" alt="Banner" >
+                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" alt="Escudo" >
                         <div class="text-tittle">{{titulo}}</div>
                </div>
             <div class="main_container">
             <div class="contents">
                 <ul>
 </ul>   {% if alumnos|length > 0 %}
-            <table summary='Tabla con el listado de alumnos registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
-        <thead>
-          <caption align='center'><h4>{%if funcion=='listado'%}Alumnos activos en el sistema</h4></caption>
+            <table class="table table-striped" >   <!--id='tabla-alumnos'-->
+        
+          <caption ><h4>{%if funcion=='listado'%}Alumnos activos en el sistema</h4></caption>
                                       {%elseif funcion=='elegirpago'%}Elija el alumno al que quiera registrar el pago o la beca de una cuota/matricula.</h4></caption>
                       
                                       {%endif%}
                                       
-                                      
+            <thead>                          
                                       
                                       {% if elimino_alumno %} <div class="alert alert-success alert-dismissable">
   					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -77,17 +77,17 @@
           <td headers='col_dire'>{{alumno['direccion']}}</td>
           <td headers='col_fecing'>{{alumno['fechaIngreso']}}</td>
           <td  headers='col_feceg'>{{alumno['fechaEgreso']}}</td>
-          <td id="col_acc" headers='col_acc'>
+          <td  headers='col_acc'>
             {%if funcion=='listado'%}
             
             <FORM   action='../controlador/controlador_modificarAlumno.php' method='POST'>
-              <input id="imagenes-operaciones-listado" title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
+              <input  title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumnoCarga' value='{{alumno['id']}}' />
             </FORM>
 
-            <img id="imagenes-operaciones-listado" data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
+            <img  data-toggle="modal" data-target="#{{alumno['id']}}" class='iconoListado' alt='Eliminar alumno' title='Eliminar alumno' src='../Imagenes/iconoElim.png'>
             {%else%}
             <FORM   action='../controlador/controlador_registrarPagoElejirCuota.php' method='POST'>
-              <input id="imagenes-operaciones-listado" title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumno' value='{{alumno['id']}}' />
+              <input  title='Modificar la información del alumno' class='iconoListado' type="image" src="../Imagenes/iconoModif.png" alt="Modificar alumno" name='idalumno' value='{{alumno['id']}}' />
             </FORM>
               {%endif%}
 

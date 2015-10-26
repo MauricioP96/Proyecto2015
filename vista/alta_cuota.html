@@ -25,8 +25,8 @@ and open the template in the editor.
          {% include 'navbar.html'%}
         <div class="real-Body"> 
             <div class="lineal-banner">
-                <img id="banner-v1" src="../Imagenes/banner.png" title="banner" alt="banner">
-                <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" alt="escudounlp" title="escudo" >
+                <img id="banner-v1" src="../Imagenes/banner.png" title="Banner" alt="Banner">
+                <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" alt="Escudo" title="Escudo" >
             <div class="text-tittle">{{datos['titulo']}}</div>    <!--Escuela Graduada Joaquín V. González-->
         </div>  
             <div class="conteiner-config">
@@ -44,24 +44,24 @@ and open the template in the editor.
             <option value="matricula">Matricula</option></select><br>
         
         <label class="label-imput-contigAdmin" >Mes: </label>
-        <select id="imput-adminconfig" class="form-control" name="mes" required>
-            <option>Seleccione un mes</option>
+        <select id="imput-adminconfig2" class="form-control" name="mes" required>
+            <option value>Seleccione un mes</option>
             {%for mes in meses%}
             <option value="{{mes.idMes}}">{{mes['nombre']}}</option>
             {%endfor%}
                 </select><br>
         
         <label class="label-imput-contigAdmin" >Año: </label>
-        <input id="imput-adminconfig" {%if fallo %} value="{{info['anio']}}" {%endif%} type="number" name="anio" class="form-control" value="2015" required><br>
+        <input id="imput-adminconfig3" {%if fallo %} value="{{info['anio']}}" {%endif%} type="number" name="anio" class="form-control" value="2015" required><br>
         
         <label class="label-imput-contigAdmin" >Número: </label>
-        <input id="imput-adminconfig" type="number" {%if fallo %} value="{{info['numero']}}" {%endif%} name="numero" class="form-control" required><br>
+        <input id="imput-adminconfig4" type="number" {%if fallo %} value="{{info['numero']}}" {%endif%} name="numero" class="form-control" required><br>
 
         <label class="label-imput-contigAdmin" >Monto: </label>
-        <input id="imput-adminconfig" type="number" {%if fallo %} value="{{info['monto']}}" {%endif%} name="monto" class="form-control" required><br>
+        <input id="imput-adminconfig5" type="number" {%if fallo %} value="{{info['monto']}}" {%endif%} name="monto" class="form-control" required><br>
         
         <label class="label-imput-contigAdmin" >Comisión para el cobrador: </label>
-        <input id="imput-adminconfig" type="number" {%if fallo %} value="{{info['comisionCob']}}" {%endif%} name="comisionCob" class="form-control" required><br>
+        <input id="imput-adminconfig6" type="number" {%if fallo %} value="{{info['comisionCob']}}" {%endif%} name="comisionCob" class="form-control" required><br>
 
         <button id="buttom-contigAdmin" type="submit" class="btn-block btn btn-primary">Crear</button>    
             

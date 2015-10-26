@@ -374,6 +374,14 @@ left: 2%;
 .ms-parent{
 
 }
+.imput-adminconfig{
+  width: 56%;
+position: relative;
+left: 4%;  
+}
+
+
+
 #imput-adminconfig{
 width: 56%;
 position: relative;
@@ -392,6 +400,11 @@ left: 4%;
 }
 
 #imput-adminconfig4{
+width: 56%;
+position: relative;
+left: 4%;
+}
+#imput-adminconfig6{
 width: 56%;
 position: relative;
 left: 4%;
