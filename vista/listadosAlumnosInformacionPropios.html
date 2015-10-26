@@ -48,7 +48,6 @@
         <thead>
           <tr>
             <th id='col_email'>fecha de inscripcion</th>
-            
             <th id='col_ape' >Apellido</th>
             <th id='col_nom' >Nombre</th>
             <th id='col_monto' >Monto</th>
@@ -58,11 +57,11 @@
         </thead>
         {% for alumno in alumnosConMatricula %}
          <tr>
-          <td headers='col_dni'>{{alumno['fechaAlta']}}</td>
+          <td headers='col_email'>{{alumno['fechaAlta']}}</td>
           <td headers='col_ape'>{{alumno['apellido']}}</td>
           <td headers='col_nom'>{{alumno['nombre']}}</td>
           <td  headers='col_monto'>{{alumno['monto']}}</td>
-          <td headers='col_comisin'>{{alumno['comisionCob']}}%</td>
+          <td headers='col_nomm'>{{alumno['comisionCob']}}%</td>
           
         </tr>
     
@@ -91,10 +90,10 @@
      
                       <td headers='col_ape'>{{alumno['apellido']}}</td>
                       <td headers='col_nom'>{{alumno['nombre']}}</td>
-                      <td  headers='col_fecnac'>{{alumno['numero']}}</td>
-                      <td headers='col_sexo'>{{alumno['FechaAlta']}}</td>
-                      <td headers='col_email'>{{alumno['monto']}}</td>
-                      <td headers='col_dire'>{{alumno['comisionCob']}}%</td>
+                      <td  headers='col_nomm'>{{alumno['numero']}}</td>
+                      <td headers='col_nommm'>{{alumno['FechaAlta']}}</td>
+                      <td headers='col_monto'>{{alumno['monto']}}</td>
+                      <td headers='col_nommmm'>{{alumno['comisionCob']}}%</td>
                    
                       
                     </tr>
