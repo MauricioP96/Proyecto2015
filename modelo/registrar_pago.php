@@ -3,8 +3,8 @@ require("../modelo/coneccionBD.php");
 
 	$pago= $cn->prepare("INSERT INTO Pagos (idAlumno,idCuota,fecha,fechaAlta,becado,fechaActualizado)
 							 VALUES (?,?,CURRENT_TIME,CURRENT_TIME,?,CURRENT_TIME)");
-	var_dump($pago);
-	var_dump($idcuotas);
+	//var_dump($pago);
+	//var_dump($idcuotas);
 	if($debobecar==true){
 		$becar=1;
 	}
@@ -13,12 +13,12 @@ require("../modelo/coneccionBD.php");
 
 	}
 	foreach ($idcuotas as $idcuota){
-		var_dump($idcuota[0]);
+		//var_dump($idcuota[0]);
 		$aux=array($idalumno,$idcuota,$becar);
-		var_dump($aux);
+		//var_dump($aux);
 		$pago->execute($aux);
-		$error=$pago->errorInfo();
-		var_dump($error);
+		//$error=$pago->errorInfo();
+		//var_dump($error);
 	}
 	$agrego=true;
 	//var_dump($dni);
