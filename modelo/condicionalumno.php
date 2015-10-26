@@ -13,4 +13,5 @@ if(!empty($_POST['idalumnobecar'])){
 	$ok=true;
 }
 $debobecar=(!empty($_POST['idalumnobecar']));
+//var_dump($debobecar);
 ?>
