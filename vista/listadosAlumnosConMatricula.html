@@ -48,7 +48,6 @@
         <thead>
           <tr>
             <th id='col_email'>fecha de inscripcion</th>
-            
             <th id='col_ape' >Apellido</th>
             <th id='col_nom' >Nombre</th>
             <th id='col_monto' >Monto</th>
@@ -58,11 +57,11 @@
         </thead>
         {% for alumno in alumnosConMatricula %}
          <tr>
-          <td headers='col_dni'>{{alumno['fechaAlta']}}</td>
+          <td headers='col_email'>{{alumno['fechaAlta']}}</td>
           <td headers='col_ape'>{{alumno['apellido']}}</td>
           <td headers='col_nom'>{{alumno['nombre']}}</td>
           <td  headers='col_monto'>{{alumno['monto']}}</td>
-          <td headers='col_comisin'>{{alumno['comisionCob']}}</td>
+          <td headers='col_nomm'>{{alumno['comisionCob']}}</td>
           
         </tr>
     
@@ -81,10 +80,10 @@
       
                         <th id='col_ape' >Apellido</th>
                         <th id='col_nom' >Nombre</th>
-                        <th id='col_nom' >Nro cuota</th>
-                        <th id='col_nom' >Fecha</th>
-                        <th id='col_monto' >Monto</th>
-                        <th id='col_nom' >Comision</th>
+                        <th id='col_fecnac' >Nro cuota</th>
+                        <th id='col_sexo' >Fecha</th>
+                        <th id='col_email' >Monto</th>
+                        <th id='col_dire' >Comision</th>
                       </tr>
                     </thead>
                     {% for alumno in alumnosConMatricula %}
@@ -110,12 +109,12 @@
                     <thead>
                       <tr>
       
-                        <th id='col_nom' >Nro cuota</th>
-                        <th id='col_nom' >Vencida en:</th>
-                        <th id='col_monto' >Nombre</th>
-                        <th id='col_nom' >Apellido</th>
-                        <th id='col_monto' >Monto</th>
-                        <th id='col_nom' >Comision</th>
+                        <th id='col_fecnac' >Nro cuota</th>
+                        <th id='col_dni' >Vencida en:</th>
+                        <th id='col_dnii' >Nombre</th>
+                        <th id='col_email' >Apellido</th>
+                        <th id='col_emaill' >Monto</th>
+                        <th id='col_dire' >Comision</th>
                       </tr>
                     </thead>
                     {% for alumno in alumnosConMatricula %}
@@ -123,9 +122,9 @@
      
                       <td  headers='col_fecnac'>{{alumno['numero']}}</td>
                   <td headers='col_dni'>{{alumno['mes']}}/{{alumno['anio']}}</td>
-                  <td headers='col_dni'>{{alumno['nombre']}}</td>
+                  <td headers='col_dnii'>{{alumno['nombre']}}</td>
                   <td headers='col_email'>{{alumno['apellido']}}</td>
-                  <td headers='col_email'>{{alumno['monto']}}</td>
+                  <td headers='col_emaill'>{{alumno['monto']}}</td>
                       <td headers='col_dire'>{{alumno['comisionCob']}}%</td>
                    
                       
