@@ -1,0 +1,9 @@
+<ul id="paginacion-consultas" class="pagination">
+            {% if paginaactual == 1 %} <li class="disabled"><span>&laquo;</span></li> 
+            {% else %}<li><a href="?pag={{paginaactual-1}}&idalumno={{idalumno}}" >&laquo;</a></li>  {%endif%}
+            {% for i in 1..cantpaginas %}
+            <li {% if i == paginaactual %}class="active"{%endif%} ><a href="?pag={{i}}&idalumno={{idalumno}}">{{i}}</a></li>
+            {% endfor %}
+            {% if paginaactual == cantpaginas %}<li  class="disabled" ><span>&raquo;</span></li> 
+            {% else %}<li><a href="?pag={{paginaactual+1}}&idalumno={{idalumno}}" >&raquo;</a></li> {% endif %}
+          </ul>

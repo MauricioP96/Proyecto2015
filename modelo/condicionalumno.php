@@ -1,6 +1,6 @@
 <?php
-if(!empty($_POST['idalumno'])){
-	$idalumno=$_POST['idalumno'];
+if(!empty($_REQUEST['idalumno'])){
+	$idalumno=$_REQUEST['idalumno'];
 }
 if(!empty($_POST['idalumnopagar'])){
 	$idalumno=$_POST['idalumnopagar'];
@@ -13,5 +13,5 @@ if(!empty($_POST['idalumnobecar'])){
 	$ok=true;
 }
 $debobecar=(!empty($_POST['idalumnobecar']));
-var_dump($debobecar);
+//var_dump($debobecar);
 ?>
