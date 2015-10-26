@@ -9,7 +9,8 @@ require("../modelo/coneccionBD.php");
 		$becar=1;
 	}
 	else{
-		$becar=0
+		$becar=0;
+
 	}
 	foreach ($idcuotas as $idcuota){
 		var_dump($idcuota[0]);
