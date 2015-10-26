@@ -28,8 +28,8 @@
     {% include 'navbar.html'%}
     <div class="real-Body main_wrapper"> 
             <div class="lineal-banner">
-                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
-                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
+                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" alt="Banner" >
+                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" alt="Escudo escuela" >
                         <div class="text-tittle">{{titulo}}</div>
                </div>
             <div class="main_container">
@@ -38,8 +38,7 @@
 </ul>		{% if responsables|length > 0 %}
             <table summary='Tabla con el listado de responsables registrados en el sistema' class="table table-striped" >   <!--id='tabla-alumnos'-->
         <thead>
-          <caption align='center'><h4>Responsables activos en el sistema</h4></caption>
-                      
+          <caption><h4>Responsables activos en el sistema</h4></caption>    
              {%if elimino_responsable %} 
              <div class="alert alert-success alert-dismissable">
   					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -58,8 +57,6 @@
 					  <strong>No puede quedarse sin Responsables.</strong> por favor agregue otro responsable para poder eliminar.
 						</div>
              {%endif%} 
-
-
           <tr>
             <th id='col_nom'>Nombre</th>
             <th id='col_ap'>Apellido</th>
@@ -71,23 +68,13 @@
             <th id='col_acc'>Acciónes</th>
           </tr>
         </thead>
-        
-          
            {% for responsable in responsables %}
            {% set va = true %}
                 {% for a_r in alumno_responsables %}
-                
-                   
-                
                 {%if responsable.id in a_r.idResponsable %} 
-               
                <tr class="success">
-                   
-                   
                    {% set va = false %}
-                   
                 {%endif%}      
-                  
                 <FORM   action='../controlador/controlador_modificar_alumno_responsable.php' method='POST'>
               <input type="hidden" class="form-control" value="{{idAlumno}}" name="idAlumno">
           
