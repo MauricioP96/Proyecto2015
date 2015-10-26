@@ -78,15 +78,15 @@
 				</div>
 				{% endif %}
 
-			  <form method="post" action="../controlador/controlador_alumno.php" role="form">
+			  <form id="myform" method="post" action="../controlador/controlador_alumno.php">
 			  	<div class="form-group">
 			      <label for="imput-adminconfig-nombre">Nombre:</label>
-			      <input id="imput-adminconfig-nombre" type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" pattern="[A-Za-z" "]{4,10}" required>
+			      <input id="imput-adminconfig-nombre" type="text" class="form-control" name="nombre" placeholder="Introduzca su Nombre" pattern="[A-Za-z' ']{4,10}" required>
 			    </div>
                               
 			    <div class="form-group">
 			      <label for="imput-adminconfig-apelido">Apellido:</label>
-			      <input id="imput-adminconfig-apelido" type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido"  pattern="[A-Za-z" "]{4,10}" required>
+			      <input id="imput-adminconfig-apelido" type="text" class="form-control" name="apellido" placeholder="Introduzca su Apellido"  pattern="[A-Za-z' ']{4,10}" required>
 			    </div>
 			    <div class="form-group">
 			      <label for="imput-adminconfig-mail">Email:</label>
@@ -104,7 +104,7 @@
 			    <div class="form-group">
 			      <label for="imput-adminconfig-sexo">Sexo:</label>
 			    <div class="form-group">
-					  <select id="imput-adminconfig-sexo" class="form-control" id="sel1" name="sexo" required>
+					  <select id="imput-adminconfig-sexo" class="form-control" id="sexo" name="sexo" required>
 					    <option>Masculino</option>
 					    <option>Femenino</option>
 					  </select>
@@ -112,8 +112,8 @@
 				</div>
 				<div class="form-group">
 					<label for="date-nacimiento">Fecha de Nacimiento:</label>
-                <div class='input-group date' class='date' id='date-nacimiento' required>
-                    <input type='date' class="form-control" name="fecha_nacimiento"/>
+                <div class='input-group date date' id='date-nacimiento' >
+                    <input type='date' class="form-control" name="fecha_nacimiento" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -121,8 +121,8 @@
             	</div>
 				<div class="form-group">
 					<label for="date-ingreso">Fecha de Ingreso:</label>
-                <div class='input-group date' class='date' id='date-ingreso'  required>
-                    <input type='date' class="form-control" name="fecha_ingreso" />
+                <div class='input-group date' id='date-ingreso'  >
+                    <input type='date' class="form-control" name="fecha_ingreso" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -130,7 +130,7 @@
             	</div>
             	<div class="form-group">
 					<label for="date-egreso">Fecha de Egreso:</label>
-                <div class='input-group date' class='date' id='date-egreso' >
+                <div class='input-group date' id='date-egreso' >
                     <input type='date' class="form-control" name="fecha_egreso"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -172,6 +172,13 @@
             width: '100%'
         });
     }); </script>
+        <script>
+        $('#myform').validate({
+    rules: {
+        "responsables[]": "required"
+    }
+});
+</script>
 						
 						
 	</body>
