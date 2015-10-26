@@ -3,7 +3,7 @@ require("../modelo/coneccionBD.php");
 
 	$pago= $cn->prepare("INSERT INTO Pagos (idAlumno,idCuota,fecha,fechaAlta,becado,fechaActualizado)
 							 VALUES (?,?,CURRENT_TIME,CURRENT_TIME,?,CURRENT_TIME)");
-
+	var_dump($pago);
 
 	foreach ($idcuotas as $idcuota){
 		//var_dump($idcuota[0]);
