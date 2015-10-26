@@ -36,9 +36,9 @@ and open the template in the editor.
                 
         <label class="label-imput-contigAdmin" >Estado: </label>
         <select id="imput-adminconfig" class="form-control" name="habilitada">
-            <option value="1"{% if datos['habilitada'] == 1 %} selected {% endif %}>habilitada</option>
-            <option value="0"{% if datos['habilitada'] == 0 %} selected {% endif %}>desabilitada</option></select><br>
-        
+            <option value="1" {% if datos['habilitada'] == 1 %} selected {% endif %}>habilitada</option>
+            <option value="0" {% if datos['habilitada'] == 0 %} selected {% endif %}>desabilitada</option></select><br>
+         
         <label class="label-imput-contigAdmin" > Titulo de  la cooperativa: </label>
         <input id="imput-adminconfig" type="text" name="titulo" class="form-control" value="{{datos['titulo']}}"><br>
         

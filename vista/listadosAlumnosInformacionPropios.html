@@ -25,8 +25,8 @@
     {% include 'navbar.html'%}
     <div class="real-Body main_wrapper"> 
             <div class="lineal-banner">
-                        <img id="banner-v1" src="../Imagenes/banner.png" title="banner" >
-                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" title="escudo" >
+                        <img id="banner-v1" src="../Imagenes/banner.png" alt="Smiley face" title="banner" >
+                        <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" alt="Smiley face" title="escudo" >
                         <div class="text-tittle">{{titulo}}</div>
                </div>
             <div class="main_container">
@@ -43,7 +43,7 @@
 		   {% if alumnosConMatricula|length > 0 %}
               {% if datospost == 1 %}
               <div class="main-container-tabla">
-            <table summary='Tabla con el listado de alumnos registrados en el sistema' id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
+            <table id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
 
         <thead>
           <tr>
@@ -52,7 +52,7 @@
             <th id='col_ape' >Apellido</th>
             <th id='col_nom' >Nombre</th>
             <th id='col_monto' >Monto</th>
-            <th id='col_nom' >Comision</th>
+            <th id='col_nomm' >Comision</th>
             
           </tr>
         </thead>
@@ -74,17 +74,16 @@
 
             {% elseif datospost == 2 %}
             <div class="main-container-tabla">
-                        <table summary='Tabla con el listado de alumnos registrados en el sistema' 
-                        id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
+                        <table    id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
                     <thead>
                       <tr>
       
                         <th id='col_ape' >Apellido</th>
                         <th id='col_nom' >Nombre</th>
-                        <th id='col_nom' >Nro cuota</th>
-                        <th id='col_nom' >Fecha</th>
+                        <th id='col_nomm' >Nro cuota</th>
+                        <th id='col_nommm' >Fecha</th>
                         <th id='col_monto' >Monto</th>
-                        <th id='col_nom' >Comision</th>
+                        <th id='col_nommmm' >Comision</th>
                       </tr>
                     </thead>
                     {% for alumno in alumnosConMatricula %}
@@ -106,17 +105,17 @@
                     
                 {% elseif datospost == 3 %}
                 <div class="main-container-tabla">
-                 <table summary='Tabla con el listado de alumnos registrados en el sistema' id="tabla-consultas-listados"  
+                 <table id="tabla-consultas-listados"  
                     class="table table-striped" >   <!--id='tabla-alumnos'-->
                 <thead>
                   <tr>
                    
                         <th id='col_nom' >Nro cuota</th>
-                        <th id='col_nom' >Fecha</th>
+                        <th id='col_nomm' >Fecha</th>
                         <th id='col_monto' >Nombre</th>
-                        <th id='col_nom' >Apellido</th>
+                        <th id='col_nommm' >Apellido</th>
                         <th id='col_monto' >Monto</th>
-                        <th id='col_nom' >Comision</th>
+                        <th id='col_nommmm' >Comision</th>
                   </tr>
                 </thead>
                 
