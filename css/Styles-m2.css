@@ -28,7 +28,6 @@
 	}
 th, td {
 	padding: 5px;
-	//border:#337AC4 1px solid;
 	} 
 	
 #tabla-alumnos tr {
@@ -37,7 +36,8 @@ th, td {
 .iconoListado{
 	 height: 35px;
 	 margin-right:14px;
-	
+	position: relative;
+    float: left;
 }
 .main_wrapper{
     width: 85%;
