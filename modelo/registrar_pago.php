@@ -14,7 +14,7 @@ require("../modelo/coneccionBD.php");
 	}
 	foreach ($idcuotas as $idcuota){
 		var_dump($idcuota[0]);
-		$aux=array($idalumno,$idcuota[0],$becar);
+		$aux=array($idalumno,$idcuota,$becar);
 		var_dump($aux);
 		$pago->execute($aux);
 		$error=$pago->errorInfo();
