@@ -44,7 +44,7 @@
 		<div class="contenedor_formulario">
 			<div class="container">
 			  <h2>Modificar datos de alumno {{alumno['nombre']}} {{alumno['apellido']}}</h2>
-			  <form method="post" action="#" role="form">
+			  <form method="post" action="#" >
 			  	<div class="form-group">
 			      <label for="imput-adminconfig-nombre">Nombre:</label>
 			      <input id="imput-adminconfig-nombre" type="text" class="form-control" value="{{alumno['nombre']}}" name="nombre" placeholder="Introduzca su Nombre" required>
@@ -61,7 +61,7 @@
 			    <div class="form-group">
 			      <label for="imput-adminconfig-dni">Sexo:</label>
 			    <div class="form-group">
-					  <select name="sexo" id="imput-adminconfig-sexo" class="form-control" id="sel1" required>
+					  <select name="sexo" id="imput-adminconfig-sexo" class="form-control" id="sexo" required>
 					    <option value="masculino" {%if alumno['sexo'] == 'masculino' %} selected="selected" {% endif %}>Masculino</option>
 					    <option value="femenino" {%if alumno['sexo'] == 'femenino' %} selected="selected" {% endif %}>Femenino</option>
 					  </select>
@@ -69,8 +69,8 @@
 				</div>
 				<div class="form-group">
 					<label for=imput-adminconfig-dni">Fecha de Nacimiento:</label>
-                <div class='input-group date' required>
-                    <input type='date' name="fechaNac" id="imput-adminconfig-nacimiento" value={{alumno['fechaNacimiento']}} class="form-control" >
+                <div class='input-group date'>
+                    <input type='date' name="fechaNac" id="imput-adminconfig-nacimiento" value={{alumno['fechaNacimiento']}} class="form-control" required>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -86,8 +86,8 @@
 			    </div>
 				<div class="form-group">
 					<label for="imput-adminconfig-ingreso">Fecha de Ingreso a la escuela:</label>
-                <div class='input-group date' required>
-                    <input type='date' name='fechaIng' id="imput-adminconfig-ingreso" value={{alumno['fechaIngreso']}} class="form-control" >
+                <div class='input-group date'>
+                    <input type='date' name='fechaIng' id="imput-adminconfig-ingreso" value={{alumno['fechaIngreso']}} class="form-control" required>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -96,7 +96,7 @@
             	<div class="form-group">
 					<label for="imput-adminconfig-egreso">Fecha de Egreso de la escuela:</label>
                 <div class='input-group date'>
-                    <input type='date' name='fechaEg'id="imput-adminconfig-egreso"  value={{alumno['fechaEgreso']}} class="form-control" >
+                    <input type='date' name='fechaEg' id="imput-adminconfig-egreso"  value={{alumno['fechaEgreso']}} class="form-control" >
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
