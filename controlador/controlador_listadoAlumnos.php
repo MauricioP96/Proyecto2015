@@ -2,19 +2,28 @@
 
 session_start();
 require('../modelo/funciones1.php');
+require_once ("../modelo/coneccionBD.php");
+conectarBD($cn);
+require("../modelo/consultaConf.php");
+require("../modelo/setearpagina.php");
+require('../modelo/setearTwig.php');
+require("../modelo/consultaAlumnos.php");
+require('../modelo/eliminarAlumno.php');
 if(empty($_SESSION['nombreusuario'])){
 	header ("Location: frontend_controller.php");					//Chekear si tiene sesion iniciada. If false redireccionar a index
 		}
 if(soyadmin($_SESSION['rol'])){
 	$elimino_alumno=false;
 	if(!empty($_POST['ideliminar'])){
-		require('../modelo/eliminarAlumno.php');
+		
+		eliminarAlumno($cn,$_POST['ideliminar']);
 	}	
-
-	require("../modelo/consultaConf.php");             //consulta de configuracion
-	require("../modelo/consultaAlumnos.php");
+	$pagina=setearPagina();
+	$configuraciones=consultaConf($cn); //consulta de configuracion
+	setearTwig($loader,$twig);    
+	$alumnos=consultaAlumnos($cn,$configuraciones['0']['cantElem'],$cantidadpaginas,$pagina)  ;       
+	
 	//echo $pagina;
-	require('../modelo/setearTwig.php');
 	//var_dump($alumnos);
 	$funcion='listado';
 	$template = $twig->loadTemplate('listado-alumnos.html');
@@ -23,7 +32,7 @@ if(soyadmin($_SESSION['rol'])){
 							'tipo' => $_SESSION['rol'],
 	                        'alumnos' => $alumnos,
                                 'elimino_alumno' => $elimino_alumno,
-	                        'cantpaginas' => $cantidadpaginas,
+	                        'cantpaginas' =>$cantidadpaginas ,
 	                        'paginaactual' => $pagina,
 	                        'funcion'=>$funcion
 							));
