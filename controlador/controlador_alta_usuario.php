@@ -1,6 +1,11 @@
 <?php
 session_start();
 require('../modelo/funciones1.php');
+require_once ("../modelo/coneccionBD.php");
+conectarBD($cn);
+require ('../modelo/consultaConf.php');
+require("../modelo/setearTwig.php"); 
+require('../modelo/insertar_usuario.php');
 if(empty($_SESSION['nombreusuario'])){
     header ("Location: ../frontend_controller.php");	
   
@@ -8,26 +13,17 @@ if(empty($_SESSION['nombreusuario'])){
    if (soyadmin($_SESSION['rol'])){
        $fallo=false;
        if(!empty($_POST['nombre_usuario'])){
-       		require('../modelo/insertar_usuario.php');
+       		$fallo=insertarUsuario($cn,$_POST['nombre_usuario'],$_POST['pass'], $_POST['rol']);
+          
        }
-
-
-
-
-
-
-              require ('../modelo/consultaConf.php');
-       
-           //consulta la configuracion y devuelve en $configuraciones
-require("../modelo/setearTwig.php");      //seteo twig en $template 
-	$template = $twig->loadTemplate("alta_usuario.html");
-   	$template->display(array('datos' => $configuraciones['0'],
-						
-						'tipo'=>$_SESSION['rol'],
-						'fallo'=>$fallo,
-						'info'=>$_POST
-						));
-
+          $configuraciones=consultaConf($cn);       //consulta la configuracion y devuelve en $configuraciones
+          setearTwig($loader,$twig);              //seteo twig en $template 
+          $template = $twig->loadTemplate("alta_usuario.html");
+        	$template->display(array('datos' => $configuraciones['0'],
+						                        'tipo'=>$_SESSION['rol'],
+                                    'fallo'=>$fallo,
+                                    'info'=>$_POST
+						                        ));
 }   
    else {
       header ("Location: ../controlador/controlador_login.php");

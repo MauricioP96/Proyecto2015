@@ -1,6 +1,12 @@
 <?php
 session_start();
 require('../modelo/funciones1.php');
+require_once ("../modelo/coneccionBD.php");
+conectarBD($cn);
+require('../modelo/insertarCuota.php');
+require ('../modelo/consultaConf.php');
+require("../modelo/setearTwig.php");
+require ('../modelo/consultaMeses.php');
 if(empty($_SESSION['nombreusuario'])){
     header ("Location: ../controlador/frontend_controller.php");	
   
@@ -10,19 +16,13 @@ if(empty($_SESSION['nombreusuario'])){
       // var_dump($_POST);
        if(!empty($_POST['mes'])){
         //var_dump($_POST);
-       		require('../modelo/insertarCuota.php');
+          $fallo=insertar_cuota($cn,$_POST['anio'],$_POST['mes'], $_POST['numero'], $_POST['monto'],$_POST['tipo'],$_POST['comisionCob']);
+       		
        }
-
-
-
-
-
-
-              require ('../modelo/consultaConf.php');
-       require ('../modelo/consultaMeses.php');
+       $configuraciones=consultaConf($cn); //consulta la configuracion y devuelve en $configuraciones        
+       $meses=consulta_meses($cn);
        //var_dump($meses);
-           //consulta la configuracion y devuelve en $configuraciones
-require("../modelo/setearTwig.php");      //seteo twig en $template 
+      setearTwig($loader,$twig);//seteo twig en $template 
 
 	$template = $twig->loadTemplate("alta_cuota.html");
    	$template->display(array('datos' => $configuraciones['0'],

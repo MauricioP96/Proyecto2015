@@ -1,6 +1,5 @@
 <?php
-	require("../modelo/coneccionBD.php");
-
+	function insertar_cuota($cn,$anio,$mes, $numero,$monto,$tipo,$comisionCob){
 
 	$cons1= $cn->prepare("SELECT id FROM Cuotas WHERE anio=? AND mes=? AND tipo=?");
 	$cons1->execute(array($_POST['anio'],$_POST['mes'],$_POST['tipo']));
@@ -16,9 +15,10 @@
 	else{
 		$fallo=false;
 	$query = $cn->prepare("INSERT INTO Cuotas (anio, mes, numero, monto,tipo, comisionCob, fechaAlta) VALUES (?,?,?,?,?,?,CURRENT_TIME)");
-	$aux=$query->execute(array($_POST['anio'],$_POST['mes'], $_POST['numero'], $_POST['monto'],$_POST['tipo'],$_POST['comisionCob'])); 
-	$error=$query->errorInfo();
+	$aux=$query->execute(array($anio,$mes, $numero, $monto,$tipo,$comisionCob)); 
+	//$error=$query->errorInfo();
 	//var_dump($error);
 	}
-
+	return $fallo;
+}
 ?>

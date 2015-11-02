@@ -1,8 +1,11 @@
 <?php
 $mostrofallo=false;
-
+require_once ("../modelo/coneccionBD.php");
+conectarBD($cn);
 require("../modelo/funciones1.php");
-
+require ("../modelo/consultaConf.php");
+require("../modelo/setearTwig.php");
+require('../modelo/chequearInicioDeSesion.php');
 session_start();
 if (!empty($_GET['flag']) && $_GET['flag'] == 'true'){
 			CerrarSesion();
@@ -13,13 +16,15 @@ if(!empty($_SESSION['nombreusuario'])){
 		}
 
 if (!empty($_POST['usuario'])){  
-                                                 //verificar si se quiso iniciar sesion
-	require('../modelo/chequearInicioDeSesion.php');
+    $mostrofallo=iniciar_sesion($cn,$_POST["usuario"],$_POST["clave"]);                                             //verificar si se quiso iniciar sesion
+	if(!$mostrofallo){
+		header ("Location: controlador_login.php");
+	}
 }
 
+$configuraciones=consultaConf($cn);                  //consulta la configuracion y devuelve en $configuraciones
 
-require ("../modelo/consultaConf.php");                   //consulta la configuracion y devuelve en $configuraciones
-require("../modelo/setearTwig.php");      //seteo twig en $template 
+setearTwig($loader,$twig);      //seteo twig en $template 
 if ($configuraciones['0']['habilitada']){
 	//if(!$mostrofallo){                                       //si la pagina esta habilitada la muestro normalmente
    		$template = $twig->loadTemplate("index.html");

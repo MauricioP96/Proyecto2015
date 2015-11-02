@@ -1,9 +1,8 @@
 <?php
-	require("../modelo/coneccionBD.php");
-
+	function insertarUsuario($cn,$nombre_usuario,$pass,$rol){
 
 	$cons1= $cn->prepare("SELECT id FROM Usuarios WHERE username=?");
-	$cons1->execute(array($_POST['nombre_usuario']));
+	$cons1->execute(array($nombre_usuario));
 	//var_dump($dni);
 	$rows=$cons1->fetchAll();
 	//var_dump($rows);
@@ -16,8 +15,9 @@
 	else{
 		$fallo=false;
 	$query = $cn->prepare("INSERT INTO Usuarios (username, password, rol) VALUES (?,?,?)");
-	$aux=$query->execute(array($_POST['nombre_usuario'],$_POST['pass'], $_POST['rol'])); 
+	$aux=$query->execute(array($nombre_usuario,$pass, $rol)); 
 	//$error=$query->errorInfo();
 	}
-
+	return $fallo;
+}
 ?>

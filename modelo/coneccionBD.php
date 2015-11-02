@@ -1,5 +1,5 @@
 <?php 
-
+function conectarBD(&$cn){
 $db_host="localhost";//:3306";
 $db_user="grupo_10";
 $db_pass="";
@@ -11,5 +11,5 @@ catch(PDOException $e){
 	echo "ERROR". $e->getMessage();
 }
 
-
+}
 ?>
