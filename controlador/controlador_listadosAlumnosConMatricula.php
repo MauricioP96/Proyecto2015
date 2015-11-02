@@ -1,4 +1,4 @@
-<?php
+
 session_start();
 require ('../modelo/funciones1.php');
 if(empty($_SESSION['nombreusuario'])){
