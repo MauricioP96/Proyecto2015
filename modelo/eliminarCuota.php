@@ -1,13 +1,15 @@
 <?php
-
-require ("../modelo/coneccionBD.php");
+function eliminarCuota($idCuota,$cn){
 $query = $cn->prepare("UPDATE Cuotas
 				SET eliminada=1
 				WHERE id=?");
-$gg=array($_POST['ideliminar']);
+$gg=array($idCuota);
 $aux=$query->execute($gg); 
-if($aux){
+return $aux;
+//var_dump($aux);
+/*if($aux){
 
 	header ("Location: ../controlador/controlador_administrarCuotas.php");
+}*/
 }
 ?>
