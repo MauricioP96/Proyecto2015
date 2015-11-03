@@ -13,9 +13,9 @@ if(empty($_SESSION['nombreusuario'])){
     header ("Location: ../controlador/frontend_controller.php"); 
 }
 $configuraciones = consultaConf($cn);
-$tipodel=setearTwig($loader,$twig);
-$pagina = setearPagina();
-seteartipodel();
+setearTwig($loader,$twig);
+$pagina=setearPagina();
+$tipodel=seteartipodel();
 if ($_SESSION['rol'] == "consulta"){
       $alumnosConMatricula = consultaAlumnosPropios($cn,$datosprepost,$pagina,$tipodel,$_SESSION['nombreusuario'],$cantidadpaginas,$configuraciones);
       $template = $twig->loadTemplate('listadosAlumnosInformacionPropios.html');

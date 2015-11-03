@@ -69,6 +69,7 @@ $datosprepost=3;
 }
 
 
-return $alumnosConMatricula = $query2->fetchAll();
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 }
 ?>
