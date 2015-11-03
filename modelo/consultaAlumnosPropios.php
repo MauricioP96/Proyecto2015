@@ -1,7 +1,6 @@
 <?php 
-require ("../modelo/coneccionBD.php");
-require("../modelo/setearpagina.php");
-if ((empty($_REQUEST['tipodel']))  || $_REQUEST['tipodel'] == 1){
+function consultaAlumnosPropios($cn,&$datosprepost,$pagina,$tipodel,$nombreusuario,&$cantidadpaginas,$configuraciones){
+if ((empty($tipodel))  || $tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num 
 	                    FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
 	                                 INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
@@ -10,7 +9,7 @@ $query = $cn->prepare("SELECT count(*) as num
 	                                 INNER JOIN UsuarioResponsable ON (UsuarioResponsable.idResponsable=Responsables.id) 
 	                                 INNER JOIN Usuarios ON (Usuarios.id=UsuarioResponsable.idUsuario) 
 	                    WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE()) and Usuarios.username=?");
-$query->execute(array($_SESSION['nombreusuario']));
+$query->execute(array($nombreusuario));
 $consultacant = $query->fetchAll();
 $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
@@ -26,13 +25,13 @@ $query2=$cn->prepare("SELECT *
 	                    WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE()) and Usuarios.username=:user LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
-$query2->bindValue(':user', $_SESSION['nombreusuario']);
+$query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=1;
 
 }
 else{
-	if ($_REQUEST['tipodel'] == 2){
+	if ($tipodel == 2){
 		$query = $cn->prepare("SELECT count(*) as num FROM Cuotas 
 			                         INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                         INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno)
@@ -44,7 +43,7 @@ else{
 
 
 	
-$query->execute(array($_SESSION['nombreusuario']));
+$query->execute(array($nombreusuario));
 $consultacant = $query->fetchAll();
 $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
@@ -60,7 +59,7 @@ $query2=$cn->prepare("SELECT * FROM Cuotas
                                      WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE()) and Usuarios.username=:user ORDER BY Cuotas.fechaAlta  LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
-$query2->bindValue(':user', $_SESSION['nombreusuario']);
+$query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=2;
 }
@@ -71,7 +70,7 @@ else{
                 INNER JOIN Alumnos ON (Alumnos.id = AlumnoResponsable.idAlumno) 
                 WHERE Usuarios.username=?) as tat2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno= tat2.idAlumno) ORDER BY ta1.anio DESC,ta1.mes DESC");
 	
-$query->execute(array($_SESSION['nombreusuario']));
+$query->execute(array($nombreusuario));
 $consultacant = $query->fetchAll();
 
 $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
@@ -85,12 +84,12 @@ $query2=$cn->prepare("SELECT * FROM (SELECT * FROM Cuotas WHERE Cuotas.mes < MON
                 WHERE Usuarios.username=:user) as tat2 WHERE NOT EXISTS (SELECT * FROM Pagos where Pagos.idCuota=ta1.id and Pagos.idAlumno= tat2.idAlumno) ORDER BY ta1.anio DESC,ta1.mes DESC LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
-$query2->bindValue(':user', $_SESSION['nombreusuario']);
+$query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=3;
 
-}}
-
+}
 $alumnosConMatricula=$query2->fetchAll();
-
+return $alumnosConMatricula;
+}}
 ?>

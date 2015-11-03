@@ -1,13 +1,23 @@
 <?php
 session_start();
 require ('../modelo/funciones1.php');
+require('../modelo/setearTwig.php');
+require ('../modelo/coneccionBD.php');
+require ('../modelo/consultaConf.php');
+require('../modelo/setearpagina.php');
+require ('../modelo/consultaAlumnosPropios.php');
+require ('../modelo/consultaAlumnosConMatricula.php');
+require ('../modelo/setearTipoDel.php');
+conectarBD($cn);
 if(empty($_SESSION['nombreusuario'])){
     header ("Location: ../controlador/frontend_controller.php"); 
 }
-require ('../modelo/consultaConf.php');
-require('../modelo/setearTwig.php');
+$configuraciones = consultaConf($cn);
+$tipodel=setearTwig($loader,$twig);
+$pagina = setearPagina();
+seteartipodel();
 if ($_SESSION['rol'] == "consulta"){
-     require ('../modelo/consultaAlumnosPropios.php');
+      $alumnosConMatricula = consultaAlumnosPropios($cn,$datosprepost,$pagina,$tipodel,$_SESSION['nombreusuario'],$cantidadpaginas,$configuraciones);
       $template = $twig->loadTemplate('listadosAlumnosInformacionPropios.html');
   $template->display(array('titulo' => $configuraciones['0']['titulo'],
               'contacto' => $configuraciones['0']['mailContacto'],
@@ -21,8 +31,7 @@ if ($_SESSION['rol'] == "consulta"){
  
 }
 else{
-   
-require ('../modelo/consultaAlumnosConMatricula.php');
+  $alumnosConMatricula = consultaAlumnosConMatricula($cn,$datosprepost,$pagina,$tipodel,$cantidadpaginas,$configuraciones);
   $template = $twig->loadTemplate('listadosAlumnosConMatricula.html');
   $template->display(array('titulo' => $configuraciones['0']['titulo'],
               'contacto' => $configuraciones['0']['mailContacto'],
