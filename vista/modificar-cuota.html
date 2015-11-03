@@ -33,7 +33,10 @@ and open the template in the editor.
                 <form action="#" method="POST">     
             <label id="titulo-configadmin"> Modificar couta/matricula </label>
                 <hr>
- 
+        {% if fallo %} <div class="alert alert-danger alert-dismissable">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>La cuota ya existe.</strong> Intente nuevamente.
+                    </div>  {% endif %}
         <label class="label-imput-contigAdmin" >Tipo: </label>
         <select id="imput-adminconfig" class="form-control" name="tipo" >
             <option value="couta" {%if not(cuota['tipo'] is defined) or cuota['tipo']=='cuota' %} selected {%endif%}>Cuota</option>

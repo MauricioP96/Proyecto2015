@@ -1,6 +1,5 @@
 <?php
-
-require ("../modelo/coneccionBD.php");
+function consulta_modificar_usuario($cn,$nombre,$pass, $rol,$idusuarioParaModificar){
 $query1 = $cn->prepare("SELECT * 
 				FROM Usuarios
 				WHERE username=? AND NOT (id=?)");
@@ -19,8 +18,9 @@ $query1->execute($gg);
 	$query = $cn->prepare("UPDATE Usuarios
 							SET username=?,password=?,rol=?
 							WHERE id=?");
-	$aux=$query->execute(array($_POST['nombre'],$_POST['pass'], $_POST['rol'],$_POST['idusuarioParaModificar'])); 
+	$aux=$query->execute(array($nombre,$pass, $rol,$idusuarioParaModificar)); 
 	//$error=$query->errorInfo();
 	}
-
+	return $fallo;
+}
 ?>

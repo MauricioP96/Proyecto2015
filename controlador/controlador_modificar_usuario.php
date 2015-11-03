@@ -1,6 +1,12 @@
 <?php
 
 session_start();
+require_once ("../modelo/coneccionBD.php");
+conectarBD($cn);
+require("../modelo/consultaConf.php");
+require('../modelo/setearTwig.php');
+require("../modelo/consultaUsuarioConId.php");
+require('../modelo/consultaModificarUsuario.php');
 $fallo=false;
 if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. If false redireccionar a index
 	header ("Location: ../controlador/frontend_controller.php");
@@ -10,7 +16,8 @@ if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. 
 }
 
 if(!empty($_POST['idusuarioParaModificar'])){
-	require('../modelo/consultaModificarUsuario.php');
+	
+	$fallo=consulta_modificar_usuario($cn,$_POST['nombre'],$_POST['pass'], $_POST['rol'],$_POST['idusuarioParaModificar']);
 	$iduser=$_POST['idusuarioParaModificar'];
 
 }
@@ -20,10 +27,10 @@ elseif(!empty($_POST['idusuariocarga'])){
 	header ("Location: ../controlador/controlador_listado_usuarios.php");
 
 }
-require("../modelo/consultaConf.php");             //consulta de configuracion
-require("../modelo/consultaUsuarioConId.php");						//traigo la informacion del alumno para modificar
-require('../modelo/setearTwig.php');
-
+$configuraciones=consultaConf($cn);              //consulta de configuracion
+						
+$usuario=consulta_usuario_con_id($cn,$iduser);              //traigo la informacion del alumno para modificar
+setearTwig($loader,$twig);
 
 $template = $twig->loadTemplate('modificar_usuario.html');
 $template->display(array('config' => $configuraciones[0],

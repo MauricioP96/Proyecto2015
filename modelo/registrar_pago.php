@@ -1,5 +1,5 @@
 <?php
-require("../modelo/coneccionBD.php");
+function registrar_pago($cn,$idalumno,$idcuotas,$debobecar){
 
 	$pago= $cn->prepare("INSERT INTO Pagos (idAlumno,idCuota,fecha,fechaAlta,becado,fechaActualizado)
 							 VALUES (?,?,CURRENT_TIME,CURRENT_TIME,?,CURRENT_TIME)");
@@ -27,5 +27,5 @@ require("../modelo/coneccionBD.php");
 	//var_dump($error);
 //}
 
-
+}
 ?>
