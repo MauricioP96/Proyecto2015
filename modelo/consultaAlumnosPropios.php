@@ -1,5 +1,5 @@
 <?php 
-function consultaAlumnosPropios($cn,&$datosprepost,$pagina,$tipodel,$nombreusuario){
+function consultaAlumnosPropios($cn,&$datosprepost,$pagina,$tipodel,$nombreusuario,&$cantidadpaginas,$configuraciones){
 if ((empty($tipodel))  || $tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num 
 	                    FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
@@ -88,9 +88,8 @@ $query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=3;
 
-}}
-
-return $alumnosConMatricula=$query2->fetchAll();
 }
-
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
+}}
 ?>

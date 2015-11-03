@@ -1,7 +1,7 @@
 <?php
-function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel){
+function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones){
 
-if ((empty($tipodel))  || $tipodel == 1){
+if ($tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
                                                             INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
                                                             WHERE Cuotas.tipo='matricula' and Alumnos.eliminado=0 and Cuotas.anio = YEAR(CURRENT_DATE())");
@@ -69,5 +69,6 @@ $datosprepost=3;
 }
 
 $alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 }
 ?>
