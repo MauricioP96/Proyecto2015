@@ -15,8 +15,7 @@ if(empty($_SESSION['nombreusuario'])){
 $configuraciones = consultaConf($cn);
 setearTwig($loader,$twig);
 $pagina=setearPagina();
-$tipodel=seteartipodel();
-if ($_SESSION['rol'] == "consulta"){
+$tipodel=seteartipodel();if ($_SESSION['rol'] == "consulta"){
       
       $alumnosConMatricula = consultaAlumnosPropios($cn,$datosprepost,$pagina,$tipodel,$_SESSION['nombreusuario'],$cantidadpaginas,$configuraciones);
       $template = $twig->loadTemplate('listadosAlumnosInformacionPropios.html');
@@ -24,8 +23,7 @@ if ($_SESSION['rol'] == "consulta"){
               'contacto' => $configuraciones['0']['mailContacto'],
               'tipo' => $_SESSION['rol'],
                           'alumnosConMatricula' => $alumnosConMatricula,
-                          'cantpaginas' => $cantidadpaginas,
-                          'paginaactual' => $pagina,
+                                'paginaactual' => $pagina,
                           'datospost' => $datosprepost
               )); 
 
