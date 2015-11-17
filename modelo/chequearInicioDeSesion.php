@@ -1,7 +1,7 @@
 <?php
 function iniciar_sesion($cn,$usuario,$clave){
     $query = $cn->prepare("SELECT * FROM Usuarios WHERE username=? and password=? and habilitado=TRUE");
-    $query->execute(array($_POST["usuario"],$_POST["clave"])); 
+    $query->execute(array($usuario,$clave)); 
     $rows = $query->fetchAll();
     //print_r($rows);
 
