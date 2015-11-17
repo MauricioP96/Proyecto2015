@@ -21,6 +21,7 @@ function registrar_pago($cn,$idalumno,$idcuotas,$debobecar,$user){
 		//var_dump($error);
 	}
 	$agrego=true;
+	return $agrego;
 	//var_dump($dni);
 	//var_dump($rows);
     //$error=$pago->errorInfo();

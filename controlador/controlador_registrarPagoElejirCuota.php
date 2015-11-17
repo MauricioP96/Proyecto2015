@@ -28,7 +28,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
           if($ok&&(!empty($_POST['idcuotas']))){
               $idcuotas=$_POST['idcuotas'];
                //var_dump($idcuotas);
-       		     registrar_pago($cn,$idalumno,$idcuotas,$debobecar,$_POST['user']);
+       		     $agrego=registrar_pago($cn,$idalumno,$idcuotas,$debobecar,$_POST['user']);
                
               //var_dump($_POST['idcuotas']);
           }
