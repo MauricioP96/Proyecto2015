@@ -29,7 +29,7 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss));  
-$query2=$cn->prepare("SELECT Alumnos.apellido,Alumnos.nombre,Cuotas.numero,Cuotas.fechaAlta,Cuotas.monto,Cuotas.comisionCob FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
+$query2=$cn->prepare("SELECT Alumnos.apellido,Alumnos.nombre,Cuotas.numero,Cuotas.fechaAlta,Cuotas.monto,Cuotas.comisionCob,Pagos.becado FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                                  INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno) WHERE 1 ORDER BY Cuotas.fechaAlta  LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -67,6 +67,7 @@ $datosprepost=3;
 	                              }
     }
 }
+
 
 $alumnosConMatricula=$query2->fetchAll();
 return $alumnosConMatricula;

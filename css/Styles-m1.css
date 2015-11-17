@@ -23,6 +23,20 @@ left: 15%;
 width: 84%;
 overflow: auto;
 }
+.classbuttonconvertpdf{
+    background: linear-gradient(to bottom, rgba(240,0,0,1) 0%, rgba(109,0,25,1) 100%);
+    padding: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #6D6D6D;
+    color: aliceblue;
+    position: absolute;
+    left: 6%;
+    width: 73%;
+    font-size: smaller;
+    margin-top: 13px;
+}
 
 
 #letraviscointerner{
@@ -231,24 +245,15 @@ position: relative;top: 3px;margin: 9px;}
 #tabla-consultas-listados{
 }
 .navbar-lateral{
-    
-position: absolute;
-    
-height: 78%;
-    
-width: 14%;
-    
-top: 221.5px;
-    
-background-color: #E1E1E1;
-    
-border-color: #9E9E9E;
-    
-border-width: 1px;
-    
-border-right-style: solid;
-    
-border-left-style: solid;
+    position: absolute;
+    height: 78%;
+    width: 15%;
+    top: 221.5px;
+    background-color: #E1E1E1;
+    border-color: #9E9E9E;
+    border-width: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
 }
 .button-login{
     padding: 7px;

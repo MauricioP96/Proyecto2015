@@ -1,6 +1,13 @@
 <?php
 
 session_start();
+require_once ("../modelo/coneccionBD.php");
+conectarBD($cn);
+require("../modelo/consultaConf.php");
+require('../modelo/setearTwig.php');
+require('../modelo/consultaMeses.php');
+require("../modelo/consultaCuotaConId.php");
+require('../modelo/consultaModificarCuota.php');
 //var_dump($_SESSION['rol']);
 if(empty($_SESSION['nombreusuario'])){						//Chekear si tiene sesion iniciada. If false redireccionar a index
 	header ("Location: ../index.php");
@@ -18,22 +25,24 @@ if(empty($_POST['idCuotaParaModificar'])){
 	//echo '</br></br></br></br></br></br>';
 }}
 	else{
-		require('../modelo/consultaModificarCuota.php');
+		$fallo=consulta_modificar_cuota($cn,$_POST['anio'],$_POST['mes'],$_POST['numero'],$_POST['monto'],$_POST['tipo'],$_POST['comisionCob'],$_POST['idCuotaParaModificar']);
+		
 		$idCuota=$_POST['idCuotaParaModificar'];
 		//echo 'sakjdpsandnsaondosajn';
 
 }
+$cuota=consuta_cuota_con_id($cn,$idCuota);        
+						
+$configuraciones=consultaConf($cn);        //consulta de configuracion
+setearTwig($loader,$twig);
 
-require("../modelo/consultaConf.php");             //consulta de configuracion
-require("../modelo/consultaCuotaConId.php");						//traigo la informacion del alumno para modificar
-require('../modelo/setearTwig.php');
-require('../modelo/consultaMeses.php');
-
+$meses=consulta_meses($cn);
 $template = $twig->loadTemplate('modificar-cuota.html');
 $template->display(array('datos' => $configuraciones[0],
                         'cuota' => $cuota[0],
                         'tipo' => $_SESSION['rol'],
 						'meses'=>$meses,
+						'fallo'=>$fallo,
 						'idcuota'=>$idCuota
 						));
 
