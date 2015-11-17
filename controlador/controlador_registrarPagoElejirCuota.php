@@ -11,6 +11,8 @@ require('../modelo/registrar_pago.php');
  require("../modelo/setearpagina.php");
  require ('../modelo/consultaCuotasImpagasDeAlumno.php');
  require('../modelo/consultaCuotasPagasDeAlumno.php');
+ require('../modelo/consulta_usuarios_gestion.php');
+ require('../modelo/consulta_id_user_gestion.php');
 if(empty($_SESSION['nombreusuario'])){
     header ("Location: ../controlador/frontend_controller.php");	
   
@@ -26,7 +28,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
           if($ok&&(!empty($_POST['idcuotas']))){
               $idcuotas=$_POST['idcuotas'];
                //var_dump($idcuotas);
-       		     registrar_pago($cn,$idalumno,$idcuotas,$debobecar);
+       		     registrar_pago($cn,$idalumno,$idcuotas,$debobecar,$_POST['user']);
                
               //var_dump($_POST['idcuotas']);
           }
@@ -35,7 +37,13 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
           $nombrealu=consulta_nombre_alumno($cn,$idalumno);
           $cuotas_impagas=consulta_cuotas_impagas_de_alumno($cn,$configuraciones['0']['cantElem'],$cantidadpaginas,$pagina,$idalumno);
           $cuotas_pagas=consulta_cuotas_pagas_de_alumno($cn,$idalumno);
-          
+          if(soyadmin($_SESSION['rol'])){
+              $user_gestion=consultar_usuarios_gestion($cn);
+          }
+          else{
+            $user_gestion=consultar_id_user_gestion($cn,$_SESSION['nombreusuario']);
+          } 
+          //var_dump($user_gestion);
           //var_dump($cuotas_pagas);
            //consulta la configuracion y devuelve en $configuraciones
                 //seteo twig en $template 
@@ -44,6 +52,7 @@ if ((soyadmin($_SESSION['rol'])||soygestion($_SESSION['rol']))){
                $template = $twig->loadTemplate("elegir_cuota.html");
    	            $template->display(array('datos'=>$configuraciones['0'], 
 						                  'tipo'=>$_SESSION['rol'],
+                              'users'=>$user_gestion,
 						      						'agrego'=>$agrego,
 						                  'cuotas_impagas'=>$cuotas_impagas,
                               'cuotas_pagas'=>$cuotas_pagas,

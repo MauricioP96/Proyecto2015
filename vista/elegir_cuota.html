@@ -42,9 +42,9 @@ and open the template in the editor.
 
 
                 {%if cuotas_impagas|length == 0%}
-                <h2>El alumno {{nombrealumno}} está al día con las cuotas </h2>
+                <h2>El alumno {{nombrealumno}} está al día con las cuotas </h2>   
                 {%else%}
-                 <h2>Registre pagos para el alumno {{nombrealumno}}</h2>
+                 <h2>Registre pagos para el alumno {{nombrealumno}}</h2>{% include 'select_user.html' %}
 
   
 <table class="table table-striped" >   <!--id='tabla-alumnos'-->

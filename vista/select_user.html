@@ -1,0 +1,12 @@
+{% if tipo=='administracion'%}
+<label class="label-imput-contigAdmin" >Usuario: </label>
+        <select id="imput-adminconfig2" class="form-control" form='formpagar' name="user" required>
+            <option value>Seleccione un usuario gestor</option>
+            {%for user in users%}
+            <option value="{{user.id}}">{{user['username']}}</option>
+            {%endfor%}
+                </select><br>
+
+{% else %}
+	<input form='formpagar' name="user" hidden value="{{users[0]['id']}}" />
+{% endif %}
