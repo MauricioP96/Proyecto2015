@@ -1,47 +1,6 @@
-    function salir(){
-                location.href="frontend_controller.php?flag=true";
-            }
-            
-            $(document).ready(function () {
-        $('#container').highcharts({
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Monto total de cuotas'
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com'
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
-        },
-        yAxis: {
-            title: {
-                text: 'Temperature (°C)'
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: false
-            }
-        },
-        series: [{
-            name: 'Cuota',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0]
-        }]
-    });
 
-
-
-
-
-
-        // Build the chart
-        $('#container2').highcharts({
+                       $(document).ready(function () {
+     $('#container2').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -109,9 +68,35 @@
                 ]
             }]
         });
-
-      function salir(){
-                location.href="frontend_controller.php?flag=true";
+        $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Monto total de cuotas'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
             }
-   
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Cuota',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0]
+        }]
+    });
 });
