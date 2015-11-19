@@ -30,11 +30,12 @@ if ($_SESSION['rol'] == "consulta"){
  
 }
 else{
-  $datos = consultaAlumnosConMatricula($cn,$datosprepost,$pagina,$_GET['pdf'],$cantidadpaginas,$configuraciones);
+
   if (!empty($_GET['pdf'])){
       generarpdf($cn,$_GET['pdf'],$datos);
   } 
   else{
+      $datos = consultaAlumnosConMatricula($cn,$datosprepost,$pagina,$tipodel,$cantidadpaginas,$configuraciones,$_SESSION['rol']);
   $template = $twig->loadTemplate('listadosAlumnosConMatricula.html');
   $template->display(array('titulo' => $configuraciones['0']['titulo'],
               'contacto' => $configuraciones['0']['mailContacto'],
@@ -45,6 +46,4 @@ else{
                           'datospost' => $datosprepost
               ));
 }}
-
-
 ?>

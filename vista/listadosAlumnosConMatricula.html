@@ -2,15 +2,18 @@
 <html lang="es">
 <head>
 <script src="../js/jquery.min.js"></script>
+
+
   <script src="../js/bootstrap2.min.js"></script>
   <script src="../js/boostrap-modal.js"></script>
+   <script src="../js/highcharts.src.js"></script>
+   <script src="../js/modules/exporting.js"></script>
+   <script src="../js/mio.js"></script>
     <meta charset="UTF-8">
     <TITLE> Area de Consultas </TITLE>
-        <script>                     
-            function salir(){
-                location.href="frontend_controller.php?flag=true";
-            }
-        </script>
+        <style type="text/css">
+${demo.css}
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -20,6 +23,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/abm.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    
 </head>
 <body>  
     {% include 'navbar.html'%}
@@ -38,17 +42,18 @@
 			<div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="2" {%if datospost == 2 %} checked="checked" {% endif%}>Listado de cuotas pagadas</div>
       <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="3" {%if datospost == 3 %} checked="checked" {% endif%}>Listado de cuotas impagas</div>
       {% if tipo==gestion %}
-      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="3" {%if datospost == 4 %} checked="checked" {% endif%}>Ingresos totales de las cuotas</div>
+      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="4" {%if datospost == 4 %} checked="checked" {% endif%}>Monto mensual de cuotas cobradas</div>
       {% else %}
-      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="3" {%if datospost == 5 %} checked="checked" {% endif%}>Ingresos totales de las cuotas</div>
+      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="4" {%if datospost == 4 %} checked="checked" {% endif%}>Monto total de las cuotas</div>
       {% endif %}
 			<button type="submit" id ="boton-consultas-listados" class="btn btn-default ">Listar</button>
 
 			</form>
+      {% if datospost != 4 %}
             <a href="../controlador/controlador_listadosAlumnosConMatricula.php?pdf={{datospost}}" class="classbuttonconvertpdf"><img src="../Imagenes/Adobe_PDF.png" alt="Smiley face" style="    width: 17px;
-    margin-right: 3%;" title="icon-pdf">Convertir a PDF</a>
+    margin-right: 3%;" title="icon-pdf">Generar PDF</a>
+    {% endif %}
            </div>
-		   {% if alumnosConMatricula|length > 0 %}
               {% if datospost == 1 %}
               <div class="main-container-tabla">
             <table  id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
@@ -73,11 +78,16 @@
           
         </tr>
     
-       {% endfor %}
+       {% else %}
+
+                        
+                        <h3 id="idmensajeempty">No hay datos para mostrar</h3>
+ {% endfor %}
         </table>
         </div>
         
-            
+            {% include 'barra_paginacion_consulta.html' %}
+
 
             {% elseif datospost == 2 %}
              <div class="main-container-tabla">
@@ -115,9 +125,15 @@
                       {% endif %}
                     </tr>
                 
-                   {% endfor %}
+                   {% else %}
+
+                        
+                        <h3 id="idmensajeempty">No hay datos para mostrar</h3>
+ {% endfor %}
                       </table>
                       </div>
+                      {% include 'barra_paginacion_consulta.html' %}
+
                     {% elseif datospost == 3 %}
                      <div class="main-container-tabla">
                         <table  
@@ -144,39 +160,22 @@
                   <td headers='col_dire'>{{alumno['comisionCob']}}%</td>    
                     </tr>
                 
-                   {% endfor %}
-                      </table>
-                      </div>
-                
-              {% endif %}
-                    
-                    
-                 
-					{% include 'barra_paginacion_consulta.html' %}
+                   {% else %}
 
-                  
-
-     {% else %}
                         
                         <h3 id="idmensajeempty">No hay datos para mostrar</h3>
- {% endif %}
+ {% endfor %}
 
+                      </table>
+                      </div>
+                {% include 'barra_paginacion_consulta.html' %}
 
+              {% elseif datospost == 4 %}
+                 <div id="container" style="width:85%; height:400px; left: 15%; position: relative;"></div>
+                 <div id="container2" style="width:85%; height:400px; left: 15%; position: relative;"></div>
+              {% endif %}
 
-
-
-
-
-
-
-			
-			
-            
              </div>
-            
-
-       
-  
     <footer>{{contacto}}</footer>
     </div>
   </body>

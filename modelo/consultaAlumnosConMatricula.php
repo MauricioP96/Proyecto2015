@@ -1,5 +1,5 @@
-<?php
-function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones){
+<?php 
+function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones,$rol){
 
 if ($tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
@@ -18,6 +18,8 @@ $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=1;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 }
 else{ 
 	if($tipodel == 2){
@@ -35,6 +37,8 @@ $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=2;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 	}
 	else{
        if($tipodel == 3){
@@ -60,16 +64,23 @@ $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=3;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 
 
 
 
 	                              }
+	                              else {
+	                              $datosprepost=4;
+	                              $alumnosConMatricula= array(1,2,3);
+	                              }
     }
 }
 
 
-$alumnosConMatricula=$query2->fetchAll();
-return $alumnosConMatricula;
+
 }
 ?>
+
+
