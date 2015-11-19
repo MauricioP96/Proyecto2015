@@ -110,8 +110,5 @@
             }]
         });
 
-      function salir(){
-                location.href="frontend_controller.php?flag=true";
-            }
-   
+
 });
