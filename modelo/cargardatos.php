@@ -1,7 +1,7 @@
 <?php
 $db_host="localhost";//:3306";
 $db_user="grupo_10";
-$db_pass="";
+$db_pass="DCerbxcYhyEA9X4T";
 $db_base="grupo_10"; 
 	$tt = new PDO("mysql:dbname=$db_base;host=$db_host",$db_user,$db_pass);
 
