@@ -34,16 +34,26 @@ ${demo.css}
           dataType: 'json', // Choosing a JSON datatype
           async: true,
           success: function(data){
+            $.each( data, function( key, val ) {
+          prueba.push( "<li id='" + key + "'>" + val.suma + "</li>" );
+          });
+              $( "<ul/>", {
+          "class": "my-new-list",
+          html: prueba.join( "" )
+        }).appendTo( "body" );
             suma=[]
             meses=[]
             $.each(data, function (ind, elem) { 
-              suma.push(elem.suma);   
-              meses.push(elem.mes);    
+              meses.push(elem.mes);
+              suma.push(elem.suma);    
              } ); 
+            prueba=[]
+        
           
-            ejecutardatos(suma,meses);
-            }
-      });
+            //ejecutardatos(suma,meses);
+            
+      }
+    })
       $('#container2').highcharts({
 
             chart: {
@@ -113,15 +123,8 @@ ${demo.css}
                 ]
             }]
         });
-   function ejecutardatos (suma,meses) {
-        prueba=[]
-        $.each( suma, function( key, val ) {
-          prueba.push( "<li id='" + key + "'>" + val + "</li>" );
-          });
-              $( "<ul/>", {
-          "class": "my-new-list",
-          html: prueba.join( "" )
-        }).appendTo( "body" );
+
+         //function ejecutardatos(meses){
         $('#container').highcharts({
         chart: {
             type: 'line'
@@ -133,7 +136,7 @@ ${demo.css}
             text: 'Source: WorldClimate.com'
         },
         xAxis: {
-            categories: meses
+            categories: [1,2,3]
         },
         yAxis: {
             title: {
@@ -150,10 +153,10 @@ ${demo.css}
         },
         series: [{
             name: 'Cuota',
-            data: suma
+            data: [1,2,3]
         }]
     });
-      }
+   // }  
 });
 
 
