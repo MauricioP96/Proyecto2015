@@ -1,16 +1,19 @@
 <!doctype html>
 <html lang="es">
 <head>
-<script src="../js/jquery.min.js"></script>
-  <script src="../js/bootstrap2.min.js"></script>
-  <script src="../js/boostrap-modal.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap2.min.js"></script>
+    <script src="../js/boostrap-modal.js"></script>
+
+     
+    <script src="../js/highcharts.src.js"></script>
+    <script src="../js/modules/exporting.js"></script>
+   
     <meta charset="UTF-8">
     <TITLE> Area de Consultas </TITLE>
-        <script>                     
-            function salir(){
-                location.href="frontend_controller.php?flag=true";
-            }
-        </script>
+        <style type="text/css">
+${demo.css}
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -20,6 +23,115 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/abm.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript">
+           function salir(){
+                location.href="frontend_controller.php?flag=true";
+            }
+            
+                       $(document).ready(function () {
+     $('#container2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market shares January, 2015 to May, 2015'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: "Brands",
+                colorByPoint: true,
+                data: [{
+                    name: "Microsoft Internet Explorer",
+                    y: 56.33
+                }, {
+                    name: "Chrome",
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: "Firefox", 
+                    y: 10.38
+                }, {
+                    name: "Safari",
+                    y: 4.77
+                }, {
+                    name: "Opera",
+                    y: 0.91
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 0.2
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 0.2
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 700.2
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 70.2
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 0.2
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 0.2
+                }, {
+                    name: "Proprietary or Undetectable",
+                    y: 0.2
+                }
+                ]
+            }]
+        });
+        $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Monto total de cuotas'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Cuota',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0]
+        }]
+    });
+});
+
+
+        </script>>
 </head>
 <body>  
     {% include 'navbar.html'%}
@@ -29,7 +141,7 @@
                         <img id="escudoUNLP-v1" src="../Imagenes/escudo-UNLP.jpg.png" alt="Smiley face" title="escudo" >
                         <div class="text-tittle">{{titulo}}</div>
                </div>
-            <div class="main_container">
+            <div class="main_container"> 
 
             
             <div class="navbar-lateral">
@@ -39,8 +151,11 @@
       <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="3" {%if datospost == 3 %} checked="checked" {% endif%}>Listado de cuotas impagas</div>
 			<button type="submit" id ="boton-consultas-listados" class="btn btn-default ">Listar</button>
 			</form>
+      {% if datospost != 4 %}
+            <a href="../controlador/controlador_listadosAlumnosConMatricula.php?pdf={{datospost}}" class="classbuttonconvertpdf"><img src="../Imagenes/Adobe_PDF.png" alt="Smiley face" style="    width: 17px;
+    margin-right: 3%;" title="icon-pdf">Generar PDF</a>
+    {% endif %}
            </div>
-		   {% if alumnosConMatricula|length > 0 %}
               {% if datospost == 1 %}
               <div class="main-container-tabla">
             <table id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
@@ -65,10 +180,14 @@
           
         </tr>
     
-       {% endfor %}
+      {% else %}
+
+                        
+                        <h3 id="idmensajeempty">No hay datos para mostrar</h3>
+ {% endfor %}
         </table>
         </div>
-        
+          {% include 'barra_paginacion_consulta.html' %}
             
 
             {% elseif datospost == 2 %}
@@ -98,10 +217,14 @@
                       
                     </tr>
                 
-                   {% endfor %}
+                   {% else %}
+
+                        
+                        <h3 id="idmensajeempty">No hay datos para mostrar</h3>
+ {% endfor %}
                       </table>
                       </div>
-                    
+                      {% include 'barra_paginacion_consulta.html' %}
                 {% elseif datospost == 3 %}
                 <div class="main-container-tabla">
                  <table id="tabla-consultas-listados"  
@@ -129,29 +252,16 @@
                   <td headers='col_email'>{{alumno['monto']}}</td>
                       <td headers='col_dire'>{{alumno['comisionCob']}}%</td>
                 </tr>
-                   {% endfor %}
-                    </table>
-                    </div>
-                    {% endif %}
-          {% include 'barra_paginacion_consulta.html' %}
-                 
+                   {% else %}
 
-
-     {% else %}
                         
                         <h3 id="idmensajeempty">No hay datos para mostrar</h3>
- {% endif %}
+ {% endfor %}
+                    </table>
+                    </div>
+                      {% include 'barra_paginacion_consulta.html' %}
+                  {% endif %}
 
-
-
-
-
-
-
-
-
-			
-			
             
              </div>
             
