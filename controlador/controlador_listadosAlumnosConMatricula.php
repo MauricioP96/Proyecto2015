@@ -6,6 +6,7 @@ require ('../modelo/coneccionBD.php');
 require ('../modelo/consultaConf.php');
 require('../modelo/setearpagina.php');
 require ('../modelo/consultaAlumnosPropios.php');
+require ('../modelo/consultaAlumnosPropiosEXPORTACION.php');
 require ('../modelo/consultaAlumnosConMatricula.php');
 require ('../modelo/consultaAlumnosConMatriculaEXPORTACION.php');
 require ('../modelo/setearTipoDel.php');
@@ -19,6 +20,11 @@ setearTwig($loader,$twig);
 $pagina=setearPagina();
 $tipodel=seteartipodel();
 if ($_SESSION['rol'] == "consulta"){
+    if (!empty($_GET['pdf'])){
+       $datos = consultaAlumnosPropiosEXPORTACION($cn,$datosprepost,$pagina,$_GET['pdf'],$_SESSION['nombreusuario'],$cantidadpaginas,$configuraciones);
+
+       generarpdfconsulta($cn,$_GET['pdf'],$datos);
+  } 
     $alumnosConMatricula = consultaAlumnosPropios($cn,$datosprepost,$pagina,$tipodel,$_SESSION['nombreusuario'],$cantidadpaginas,$configuraciones);
       $template = $twig->loadTemplate('listadosAlumnosInformacionPropios.html');
   $template->display(array('titulo' => $configuraciones['0']['titulo'],
@@ -26,7 +32,8 @@ if ($_SESSION['rol'] == "consulta"){
               'tipo' => $_SESSION['rol'],
                           'alumnosConMatricula' => $alumnosConMatricula,
                                 'paginaactual' => $pagina,
-                          'datospost' => $datosprepost
+                          'datospost' => $datosprepost,
+                          'cantpaginas' => $cantidadpaginas
               )); 
 
  
@@ -39,7 +46,6 @@ else{
   } 
   else{
       $datos = consultaAlumnosConMatricula($cn,$datosprepost,$pagina,$tipodel,$cantidadpaginas,$configuraciones,$_SESSION['rol'],$_SESSION['id']);
-         var_dump($tipodel);
          $template = $twig->loadTemplate('listadosAlumnosConMatricula.html');
   $template->display(array('titulo' => $configuraciones['0']['titulo'],
               'contacto' => $configuraciones['0']['mailContacto'],

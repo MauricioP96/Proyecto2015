@@ -1,5 +1,6 @@
 <?php 
-function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones,$rol,$iduser){
+function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones,$rol,$iduser){ 
+	
 if ($tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
                                                             INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
