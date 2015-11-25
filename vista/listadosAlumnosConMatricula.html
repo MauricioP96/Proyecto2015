@@ -27,23 +27,41 @@ ${demo.css}
                 location.href="frontend_controller.php?flag=true";
             }
             
-                       $(document).ready(function () {
+       $(document).ready(function () {
      $.ajax({ // ajax call starts
           url: '../modelo/cargardatos.php', // JQuery loads serverside.php
           data: $(this).val(), // Send value of the clicked button
           dataType: 'json', // Choosing a JSON datatype
-          async: true,
           success: function(data){
-            suma=[]
-            meses=[]
-            $.each(data, function (ind, elem) { 
-              suma.push(elem.suma);   
-              meses.push(elem.mes);    
-             } ); 
+          var suma=[]
+          var meses=[]
+          $.each( data, function( key, val ) {
+            suma.push( parseInt(val.suma))
+            meses.push( val.nombre )
+            });
+          
           
             ejecutardatos(suma,meses);
-            }
-      });
+            
+      }
+    })
+
+     $.ajax({ // ajax call starts
+          url: '../modelo/cargardatos2.php', // JQuery loads serverside.php
+          data: $(this).val(), // Send value of the clicked button
+          dataType: 'json', // Choosing a JSON datatype
+          success: function(data){
+          var tupla=[]
+          $.each( data, function( key, val ) {
+            tupla.push( { name: val.nombre ,y: parseInt(val.suma) })
+            });
+          
+          
+            ejecutardatos2(tupla);
+            
+      }
+    })
+     function ejecutardatos2(tupla){
       $('#container2').highcharts({
 
             chart: {
@@ -69,59 +87,14 @@ ${demo.css}
                 }
             },
             series: [{
-                name: "Brands",
+                name: "contribucion en porcentaje",
                 colorByPoint: true,
-                data: [{
-                    name: "Microsoft Internet Explorer",
-                    y: 56.33
-                }, {
-                    name: "Chrome",
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: "Firefox", 
-                    y: 10.38
-                }, {
-                    name: "Safari",
-                    y: 4.77
-                }, {
-                    name: "Opera",
-                    y: 0.91
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 700.2
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 70.2
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
-                }
-                ]
-            }]
+                data: tupla
+             }]
         });
-   function ejecutardatos (suma,meses) {
-        prueba=[]
-        $.each( suma, function( key, val ) {
-          prueba.push( "<li id='" + key + "'>" + val + "</li>" );
-          });
-              $( "<ul/>", {
-          "class": "my-new-list",
-          html: prueba.join( "" )
-        }).appendTo( "body" );
+}
+
+         function ejecutardatos(suma,meses){
         $('#container').highcharts({
         chart: {
             type: 'line'
@@ -130,14 +103,14 @@ ${demo.css}
             text: 'Monto total de cuotas'
         },
         subtitle: {
-            text: 'Source: WorldClimate.com'
+            text: 'Source: www.bancopatagonia.com'
         },
         xAxis: {
             categories: meses
         },
         yAxis: {
             title: {
-                text: 'Temperature (°C)'
+                text: 'Monto en Pesos-ARG'
             }
         },
         plotOptions: {
@@ -153,7 +126,7 @@ ${demo.css}
             data: suma
         }]
     });
-      }
+    }  
 });
 
 
@@ -335,7 +308,7 @@ ${demo.css}
                  <div id="container" style="width:85%; height:400px; left: 15%; position: relative;"></div>
                  <div id="container2" style="width:85%; height:400px; left: 15%; position: relative;"></div>
               {% endif %}
-               <div id="caca"> </div>              
+               <span id="resultado"></span>              
 
              </div>
     <footer>{{contacto}}</footer>

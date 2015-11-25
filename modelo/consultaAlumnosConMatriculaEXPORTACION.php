@@ -66,7 +66,7 @@ return $alumnosConMatricula;
 }
 else {
 if ($tipodel == 5){
-$query = $cn->prepare("SELECT count(*) as num FROM pagos inner join cuotas on (cuotas.id=pagos.idCuota) 
+$query = $cn->prepare("SELECT count(*) as num FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
 WHERE Pagos.id_user=? GROUP by  MONTH(Pagos.FechaAlta),year(Pagos.FechaAlta)");
 $query->execute(array($iduser)); 
 $consultacant = $query->fetchAll();
@@ -74,8 +74,8 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss));  
-$query2=$cn->prepare("SELECT sum(cuotas.comisionCob) as comision,year(pagos.fechaAlta) as ano,month(pagos.fechaAlta) as mes FROM pagos inner join cuotas on (cuotas.id=pagos.idCuota) 
-WHERE pagos.id_user=:user GROUP by  MONTH(pagos.fechaAlta),year(pagos.fechaAlta)");
+$query2=$cn->prepare("SELECT sum(Cuotas.comisionCob) as comision,year(Pagos.fechaAlta) as ano,month(Pagos.fechaAlta) as mes FROM Pagos inner join Cuotas on (Cuotas.id=pagos.idCuota) 
+WHERE Pagos.id_user=:user GROUP by  MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)");
 $query2->bindValue(':user', $iduser);
 $query2->execute();
 $datosprepost=5;
