@@ -10,7 +10,7 @@ require ('../modelo/consultaAlumnosPropiosEXPORTACION.php');
 require ('../modelo/consultaAlumnosConMatricula.php');
 require ('../modelo/consultaAlumnosConMatriculaEXPORTACION.php');
 require ('../modelo/setearTipoDel.php');
-require ('../modelo/generarpdf.php');
+require ('../modelo/generarPDF.php');
 conectarBD($cn);
 if(empty($_SESSION['nombreusuario'])){
     header ("Location: ../controlador/frontend_controller.php"); 
