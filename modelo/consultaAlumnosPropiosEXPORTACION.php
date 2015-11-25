@@ -16,7 +16,7 @@ $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss)); 
 $query2=$cn->prepare("SELECT * 
-	          
+	                            FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
 	                                 INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
 	                                 INNER JOIN AlumnoResponsable ON (Alumnos.id = AlumnoResponsable.idAlumno) 
 	                                 INNER JOIN Responsables ON (Responsables.id= AlumnoResponsable.idResponsable) 

@@ -112,10 +112,10 @@ $prints = '<html>
       $tabla=$tabla."
       <tr>  
       <td>".$fila['fechaAlta']."</td>
-      <td>".$fila['nombre']."</td>
       <td>".$fila['apellido']."</td>
+      <td>".$fila['nombre']."</td>
       <td>".$fila['monto']."</td>
-      <td>".$fila['comisionCob']."%</td>
+      <td>".$fila['comisionCob']."$</td>
       </tr> ";
      }
      $tabla=$tabla."</table>";
@@ -131,7 +131,7 @@ if ($pdf == 2){
       <td>".$fila['numero']."</td>
       <td>".$fila['fechaAlta']."</td>
       <td>".$fila['monto']."</td>
-      <td>".$fila['comisionCob']."</td>
+      <td>".$fila['comisionCob']."$</td>
       <td>".$fila['becado']."</td>
       </tr> ";
      }
@@ -148,7 +148,7 @@ if ($pdf == 3){
        <td>".$fila['nombre']."</td>
        <td>".$fila['apellido']."</td>
        <td>".$fila['monto']."</td>
-       <td  >".$fila['comisionCob']."%</td>
+       <td  >".$fila['comisionCob']."$</td>
        
       </tr> ";
      }
