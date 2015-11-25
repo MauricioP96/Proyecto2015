@@ -11,6 +11,7 @@ function iniciar_sesion($cn,$usuario,$clave){
        foreach ($rows as $row) {
        		 $_SESSION['nombreusuario'] = $row['username'];
     		$_SESSION['rol'] = $row['rol'];
+        $_SESSION['id'] = $row['id'];
     	//echo $_SESSION['nombreusuario'];
 
     	//echo $_SESSION['rol'];

@@ -64,7 +64,7 @@ ${demo.css}
                     sliced: true,
                     selected: true
                 }, {
-                    name: "Firefox",
+                    name: "Firefox", 
                     y: 10.38
                 }, {
                     name: "Safari",
@@ -80,7 +80,7 @@ ${demo.css}
                     y: 0.2
                 }, {
                     name: "Proprietary or Undetectable",
-                    y: 70.2
+                    y: 700.2
                 }, {
                     name: "Proprietary or Undetectable",
                     y: 70.2
@@ -149,11 +149,10 @@ ${demo.css}
 			<div class="imputround-checkbox" ><input type="radio" name="tipodel" value="1"  {%if datospost == 1 %} checked="checked" {% endif%}>Listado de alumnos con matricula paga</div>
 			<div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="2" {%if datospost == 2 %} checked="checked" {% endif%}>Listado de cuotas pagadas</div>
       <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="3" {%if datospost == 3 %} checked="checked" {% endif%}>Listado de cuotas impagas</div>
-      {% if tipo==gestion %}
-      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="4" {%if datospost == 4 %} checked="checked" {% endif%}>Monto mensual de cuotas cobradas</div>
-      {% else %}
-      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="4" {%if datospost == 4 %} checked="checked" {% endif%}>Monto total de las cuotas</div>
+      {% if tipo == "gestion" %}
+      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="5" {%if datospost == 5 %} checked="checked" {% endif%}>Monto total de las cuotas por mi</div>
       {% endif %}
+      <div class="imputround-checkbox" ><input  type="radio" name="tipodel" value="4" {%if datospost == 4 %} checked="checked" {% endif%}>Monto total de las cuotas por todos</div>
 			<button type="submit" id ="boton-consultas-listados" class="btn btn-default ">Listar</button>
 
 			</form>
@@ -181,8 +180,8 @@ ${demo.css}
           <td headers='col_email'>{{alumno['fechaAlta']}}</td>
           <td headers='col_ape'>{{alumno['apellido']}}</td>
           <td headers='col_nom'>{{alumno['nombre']}}</td>
-          <td  headers='col_monto'>{{alumno['monto']}}</td>
-          <td headers='col_nomm'>{{alumno['comisionCob']}}</td>
+          <td  headers='col_monto'>{{alumno['monto']}}$</td>
+          <td headers='col_nomm'>{{alumno['comisionCob']}}$</td>
           
         </tr>
     
@@ -223,9 +222,9 @@ ${demo.css}
                       {% if alumno['becado'] == 1 %}
                       <td headers='col_email'>0</td>
                       {% else %}
-                      <td headers='col_email'>{{alumno['monto']}}</td>
+                      <td headers='col_email'>{{alumno['monto']}}$</td>
                       {% endif %}
-                      <td headers='col_dire'>{{alumno['comisionCob']}}%</td>
+                      <td headers='col_dire'>{{alumno['comisionCob']}}$</td>
                       {% if alumno['becado'] == 0 %}
                       <td headers='col_diree'>No</td>
                       {% else %}
@@ -264,8 +263,36 @@ ${demo.css}
                   <td headers='col_dni'>{{alumno['mes']}}/{{alumno['anio']}}</td>
                   <td headers='col_dnii'>{{alumno['nombre']}}</td>
                   <td headers='col_email'>{{alumno['apellido']}}</td>
-                  <td headers='col_emaill'>{{alumno['monto']}}</td>
-                  <td headers='col_dire'>{{alumno['comisionCob']}}%</td>    
+                  <td headers='col_emaill'>{{alumno['monto']}}$</td>
+                  <td headers='col_dire'>{{alumno['comisionCob']}}$</td>    
+                    </tr>
+                
+                   {% else %}
+
+                        
+                        <h3 id="idmensajeempty">No hay datos para mostrar</h3>
+ {% endfor %}
+
+                      </table>
+                      </div>
+                {% include 'barra_paginacion_consulta.html' %}
+              {% elseif datospost == 5 %}
+                     <div class="main-container-tabla">
+                        <table  
+                        id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
+                    <thead>
+                      <tr>
+      
+                        <th id='col_dire' >Fecha</th>
+                        <th id='col_dire' >Comision</th>
+                      </tr>
+                    </thead>
+                    {% for alumno in alumnosConMatricula %}
+                     <tr>
+     
+                      <td  headers='col_fecnac'>{{alumno['0']}}</td>
+                      <td  headers='col_fecnac'>{{alumno['1']}}</td>
+                      <td headers='col_dire'>{{alumno['2']}}$</td>    
                     </tr>
                 
                    {% else %}
