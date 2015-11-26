@@ -80,7 +80,7 @@ body { font-size: 62.5%; }
 
 <script type="text/javascript">
 $(document).ready(function(){
-	var base_url = 'http://localhost:8080/grupo_10/controlador/API_fechas_cuotas.php';
+	var base_url = 'http://localhost:8080/grupo_10/controlador/';
         //When DOM loaded we attach click event to button	
 	$('#target').click(function(){
  				jfcalplugin.deleteAllAgendaItems("#mycal");
@@ -91,7 +91,7 @@ $(document).ready(function(){
                 //start ajax request
                 $.ajax({
                     type: "POST",
-                    url: base_url,
+                    url: base_url+'API_fechas_cuotas_pagadas.php',
                     data:form_data,
                     xhrFields:{withCredentials:true},
 					crossDomain:true,
@@ -133,6 +133,63 @@ $(document).ready(function(){
                         //$('#results').html(output);
                     }
                 });
+            
+			$.ajax({
+                    type: "POST",
+                    url: base_url+'API_fechas_cuotas_no_pagadas.php',
+                    data:form_data,
+                    xhrFields:{withCredentials:true},
+					crossDomain:true,
+                    //force to handle it as text
+                    dataType: "text",
+                    success: function(data) {
+                        
+                        //data downloaded so we call parseJSON function 
+                        //and pass downloaded data
+                        var json2 = $.parseJSON(data);
+                        //now json variable contains data in json format
+                        //let's display a few items
+                       // var output="<ul>";
+                        for (var i in json2) 
+                        {
+                        	var fec1=new Date();
+                        	var fec2=new Date(json2[i].anio,json2[i].mes,30,0,0,0);
+                        	//fec1.setDate(fec1.getDate()+1);
+                        	//fec2.setDate(fec2.getDate()+1);
+                        	if (fec1 > fec2) {
+							    var color = "#FF0000";
+							} else {
+							     var color = "#FFFF00";
+							}
+                           jfcalplugin.addAgendaItem(
+								"#mycal",
+								"Pago de la cuota n° "+json2[i].numero,
+								fec2,//+"-20-0-0-0"),
+								fec2,//+"-23-59-59-999"),
+								false,
+								{
+								//fname: "Santajsdkadjad",
+								//lname: "Clausasdadad",
+								//leadReindeer: "Rudolphsadadadad",
+								},
+								{
+								backgroundColor: color,
+								foregroundColor: "#FFFFFF"
+								}	
+							);
+                            //output+="<li>" + json[i].fecha + ",  " + json[i].numero +json[i].fecha+"-20-0-0-0"+ "</li>";
+                        }
+                        //output+="</ul>";
+                        //$('#results').html(output);
+                    }
+                });
+
+
+
+
+
+
+
             });
 
 

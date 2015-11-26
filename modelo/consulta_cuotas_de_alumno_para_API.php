@@ -11,14 +11,19 @@ function consultar_cuotas_pagas_de_alumno($dni,$anio){
 
 }
 
-function consultar_cuotas_pagas_de_alumno($dni,$anio){
+function consultar_cuotas_no_pagas_de_alumno($dni,$anio){
 	conectarBD($cn);
-	$query=$cn->prepare('SELECT Cuotas.numero
+	$query=$cn->prepare('SELECT Cuotas.numero,Cuotas.anio,Cuotas.mes
 						 FROM Cuotas
 	 					WHERE (Cuotas.anio=?) AND (Cuotas.tipo="cuota") 
-	 					AND NOT EXIST(SELECT *
+	 					AND NOT EXISTS(SELECT *
  									FROM Pagos INNER JOIN Alumnos ON (Pagos.idAlumno=Alumnos.id)
- 									WHERE Alumnos.numeroDoc=? AND Pagos.idCuota=Cuota.id	)');
+ 									WHERE Alumnos.numeroDoc=? AND Pagos.idCuota=Cuotas.id	)');
 	$query->execute(array($anio,$dni));
 	return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+
+
+?>

@@ -1,5 +1,5 @@
 <?php
-require_once('../modelo/consulta_cuotas_pagas_de_alumno.php');
+require_once('../modelo/consulta_cuotas_de_alumno_para_API.php');
 $origin=$_SERVER['HTTP_ORIGIN'];
 header("Access-Control-Allow-Origin:$origin");
 if(!empty($_REQUEST['dni'])&&(!empty($_REQUEST['anio']))){
@@ -10,3 +10,5 @@ if(!empty($_REQUEST['dni'])&&(!empty($_REQUEST['anio']))){
 else{
 	echo 'no envie parametros';
 }
+
+?>
