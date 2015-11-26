@@ -1,6 +1,7 @@
 <?php
 require_once ('../modelo/coneccionBD.php');
 conectarBD($tt);
+
   $query = $tt->prepare("SELECT Cuotas.id, SUM(Cuotas.monto) as suma, Cuotas.anio,Meses.nombre FROM
                         Cuotas INNER JOIN Pagos on (Cuotas.id=Pagos.idCuota) 
   	                   INNER JOIN Meses on (Meses.idMes=Cuotas.mes)
