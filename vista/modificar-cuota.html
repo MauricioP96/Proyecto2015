@@ -39,7 +39,7 @@ and open the template in the editor.
                     </div>  {% endif %}
         <label class="label-imput-contigAdmin" >Tipo: </label>
         <select id="imput-adminconfig" class="form-control" name="tipo" >
-            <option value="couta" {%if not(cuota['tipo'] is defined) or cuota['tipo']=='cuota' %} selected {%endif%}>Cuota</option>
+            <option value="cuota" {%if not(cuota['tipo'] is defined) or cuota['tipo']=='cuota' %} selected {%endif%}>Cuota</option>
             <option value="matricula" {%if cuota['tipo']=='matricula'%} selected {%endif%}>Matricula</option></select><br>
         
         <label class="label-imput-contigAdmin" >Mes: </label>
