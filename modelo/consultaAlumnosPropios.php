@@ -1,5 +1,5 @@
 <?php 
-function consultaAlumnosPropios($cn,&$datosprepost,$pagina,$tipodel,$nombreusuario,&$cantidadpaginas,$configuraciones){
+function consultaAlumnosPropios($cn,&$datosprepost,&$pagina,$tipodel,$nombreusuario,&$cantidadpaginas,$configuraciones){
 if ((empty($tipodel))  || $tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num 
 	                    FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno) 
