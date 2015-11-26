@@ -23,6 +23,20 @@ left: 15%;
 width: 84%;
 overflow: auto;
 }
+.classbuttonconvertpdf{
+    background: linear-gradient(to bottom, rgba(240,0,0,1) 0%, rgba(109,0,25,1) 100%);
+    padding: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #6D6D6D;
+    color: aliceblue;
+    position: absolute;
+    left: 5%;
+    font-size: small;
+    margin-top: 13px;
+    width: 84%;
+}
 
 
 #letraviscointerner{
@@ -120,40 +134,89 @@ body{
 #paginacion-consultas{
 position: relative;left: 50%;width: 40%;}
 #boton-consultas-listados{
-    
-padding-left: 22%;
-    
-padding-right: 19%;
-    
-left: 10%;
-    
-position: relative;
-    
-color: white;
-    
-background: rgba(73,155,234,1);
-    
-background: 
+    padding-left: 22%;
+    padding-right: 19%;
+    left: 5%;
+    position: relative;
+    width: 84%;
+    color: white;
+    background: rgba(73,155,234,1);
+    background: 
   
--moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
-    
-background: 
- 
--webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(51,121,183,1)));
-    
-background: 
- 
--webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
-    
-background: 
-  
--o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
-    
-background: 
 
--ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
     
-background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
+    background: 
+ 
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(51,121,183,1)));
+    background: 
+ 
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
+    background: 
+  
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
+    background: 
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
+    background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(51,121,183,1) 100%);
  }   
 
 .lineal-banner{
@@ -231,24 +294,15 @@ position: relative;top: 3px;margin: 9px;}
 #tabla-consultas-listados{
 }
 .navbar-lateral{
-    
-position: absolute;
-    
-height: 78%;
-    
-width: 14%;
-    
-top: 221.5px;
-    
-background-color: #E1E1E1;
-    
-border-color: #9E9E9E;
-    
-border-width: 1px;
-    
-border-right-style: solid;
-    
-border-left-style: solid;
+    position: absolute;
+    height: 78%;
+    width: 15%;
+    top: 221.5px;
+    background-color: #E1E1E1;
+    border-color: #9E9E9E;
+    border-width: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
 }
 .button-login{
     padding: 7px;

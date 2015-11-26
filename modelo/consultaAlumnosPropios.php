@@ -28,7 +28,8 @@ $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=1;
-
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 }
 else{
 	if ($tipodel == 2){
@@ -62,6 +63,8 @@ $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=2;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 }
 else{
 	$query = $cn->prepare("SELECT count(*) as num FROM (SELECT * FROM Cuotas WHERE Cuotas.mes < MONTH(CURRENT_DATE) AND Cuotas.anio <= year(CURRENT_DATE)) as ta1,(SELECT AlumnoResponsable.idAlumno,Alumnos.nombre,Alumnos.apellido,Alumnos.numeroDoc
@@ -87,9 +90,9 @@ $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->bindValue(':user', $nombreusuario);
 $query2->execute();
 $datosprepost=3;
-
-}
 $alumnosConMatricula=$query2->fetchAll();
 return $alumnosConMatricula;
+}
+
 }}
 ?>

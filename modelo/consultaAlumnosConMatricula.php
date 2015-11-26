@@ -1,6 +1,6 @@
-<?php
-function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones){
-
+<?php 
+function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones,$rol,$iduser){ 
+	
 if ($tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
                                                             INNER JOIN Cuotas ON (Pagos.idCuota=Cuotas.id) 
@@ -18,6 +18,8 @@ $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=1;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 }
 else{ 
 	if($tipodel == 2){
@@ -29,12 +31,14 @@ $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tu
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss));  
-$query2=$cn->prepare("SELECT Alumnos.apellido,Alumnos.nombre,Cuotas.numero,Cuotas.fechaAlta,Cuotas.monto,Cuotas.comisionCob FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
+$query2=$cn->prepare("SELECT Alumnos.apellido,Alumnos.nombre,Cuotas.numero,Cuotas.fechaAlta,Cuotas.monto,Cuotas.comisionCob,Pagos.becado FROM Cuotas INNER JOIN Pagos ON (Cuotas.id=Pagos.idCuota) 
 			                                  INNER JOIN Alumnos ON (Alumnos.id=Pagos.idAlumno) WHERE 1 ORDER BY Cuotas.fechaAlta  LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=2;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 	}
 	else{
        if($tipodel == 3){
@@ -60,16 +64,43 @@ $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=3;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
 
 
 
 
-	                              }
+}
+else {
+if ($tipodel == 5){
+$query = $cn->prepare("SELECT count(*) as num FROM Pagos inner join Cuotas on (cuotas.id=pagos.idCuota) 
+WHERE Pagos.id_user=? GROUP by  MONTH(Pagos.FechaAlta),year(Pagos.FechaAlta)");
+$query->execute(array($iduser)); 
+$consultacant = $query->fetchAll();
+$cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
+$offset=(($pagina-1)*$configuraciones['0']['cantElem']);
+$sss=intval($configuraciones['0']['cantElem']);
+$cantidadpaginas= intval(ceil($cantidadalumnos/$sss));  
+$query2=$cn->prepare("SELECT sum(Cuotas.comisionCob) as comision,year(Pagos.fechaAlta) as ano,month(Pagos.fechaAlta) as mes FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
+WHERE Pagos.id_user=:user GROUP by  MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)  LIMIT :cantidad OFFSET :offset");
+$query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
+$query2->bindValue(':offset', $offset, PDO::PARAM_INT);
+$query2->bindValue(':user', $iduser);
+$query2->execute();
+$datosprepost=5;
+$alumnosConMatricula=$query2->fetchAll();
+return $alumnosConMatricula;
+}
+else{
+	$datosprepost=4;
+}}
+
     }
 }
 
 
-$alumnosConMatricula=$query2->fetchAll();
-return $alumnosConMatricula;
+
 }
 ?>
+
+
