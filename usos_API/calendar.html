@@ -153,17 +153,17 @@ $(document).ready(function(){
                         for (var i in json2) 
                         {
                         	var fec1=new Date();
-                        	var fec2=new Date(json2[i].anio,json2[i].mes,30,0,0,0);
+                        	var fec2=new Date(json2[i].anio,json2[i].mes-1,30,0,0,0,0);
                         	//fec1.setDate(fec1.getDate()+1);
                         	//fec2.setDate(fec2.getDate()+1);
                         	if (fec1 > fec2) {
-							    var color = "#FF0000";
+							    var colores = { backgroundColor:"#FF0000",foregroundColor: "#FFFFFF"};
 							} else {
-							     var color = "#FFFF00";
+							     var colores ={ backgroundColor:"#FFFF00",foregroundColor:"#000000"};
 							}
                            jfcalplugin.addAgendaItem(
 								"#mycal",
-								"Pago de la cuota n° "+json2[i].numero,
+								"Vencimiento de la cuota nº "+json2[i].numero,
 								fec2,//+"-20-0-0-0"),
 								fec2,//+"-23-59-59-999"),
 								false,
@@ -172,10 +172,7 @@ $(document).ready(function(){
 								//lname: "Clausasdadad",
 								//leadReindeer: "Rudolphsadadadad",
 								},
-								{
-								backgroundColor: color,
-								foregroundColor: "#FFFFFF"
-								}	
+								colores
 							);
                             //output+="<li>" + json[i].fecha + ",  " + json[i].numero +json[i].fecha+"-20-0-0-0"+ "</li>";
                         }
