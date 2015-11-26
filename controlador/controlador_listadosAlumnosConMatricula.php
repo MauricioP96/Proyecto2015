@@ -2,7 +2,7 @@
 session_start();
 require ('../modelo/funciones1.php');
 require('../modelo/setearTwig.php');
-require ('../modelo/coneccionBD.php');
+require_once ('../modelo/coneccionBD.php');
 require ('../modelo/consultaConf.php');
 require('../modelo/setearpagina.php');
 require ('../modelo/consultaAlumnosPropios.php');

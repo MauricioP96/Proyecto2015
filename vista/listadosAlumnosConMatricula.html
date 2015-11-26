@@ -155,7 +155,7 @@ ${demo.css}
 			<button type="submit" id ="boton-consultas-listados" class="btn btn-default ">Listar</button>
 
 			</form>
-      {% if datospost != 4 %}
+      {% if datospost != 4  %}
             <a href="../controlador/controlador_listadosAlumnosConMatricula.php?pdf={{datospost}}" class="classbuttonconvertpdf"><img src="../Imagenes/Adobe_PDF.png" alt="Smiley face" style="    width: 17px;
     margin-right: 3%;" title="icon-pdf">Generar PDF</a>
     {% endif %}
@@ -282,16 +282,18 @@ ${demo.css}
                     <thead>
                       <tr>
       
-                        <th id='col_dire' >Fecha</th>
                         <th id='col_dire' >Comision</th>
+                        <th id='col_dire' >año</th>
+                        <th id='col_dire' >mes</th>
+                        
                       </tr>
                     </thead>
                     {% for alumno in alumnosConMatricula %}
                      <tr>
      
-                      <td  headers='col_fecnac'>{{alumno['0']}}</td>
+                      <td  headers='col_fecnac'>{{alumno['0']}}$</td>
                       <td  headers='col_fecnac'>{{alumno['1']}}</td>
-                      <td headers='col_dire'>{{alumno['2']}}$</td>    
+                      <td headers='col_dire'>{{alumno['2']}}</td>    
                     </tr>
                 
                    {% else %}
@@ -308,7 +310,7 @@ ${demo.css}
                  <div id="container" style="width:85%; height:400px; left: 15%; position: relative;"></div>
                  <div id="container2" style="width:85%; height:400px; left: 15%; position: relative;"></div>
               {% endif %}
-               <span id="resultado"></span>              
+                            
 
              </div>
     <footer>{{contacto}}</footer>

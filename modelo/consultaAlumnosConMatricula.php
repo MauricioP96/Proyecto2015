@@ -1,5 +1,5 @@
 <?php 
-function consultaAlumnosConMatricula($cn,&$datosprepost,$pagina,$tipodel,&$cantidadpaginas,$configuraciones,$rol,$iduser){ 
+function consultaAlumnosConMatricula($cn,&$datosprepost,&$pagina,$tipodel,&$cantidadpaginas,$configuraciones,$rol,$iduser){ 
 	
 if ($tipodel == 1){
 $query = $cn->prepare("SELECT count(*) as num FROM Alumnos INNER JOIN Pagos ON (Alumnos.id=Pagos.idAlumno)
@@ -73,8 +73,8 @@ return $alumnosConMatricula;
 }
 else {
 if ($tipodel == 5){
-$query = $cn->prepare("SELECT count(*) as num FROM Pagos inner join Cuotas on (cuotas.id=pagos.idCuota) 
-WHERE Pagos.id_user=? GROUP by  MONTH(Pagos.FechaAlta),year(Pagos.FechaAlta)");
+$query = $cn->prepare("SELECT count(*)  as num FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
+WHERE Pagos.id_user=? GROUP by  MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)");
 $query->execute(array($iduser)); 
 $consultacant = $query->fetchAll();
 $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
