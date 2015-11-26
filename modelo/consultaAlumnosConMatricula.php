@@ -73,16 +73,20 @@ return $alumnosConMatricula;
 }
 else {
 if ($tipodel == 5){
-$query = $cn->prepare("SELECT count(*)  as num FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
-WHERE Pagos.id_user=? GROUP by  MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)");
+$query = $cn->prepare("SELECT count(*) as num 
+	FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
+	inner JOIN Meses on (Meses.idMes=month(Pagos.fechaAlta)) 
+	WHERE Pagos.id_user=? GROUP by MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)");
 $query->execute(array($iduser)); 
 $consultacant = $query->fetchAll();
 $cantidadalumnos=intval($consultacant[0]['num']);   //consulto la cantidad de tuplas totales sin paginar q debo mostrar
 $offset=(($pagina-1)*$configuraciones['0']['cantElem']);
 $sss=intval($configuraciones['0']['cantElem']);
 $cantidadpaginas= intval(ceil($cantidadalumnos/$sss));  
-$query2=$cn->prepare("SELECT sum(Cuotas.comisionCob) as comision,year(Pagos.fechaAlta) as ano,month(Pagos.fechaAlta) as mes FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
-WHERE Pagos.id_user=:user GROUP by  MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)  LIMIT :cantidad OFFSET :offset");
+$query2=$cn->prepare("SELECT sum(Cuotas.comisionCob) as comision,year(Pagos.fechaAlta) as ano,Meses.nombre 
+	FROM Pagos inner join Cuotas on (Cuotas.id=Pagos.idCuota) 
+	inner JOIN Meses on (Meses.idMes=month(Pagos.fechaAlta)) 
+	WHERE Pagos.id_user=:user GROUP by MONTH(Pagos.fechaAlta),year(Pagos.fechaAlta)  LIMIT :cantidad OFFSET :offset");
 $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->bindValue(':user', $iduser);
