@@ -18,7 +18,7 @@ if(empty($_SESSION['nombreusuario'])){
 $configuraciones = consultaConf($cn);
 setearTwig($loader,$twig);
 $pagina=setearPagina();
-$tipodel=seteartipodel();
+$tipodel=seteartipodel(); 
 if ($_SESSION['rol'] == "consulta"){
     if (!empty($_GET['pdf'])){
        $datos = consultaAlumnosPropiosEXPORTACION($cn,$datosprepost,$pagina,$_GET['pdf'],$_SESSION['nombreusuario'],$cantidadpaginas,$configuraciones);

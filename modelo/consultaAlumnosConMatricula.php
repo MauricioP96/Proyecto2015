@@ -64,7 +64,7 @@ $query2->bindValue(':cantidad', $sss, PDO::PARAM_INT);
 $query2->bindValue(':offset', $offset, PDO::PARAM_INT);
 $query2->execute();
 $datosprepost=3;
-$alumnosConMatricula=$query2->fetchAll();
+$alumnosConMatricula=$query2->fetchAll(); 
 return $alumnosConMatricula;
 
 

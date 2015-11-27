@@ -9,4 +9,4 @@ conectarBD($tt);
   $query->execute(); 
   $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
   print json_encode($consulta);
-?>
+?> 
