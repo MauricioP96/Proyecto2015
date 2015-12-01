@@ -8,5 +8,6 @@ conectarBD($tt);
 						where Cuotas.tipo!='matricula' and Pagos.becado=0 GROUP BY Cuotas.id order by Cuotas.anio ,Cuotas.mes limit 12");
   $query->execute(); 
   $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
+  
   print json_encode($consulta);
 ?> 
