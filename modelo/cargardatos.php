@@ -5,7 +5,7 @@ conectarBD($tt);
   $query = $tt->prepare("SELECT Cuotas.id, SUM(Cuotas.monto) as suma, Cuotas.anio,Meses.nombre FROM Cuotas 
 						INNER JOIN Pagos on (Cuotas.id=Pagos.idCuota) 
 						inner join Meses on (Meses.idMes=Cuotas.mes) 
-						where Cuotas.tipo='couta' and Pagos.becado=0 GROUP BY Cuotas.id order by Cuotas.anio ,Cuotas.mes limit 12");
+						where Cuotas.tipo!='matricula' and Pagos.becado=0 GROUP BY Cuotas.id order by Cuotas.anio ,Cuotas.mes limit 12");
   $query->execute(); 
   $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
   print json_encode($consulta);
