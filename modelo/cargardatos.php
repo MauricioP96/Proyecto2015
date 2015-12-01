@@ -2,12 +2,11 @@
 require_once ('../modelo/coneccionBD.php');
 conectarBD($tt);
 
-  $query = $tt->prepare("SELECT Cuotas.id, SUM(Cuotas.monto) as suma, Cuotas.anio,Meses.nombre FROM Cuotas 
-						INNER JOIN Pagos on (Cuotas.id=Pagos.idCuota) 
-						inner join Meses on (Meses.idMes=Cuotas.mes) 
-						where Cuotas.tipo!='matricula' and Pagos.becado=0 GROUP BY Cuotas.id order by Cuotas.anio ,Cuotas.mes limit 12");
+  $query = $tt->prepare("SELECT SUM(Cuotas.monto) as suma,Meses.nombre,year(Pagos.fecha) as anio 
+					  	FROM Pagos inner join Meses on (month(Pagos.fecha)=Meses.idMes) LEFT JOIN Cuotas on (Cuotas.id=Pagos.idCuota)
+					  	 where Cuotas.tipo != 'matricula' and Pagos.becado=0 group by month(Pagos.fecha),year(Pagos.fecha) limit 12");
   $query->execute(); 
   $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
-  
+
   print json_encode($consulta);
 ?> 
