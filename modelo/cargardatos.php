@@ -4,7 +4,8 @@ conectarBD($tt);
 
   $query = $tt->prepare("SELECT SUM(Cuotas.monto) as suma,Meses.nombre,year(Pagos.fecha) as anio 
 					  	FROM Pagos inner join Meses on (month(Pagos.fecha)=Meses.idMes) LEFT JOIN Cuotas on (Cuotas.id=Pagos.idCuota)
-					  	 where Cuotas.tipo != 'matricula' and Pagos.becado=0 group by month(Pagos.fecha),year(Pagos.fecha) limit 12");
+					  	 where Cuotas.tipo != 'matricula' and Pagos.becado=0 group by month(Pagos.fecha),year(Pagos.fecha) 
+					  	order by year(Pagos.fecha), month(Pagos.fecha) limit 12");
   $query->execute(); 
   $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
 
