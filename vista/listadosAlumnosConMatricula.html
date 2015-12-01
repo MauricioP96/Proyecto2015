@@ -28,8 +28,9 @@ ${demo.css}
             }
             
        $(document).ready(function () {
-     $.ajax({ // ajax call starts
-          url: '../modelo/cargardatos.php', // JQuery loads serverside.php
+        $("#anio").change(function(){
+           $.ajax({ // ajax call starts
+          url: '../controlador/cargardatos.php', // JQuery loads serverside.php
           data: $(this).val(), // Send value of the clicked button 
           dataType: 'json', // Choosing a JSON datatype
           success: function(data){
@@ -44,7 +45,10 @@ ${demo.css}
             ejecutardatos(suma,meses);
             
       }
+      
     })
+        })
+    
 
      $.ajax({ // ajax call starts
           url: '../modelo/cargardatos2.php', // JQuery loads serverside.php
@@ -159,7 +163,11 @@ ${demo.css}
             <a href="../controlador/controlador_listadosAlumnosConMatricula.php?pdf={{datospost}}" class="classbuttonconvertpdf"><img src="../Imagenes/Adobe_PDF.png" alt="Smiley face" style="    width: 17px;
     margin-right: 3%;" title="icon-pdf">Generar PDF</a>
     {% endif %}
+      {% if datospost == 4  %}
+              <input type='number' id='anio' value="{{ 'now'|date('Y') }}">
+       {% endif %}
            </div>
+           
               {% if datospost == 1 %}
               <div class="main-container-tabla">
             <table  id="tabla-consultas-listados" class="table table-striped" >   <!--id='tabla-alumnos'-->
