@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <TITLE> Montos mensuales </TITLE>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!--<script type="text/javascript" src="js/highcharts.src.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>-->
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+
+</head>
+<body>
+<input type='number' id='anio'>
+<button id='act' > Mostrar</button>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+<script type="text/javascript">
+
+    $('#act').click(function(){
+        var base_url = 'http://localhost:8080/grupo_10/controlador/';
+                var form_data = {//'2147483647',
+                     anio:$('#anio').val(),//'2015'
+                     };
+                //start ajax request
+                $.ajax({
+                    type: "POST",
+                    url: base_url+'API_montos_mensualesxanio.php',
+                    data:form_data,
+                    xhrFields:{withCredentials:true},
+                    crossDomain:true,
+                    //force to handle it as text
+                    dataType: "text",
+                    success: function(data) {
+                        
+                        //data downloaded so we call parseJSON function 
+                        //and pass downloaded data
+                        var json = $.parseJSON(data);
+                         $('#container').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: "Ingresos del año "+form_data['anio']+" por mes"
+                    },
+                    subtitle: {
+                        text: 'Fuente: Cooperadora escuela'
+                    },
+                    xAxis: {
+                        categories: [
+                            'Ene',
+                            'Feb',
+                            'Mar',
+                            'Abr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Ago',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Recaudacion en pesos ARG'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>${point.y:.1f} </b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Monto',
+                        data: json
+                    }]
+                });
+}
+});
+})
+
+
+</script>
+</body>
+    
+</html>
