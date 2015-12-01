@@ -9,5 +9,6 @@ conectarBD($tt);
   	                 	RIGHT JOIN Meses ON (month(Pagos.fecha)=Meses.idMes) GROUP BY Meses.idMes ORDER BY Meses.idMes) as consulta");
   $query->execute(array($anio)); 
   $consulta = $query->fetchAll(PDO::FETCH_ASSOC);
+  return $consulta;
 }
 ?>

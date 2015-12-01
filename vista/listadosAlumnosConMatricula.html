@@ -28,26 +28,47 @@ ${demo.css}
             }
             
        $(document).ready(function () {
-        $("#anio").change(function(){
-           $.ajax({ // ajax call starts
+
+          $("#anio").change(function(){
+           $.ajax({ type: "POST",// ajax call starts
           url: '../controlador/cargardatos.php', // JQuery loads serverside.php
-          data: $(this).val(), // Send value of the clicked button 
+          data: {anio:$('#anio').val(),}, // Send value of the clicked button 
           dataType: 'json', // Choosing a JSON datatype
           success: function(data){
+          //var aux=JSON.stringify(data); 
           var suma=[]
           var meses=[]
           $.each( data, function( key, val ) {
-            suma.push( parseInt(val.suma))
+            suma.push( parseInt(val.monto))
             meses.push( val.nombre + "/" + val.anio )
             });
           
-          
+          //$('#container').html(aux);
             ejecutardatos(suma,meses);
             
       }
       
-    })
-        })
+    });
+    });
+        $.ajax({ type: "POST",// ajax call starts
+          url: '../controlador/cargardatos.php', // JQuery loads serverside.php
+          data: {anio:$('#anio').val(),}, // Send value of the clicked button 
+          dataType: 'json', // Choosing a JSON datatype
+          success: function(data){
+          //var aux=JSON.stringify(data); 
+          var suma=[]
+          var meses=[]
+          $.each( data, function( key, val ) {
+            suma.push( parseInt(val.monto))
+            meses.push( val.nombre + "/" + val.anio )
+            });
+          
+          //$('#container').html(aux);
+            ejecutardatos(suma,meses);
+            
+      }
+      
+    });
     
 
      $.ajax({ // ajax call starts
@@ -104,13 +125,26 @@ ${demo.css}
             type: 'line'
         },
         title: {
-            text: 'Monto total de cuotas'
+            text: 'Monto total de cuotas del año '+$('#anio').val()
         },
         subtitle: {
             text: 'Source: www.bancopatagonia.com'
         },
         xAxis: {
-            categories: meses
+            categories: [
+                            'Ene',
+                            'Feb',
+                            'Mar',
+                            'Abr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Ago',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
         },
         yAxis: {
             title: {
